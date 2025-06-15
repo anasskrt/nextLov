@@ -40,7 +40,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   setIsLoading(true);
 
   try {
-    const response = await fetch("http://localhost:3001/auth/inscription", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/inscription`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,10 +60,6 @@ const handleSubmit = async (e: React.FormEvent) => {
     }
 
     const data = await response.json();
-    console.log(data)
-
-    localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("token", data.token)
 
     toast.success("Inscription réussie");
     router.push("/");

@@ -1,94 +1,88 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Search, Filter, Download, Eye } from "lucide-react";
+import { Search, Filter, Download, Eye, ChevronLeft, ChevronRight } from "lucide-react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 
-// Données fictives pour les devis
-const mockQuotes = [
-  {
-    id: "Q001",
-    clientName: "Jean Dupont",
-    email: "jean.dupont@email.com",
-    phone: "06 12 34 56 78",
-    location: "Aéroport Charles de Gaulle",
-    departureDate: new Date("2024-02-15"),
-    returnDate: new Date("2024-02-20"),
-    carModel: "BMW X5",
-    price: 125,
-    status: "confirmed",
-    createdAt: new Date("2024-01-20")
-  },
-  {
-    id: "Q002",
-    clientName: "Marie Martin",
-    email: "marie.martin@email.com",
-    phone: "06 98 76 54 32",
-    location: "Gare Montparnasse",
-    departureDate: new Date("2024-02-18"),
-    returnDate: new Date("2024-02-22"),
-    carModel: "Audi A4",
-    price: 100,
-    status: "pending",
-    createdAt: new Date("2024-01-22")
-  },
-  {
-    id: "Q003",
-    clientName: "Pierre Durand",
-    email: "pierre.durand@email.com",
-    phone: "06 11 22 33 44",
-    location: "Aéroport Orly",
-    departureDate: new Date("2024-02-25"),
-    returnDate: new Date("2024-03-05"),
-    carModel: "Mercedes C-Class",
-    price: 250,
-    status: "completed",
-    createdAt: new Date("2024-01-25")
-  }
-];
+const PAGE_SIZE = 10;
+
+type Quote = {
+  id: number | string;
+  utilisateur: {
+    nom: string;
+    prenom: string;
+    email: string;
+    telephone: string;
+  };
+  voiture?: {
+    marque?: string;
+    modele?: string;
+    plaque?: string;
+  };
+  dateDebut?: string;
+  dateFin?: string;
+  montantFinal?: number;
+  statut?: string;
+};
+
+const STATUS_LABELS = {
+  EN_ATTENTE: { text: "Attente véhicule", color: "bg-blue-100 text-blue-800" },
+  EN_COURS: { text: "Véhicule reçu", color: "bg-red-100 text-red-800" },
+  RESTITUE: { text: "Véhicule rendu", color: "bg-gray-100 text-gray-800" },
+  REFUSE: { text: "Refusé", color: "bg-red-100 text-red-800" },
+};
 
 const AdminQuotes = () => {
-  const [quotes] = useState(mockQuotes);
+  const [quotes, setQuotes] = useState<Quote[]>([]);
+  const [total, setTotal] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("EN_ATTENTE");
   const [priceFilter, setPriceFilter] = useState("all");
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
 
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case "confirmed":
-        return <Badge className="bg-green-100 text-green-800">Confirmé</Badge>;
-      case "pending":
-        return <Badge className="bg-yellow-100 text-yellow-800">En attente</Badge>;
-      case "completed":
-        return <Badge className="bg-blue-100 text-blue-800">Terminé</Badge>;
-      default:
-        return <Badge variant="outline">Inconnu</Badge>;
+  const fetchQuotes = async () => {
+    setLoading(true);
+    try {
+      const params = new URLSearchParams({
+        page: String(page),
+        limit: String(PAGE_SIZE),
+        statut: statusFilter,
+        search: searchTerm,
+        price: priceFilter,
+      });
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/devis?${params.toString()}`);
+      if (!res.ok) throw new Error("Erreur lors du chargement des devis");
+      const data = await res.json();
+      setQuotes(data.devis);
+      setTotal(data.total);
+    } catch (err) {
+      setQuotes([]);
+      setTotal(0);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const filteredQuotes = quotes.filter(quote => {
-    const matchesSearch = 
-      quote.clientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      quote.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      quote.id.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesStatus = statusFilter === "all" || quote.status === statusFilter;
-    
-    const matchesPrice = 
-      priceFilter === "all" ||
-      (priceFilter === "low" && quote.price < 100) ||
-      (priceFilter === "medium" && quote.price >= 100 && quote.price < 200) ||
-      (priceFilter === "high" && quote.price >= 200);
+  useEffect(() => {
+    fetchQuotes();
+    // eslint-disable-next-line
+  }, [page, statusFilter, searchTerm, priceFilter]);
 
-    return matchesSearch && matchesStatus && matchesPrice;
-  });
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+
+  const getStatusBadge = (status: string | undefined) => {
+    const s = STATUS_LABELS[status as keyof typeof STATUS_LABELS];
+    if (!s) return <Badge variant="outline">Inconnu</Badge>;
+    return <Badge className={s.color}>{s.text}</Badge>;
+  };
 
   return (
     <div>
@@ -112,24 +106,24 @@ const AdminQuotes = () => {
               <Input
                 placeholder="Rechercher par nom, email, ID..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  setPage(1);
+                }}
                 className="pl-10"
               />
             </div>
-            
-            <Select value={statusFilter} onValueChange={setStatusFilter}>
+            <Select value={statusFilter} onValueChange={(v) => { setStatusFilter(v); setPage(1); }}>
               <SelectTrigger>
                 <SelectValue placeholder="Statut" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Tous les statuts</SelectItem>
-                <SelectItem value="pending">En attente</SelectItem>
-                <SelectItem value="confirmed">Confirmé</SelectItem>
-                <SelectItem value="completed">Terminé</SelectItem>
+                {Object.entries(STATUS_LABELS).map(([key, { text }]) => (
+                  <SelectItem key={key} value={key}>{text}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
-
-            <Select value={priceFilter} onValueChange={setPriceFilter}>
+            <Select value={priceFilter} onValueChange={(v) => { setPriceFilter(v); setPage(1); }}>
               <SelectTrigger>
                 <SelectValue placeholder="Prix" />
               </SelectTrigger>
@@ -140,7 +134,6 @@ const AdminQuotes = () => {
                 <SelectItem value="high">Plus de 200€</SelectItem>
               </SelectContent>
             </Select>
-
             <Button variant="outline" className="flex items-center gap-2">
               <Download className="h-4 w-4" />
               Exporter
@@ -148,60 +141,101 @@ const AdminQuotes = () => {
           </div>
         </CardContent>
       </Card>
-
-      {/* Tableau des devis */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Liste des Devis ({filteredQuotes.length})</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>ID</TableHead>
-                <TableHead>Client</TableHead>
-                <TableHead>Contact</TableHead>
-                <TableHead>Lieu</TableHead>
-                <TableHead>Dates</TableHead>
-                <TableHead>Véhicule</TableHead>
-                <TableHead>Prix</TableHead>
-                <TableHead>Statut</TableHead>
-                <TableHead>Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredQuotes.map((quote) => (
-                <TableRow key={quote.id}>
-                  <TableCell className="font-medium">{quote.id}</TableCell>
-                  <TableCell>{quote.clientName}</TableCell>
-                  <TableCell>
-                    <div className="text-sm">
-                      <div>{quote.email}</div>
-                      <div className="text-gray-500">{quote.phone}</div>
-                    </div>
-                  </TableCell>
-                  <TableCell>{quote.location}</TableCell>
-                  <TableCell>
-                    <div className="text-sm">
-                      <div>Du: {format(quote.departureDate, "dd/MM/yyyy", { locale: fr })}</div>
-                      <div>Au: {format(quote.returnDate, "dd/MM/yyyy", { locale: fr })}</div>
-                    </div>
-                  </TableCell>
-                  <TableCell>{quote.carModel}</TableCell>
-                  <TableCell className="font-semibold">{quote.price}€</TableCell>
-                  <TableCell>{getStatusBadge(quote.status)}</TableCell>
-                  <TableCell>
-                    <Button variant="outline" size="sm" className="flex items-center gap-1">
-                      <Eye className="h-3 w-3" />
-                      Voir
-                    </Button>
-                  </TableCell>
+      {/* Tableau paginé */}
+      {loading ? (
+        <div className="text-center py-20 text-gray-400">Chargement des devis…</div>
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle>
+              Liste des Devis ({total}) – page {page} / {totalPages}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>ID</TableHead>
+                  <TableHead>Client</TableHead>
+                  <TableHead>Contact</TableHead>
+                  <TableHead>Véhicule</TableHead>
+                  <TableHead>Dates</TableHead>
+                  <TableHead>Prix</TableHead>
+                  <TableHead>Statut</TableHead>
+                  <TableHead>Actions</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
+              </TableHeader>
+              <TableBody>
+                {quotes.map((quote) => (
+                  <TableRow key={quote.id}>
+                    <TableCell className="font-medium">{quote.id}</TableCell>
+                    <TableCell>
+                      {quote.utilisateur.nom} {quote.utilisateur.prenom}
+                    </TableCell>
+                    <TableCell>
+                      <div className="text-sm">
+                        <div>{quote.utilisateur.email}</div>
+                        <div className="text-gray-500">{quote.utilisateur.telephone}</div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      {quote.voiture
+                        ? `${quote.voiture.marque || ""} ${quote.voiture.modele || ""} (${quote.voiture.plaque || ""})`
+                        : ""}
+                    </TableCell>
+                    <TableCell>
+                      <div className="text-sm">
+                        <div>
+                          Du: {quote.dateDebut
+                            ? format(new Date(quote.dateDebut), "dd/MM/yyyy 'à' HH:mm", { locale: fr })
+                            : ""}
+                        </div>
+                        <div>
+                          Au: {quote.dateFin
+                            ? format(new Date(quote.dateFin), "dd/MM/yyyy 'à' HH:mm", { locale: fr })
+                            : ""}
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="font-semibold">{Number(quote.montantFinal || 0)}€</TableCell>
+                    <TableCell>{getStatusBadge(quote.statut)}</TableCell>
+                    <TableCell>
+                      <Button variant="outline" size="sm" className="flex items-center gap-1">
+                        <Eye className="h-3 w-3" />
+                        Voir
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+            {/* Pagination */}
+            <div className="flex justify-between items-center mt-4">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={page === 1}
+                className="flex items-center gap-1"
+              >
+                <ChevronLeft className="h-4 w-4" /> Précédent
+              </Button>
+              <span>
+                Page {page} / {totalPages}
+              </span>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                disabled={page === totalPages}
+                className="flex items-center gap-1"
+              >
+                Suivant <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 };

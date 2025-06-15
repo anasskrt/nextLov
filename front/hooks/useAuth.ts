@@ -14,7 +14,6 @@ export function useAuth() {
   const [user, setUser] = useState<DecodedToken | null>(null);
 
   useEffect(() => {
-    // Lis le token dans le cookie (et plus dans localStorage)
     const token = Cookies.get("token");
 
     if (!token) {

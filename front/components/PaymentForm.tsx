@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import StripeEmbeddedCheckout from "./StripeEmbeddedCheckout";
 
 interface PaymentFormProps {
   totalAmount: number;
@@ -20,6 +21,7 @@ interface PaymentFormProps {
   onBack: () => void;
 }
 
+
 const PaymentForm = ({
   totalAmount,
   services,
@@ -27,19 +29,41 @@ const PaymentForm = ({
   bookingDetails,
   onBack,
 }: PaymentFormProps) => {
+
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const router = useRouter();
 
   const handlePayment = async () => {
     setIsProcessing(true);
 
-    setTimeout(() => {
-      setIsProcessing(false);
-      toast.success("Paiement effectué avec succès !");
+    const payload = {
+      userInfo,
+      services,
+      totalAmount,
+      bookingDetails,
+    };
 
-      // Redirect to home with query param (for toast on landing)
-      router.push("/?success=true");
-    }, 2000);
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/stripe/init`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error("Erreur lors de la création de la réservation");
+      }
+
+      // Optionnel : tu peux lire la réponse ici :
+      // const data = await res.json();
+      const data = await res.json();
+      setClientSecret(data.client_secret);
+    } catch (err) {
+      setIsProcessing(false);
+    }
   };
 
   const formattedAmount = new Intl.NumberFormat("fr-FR", {
@@ -47,7 +71,13 @@ const PaymentForm = ({
     currency: "EUR",
   }).format(totalAmount);
 
+  if (clientSecret) {
+    return <StripeEmbeddedCheckout clientSecret={clientSecret} />;
+
+  }
   return (
+
+    
     <div className="bg-white/95 backdrop-blur-sm p-6 rounded-lg shadow-xl">
       <h2 className="text-2xl font-bold mb-6 text-navy">Finaliser votre réservation</h2>
 
@@ -59,7 +89,7 @@ const PaymentForm = ({
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h4 className="font-semibold text-navy mb-2">Services sélectionnés:</h4>
+              <h4 className="font-semibold text-navy mb-2">Services supplémentaires sélectionnés:</h4>
               {services.map((service, index) => (
                 <div key={index} className="flex justify-between items-center py-1">
                   <span>{service.name}</span>
@@ -74,18 +104,44 @@ const PaymentForm = ({
                 <p><strong>Nom:</strong> {userInfo.name}</p>
                 <p><strong>Email:</strong> {userInfo.email}</p>
                 <p><strong>Téléphone:</strong> {userInfo.phone}</p>
-                <p><strong>Lieu:</strong> {userInfo.location}</p>
                 <p><strong>Véhicule:</strong> {userInfo.carModel}</p>
               </div>
             </div>
 
-            <div className="border-t pt-2">
-              <h4 className="font-semibold text-navy mb-2">Période:</h4>
-              <div className="text-sm">
-                <p><strong>Départ:</strong> {bookingDetails.departureDate?.toLocaleDateString()} à {bookingDetails.departureTime}</p>
-                <p><strong>Retour:</strong> {bookingDetails.returnDate?.toLocaleDateString()} à {bookingDetails.returnTime}</p>
-              </div>
+          <div className="border-t pt-2">
+            <h4 className="font-semibold text-navy mb-2">Période:</h4>
+            <div className="text-sm">
+              <p>
+                <strong>Départ :</strong>{" "}
+                {bookingDetails.fullDepartureDate
+                  ? new Date(bookingDetails.fullDepartureDate).toLocaleDateString("fr-FR", {
+                      weekday: "short", day: "2-digit", month: "2-digit", year: "numeric"
+                    })
+                  : "-"}
+                {" à "}
+                {bookingDetails.fullDepartureDate
+                  ? new Date(bookingDetails.fullDepartureDate).toLocaleTimeString("fr-FR", {
+                      hour: "2-digit", minute: "2-digit"
+                    })
+                  : "-"}
+              </p>
+              <p>
+                <strong>Retour :</strong>{" "}
+                {bookingDetails.fullReturnDate
+                  ? new Date(bookingDetails.fullReturnDate).toLocaleDateString("fr-FR", {
+                      weekday: "short", day: "2-digit", month: "2-digit", year: "numeric"
+                    })
+                  : "-"}
+                {" à "}
+                {bookingDetails.fullReturnDate
+                  ? new Date(bookingDetails.fullReturnDate).toLocaleTimeString("fr-FR", {
+                      hour: "2-digit", minute: "2-digit"
+                    })
+                  : "-"}
+              </p>
             </div>
+          </div>
+
 
             <div className="border-t pt-4">
               <div className="flex justify-between items-center text-lg font-bold">
@@ -106,8 +162,7 @@ const PaymentForm = ({
             <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
               <h4 className="font-semibold text-blue-800 mb-2">Informations de paiement</h4>
               <p className="text-blue-700 text-sm">
-                Dans un vrai projet, ici se trouverait l'intégration avec Stripe ou un autre processeur de paiement.
-                Pour cette démonstration, le paiement sera simulé.
+                En cliquant sur "Payer maintenant", vous serez redirigé vers une page de paiement sécurisée pour finaliser votre réservation.
               </p>
             </div>
 

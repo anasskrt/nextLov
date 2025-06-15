@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, FileText, BarChart3 } from "lucide-react";
@@ -27,10 +26,24 @@ const AdminPage = () => {
       count: "156"
     },
     {
-      title: "Statistiques",
-      description: "Voir les statistiques du service",
+      title: "Calendrier des réservations",
+      description: "Voir le calendrier des réservations",
       icon: BarChart3,
-      path: "/admin/stats",
+      path: "/admin/calendrier",
+      count: "---"
+    },    
+    {
+      title: "Service supplémentaire",
+      description: "Voir les services supplémentaires",
+      icon: BarChart3,
+      path: "/admin/service",
+      count: "---"
+    },
+    {
+      title: "Tarif journalier",
+      description: "Gérer les tarifs journaliers",
+      icon: BarChart3,
+      path: "/admin/tarif",
       count: "---"
     }
   ];

@@ -30,7 +30,7 @@ const Login = () => {
   e.preventDefault();
 
   try {
-    const response = await fetch("http://localhost:3001/auth/connexion", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/connexion`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,6 @@ const Login = () => {
     }
 
     const data = await response.json();
-    console.log(data)
     // Suppose que ton backend renvoie un token ou une indication de succès
     Cookies.set("token", data.token, {
       expires: 3,          

@@ -31,11 +31,8 @@ const Header = () => {
             <Link href="/" className="font-medium text-navy hover:text-navy-light transition-colors">
               Accueil
             </Link>
-            <Link href="/#services" className="font-medium text-navy hover:text-navy-light transition-colors">
-              Services
-            </Link>
-            <Link href="/#devis" className="font-medium text-navy hover:text-navy-light transition-colors">
-              Devis
+            <Link href="/rules" className="font-medium text-navy hover:text-navy-light transition-colors">
+              Nos Règles
             </Link>
             <Link href="/faq" className="font-medium text-navy hover:text-navy-light transition-colors">FAQ</Link>
             <Link href="/contact" className="font-medium text-navy hover:text-navy-light transition-colors">
@@ -77,11 +74,8 @@ const Header = () => {
             <Link href="/" className="block px-3 py-2 text-navy font-medium hover:bg-gray-50 rounded-md">
               Accueil
             </Link>
-            <Link href="/#services" className="block px-3 py-2 text-navy font-medium hover:bg-gray-50 rounded-md">
-              Services
-            </Link>
-            <Link href="/#devis" className="block px-3 py-2 text-navy font-medium hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>
-              Devis
+            <Link href="/rules" className="block px-3 py-2 text-navy font-medium hover:bg-gray-50 rounded-md">
+              Nos Règles
             </Link>
             <Link href="/faq" className="block px-3 py-2 text-navy font-medium hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>FAQ</Link>
 

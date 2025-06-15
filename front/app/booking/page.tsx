@@ -30,46 +30,40 @@ useEffect(() => {
     const parsed = JSON.parse(stored);
 
     // ✅ Convertir les dates string en objets Date
-    parsed.departureDate = new Date(parsed.departureDate);
-    parsed.returnDate = new Date(parsed.returnDate);
+    parsed.departureDate = new Date(parsed.fullDepartureDate);
+    parsed.returnDate = new Date(parsed.fullReturnDate);
 
     setBookingDetails(parsed);
   } catch (error) {
-    console.error("Erreur de parsing des bookingDetails :", error);
     router.push("/");
   }
 }, [router]);
 
 
-  const handleServiceSelection = (services: any[], totalPrice: number) => {
+  const handleServiceSelection = (services: any[]) => {
     setSelectedServices(services);
-    setTotalServicePrice(totalPrice);
     setCurrentStep("userinfo");
   };
 
   const handleUserInfoSubmit = (user: any) => {
     setUserInfo(user);
-        setCurrentStep("rules");
+    setCurrentStep("rules");
   };
 
   const handleRulesValidation = () => {
     setCurrentStep("payment");
   };
 
-  const calculateDays = () => {
-    if (!bookingDetails?.departureDate || !bookingDetails?.returnDate) return 1;
+const calculateTotalAmount = () => {
+  const montantFinal = bookingDetails?.estimation?.montantFinal ?? 0;
 
-    const departure = new Date(bookingDetails.departureDate);
-    const returnDate = new Date(bookingDetails.returnDate);
-    const diffTime = Math.abs(returnDate.getTime() - departure.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays || 1;
-  };
+  const totalServices = selectedServices.reduce((sum, service) => {
+    return sum + (typeof service.price === 'number' ? service.price : 0);
+  }, 0);
 
-  const calculateTotalAmount = () => {
-    const days = calculateDays();
-    return totalServicePrice * days;
-  };
+  return montantFinal + totalServices;
+};
+
 
   const stepTitles = {
     services: "Choisissez vos services",

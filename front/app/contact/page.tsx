@@ -4,14 +4,16 @@ import Footer from "@/components/Footer";
 import GoogleMap from "@/components/GoogleMap";
 import ContactForm from "@/components/ContactForm";
 
+export const metadata = {
+  title: "Contactez-nous | ValetPark",
+  description: "Contactez notre équipe ValetPark pour toute question ou demande de devis.",
+  alternates: {
+    canonical: "https://www.valetpark.fr/contact", // adapte à l'URL de ta page
+  },
+};
+
 const ContactPage = () => {
   return (
-    <>
-      <Head>
-        <title>Contactez-nous | ValetPark</title>
-        <meta name="description" content="Contactez notre équipe ValetPark pour toute question ou demande de devis." />
-      </Head>
-
       <div className="min-h-screen flex flex-col">
         <Header />
 
@@ -70,7 +72,6 @@ const ContactPage = () => {
 
         <Footer />
       </div>
-    </>
   );
 };
 

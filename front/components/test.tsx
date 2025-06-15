@@ -69,7 +69,6 @@ const QuoteResult = ({ quote }: QuoteResultProps) => {
       returnTime: quote.returnTime,
     };
 
-    // Tu peux ici passer des données via query string ou les stocker temporairement (ex: localStorage)
     localStorage.setItem("quoteData", JSON.stringify(simplifiedQuote));
     router.push("/quote-validation");
   };

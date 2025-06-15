@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function middleware(req: NextRequest) {
   // Définis ici toutes les routes publiques que tu veux exclure de la protection
-  const publicPaths = ['/', '/connexion', '/login', '/inscription', '/faq', '/mentions-legales', '/politique-de-confidentialite', '/contact'];
+  const publicPaths = ['/', '/connexion', '/booking', '/inscription', '/faq', '/mentions-legales', '/politique-de-confidentialite', '/rules', '/contact'];
   // Regex pour détecter les fichiers statiques/assets
   const isAsset = /\.(png|jpg|jpeg|svg|webp|ico|gif|css|js|woff2?|ttf|eot|otf|mp4|webm|json)$/i.test(req.nextUrl.pathname);
 
@@ -23,7 +23,7 @@ export async function middleware(req: NextRequest) {
   }
 
   // Appelle ton endpoint d'authentification pour vérifier le rôle de l'utilisateur
-  const res = await fetch('http://localhost:3001/auth/whoIAm', {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/whoIAm`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,

@@ -30,8 +30,7 @@ const ProfilePage = () => {
   const [devisList, setDevisList] = useState<Devis[]>([]);
   const { isLoggedIn, user } = useAuth();
   
-    const token = Cookies.get('token');
-    console.log("Token from cookies:", token);
+  const token = Cookies.get('token');
     
   const router = useRouter();
 
@@ -42,7 +41,7 @@ const ProfilePage = () => {
       return;
     }
 
-    fetch("http://localhost:3001/user/mon-espace", {
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/mon-espace`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -53,13 +52,14 @@ const ProfilePage = () => {
       })
       .then((data) => {
         const { utilisateur, devis } = data;
+        console.log("Données utilisateur :", data);
         setUserName(`${utilisateur.prenom} ${utilisateur.nom}`);
         setUserEmail(utilisateur.email);
         setDevisList(devis || []);
       })
       .catch(() => {
         toast.error("Session expirée. Veuillez vous reconnecter.");
-        localStorage.removeItem("token");
+        Cookies.remove('token');
         router.push("/connexion");
       });
   }, [router]);
@@ -111,7 +111,7 @@ const ProfilePage = () => {
               <CardHeader>
                 <CardTitle>Mes devis</CardTitle>
                 <CardDescription>
-                  Liste de vos devis de service voiturier
+                  Liste de vos devis payés
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -145,9 +145,23 @@ const ProfilePage = () => {
                               {devis.voiture.marque} {devis.voiture.modele} ({devis.voiture.plaque})
                             </td>
                             <td className="px-4 py-2">
-                              {new Date(devis.dateDebut).toLocaleDateString()} -{" "}
-                              {new Date(devis.dateFin).toLocaleDateString()}
+                              {new Date(devis.dateDebut).toLocaleString("fr-FR", {
+                                day: "2-digit",
+                                month: "2-digit",
+                                year: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              })}<br />
+                              <span className="mx-1">→</span>
+                              {new Date(devis.dateFin).toLocaleString("fr-FR", {
+                                day: "2-digit",
+                                month: "2-digit",
+                                year: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              })}
                             </td>
+
                             <td className="px-4 py-2">{devis.montantFinal} €</td>
                             <td className="px-4 py-2">
                               {devis.estConverti ? "Converti en réservation" : "En attente"}

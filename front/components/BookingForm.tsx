@@ -105,7 +105,7 @@ const BookingForm = () => {
     lastPayload.current = { dateDebut, dateFin };
 
     // 4. Envoie la requête POST
-    fetch("http://localhost:3001/devis/init", {
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/devis/init`, {
         method: "POST",
         headers: {
         "Content-Type": "application/json",
@@ -120,7 +120,6 @@ const BookingForm = () => {
         return res.json();
         })
         .then((data) => {
-            console.log("Réponse INIT :", data);
             setApiEstimation(data);
         })
         .catch((err) => {
@@ -145,14 +144,24 @@ const BookingForm = () => {
         return;
     }
 
+    const fullDepartureDate = departureDate && formData.departureTime
+    ? new Date(
+        `${format(departureDate, "yyyy-MM-dd")}T${formData.departureTime}`
+      ).toISOString()
+    : null;
+
+  const fullReturnDate = returnDate && formData.returnTime
+    ? new Date(
+        `${format(returnDate, "yyyy-MM-dd")}T${formData.returnTime}`
+      ).toISOString()
+    : null;
+
     sessionStorage.setItem(
         "bookingDetails",
         JSON.stringify({
-        departureDate,
-        returnDate,
-        departureTime: formData.departureTime,
-        returnTime: formData.returnTime,
-        estimation: apiEstimation, // Si tu veux passer aussi l'estimation API
+        fullDepartureDate,
+        fullReturnDate,
+        estimation: apiEstimation,
         })
     );
     router.push("/booking");

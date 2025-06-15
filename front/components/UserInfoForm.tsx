@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,8 +14,6 @@ interface UserInfo {
   carModel: string;
   carYear: string;
   carLicensePlate: string;
-  outboundFlightNumber: string;
-  returnFlightNumber: string;
 }
 
 interface UserInfoFormProps {
@@ -24,8 +22,6 @@ interface UserInfoFormProps {
 }
 
 const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const [formData, setFormData] = useState<UserInfo>({
     name: "",
     firstName: "",
@@ -34,56 +30,32 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
     carModel: "",
     carYear: "",
     carLicensePlate: "",
-    outboundFlightNumber: "",
-    returnFlightNumber: ""
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  // Check if user is logged in and pre-fill form
-  useEffect(() => {
-    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-    setIsLoggedIn(loggedIn);
-
-    if (loggedIn) {
-      const storedEmail = localStorage.getItem("userEmail") || "";
-      const storedName = localStorage.getItem("userName") || "";
-
-      setFormData(prev => ({
-        ...prev,
-        name: storedName,
-        email: storedEmail
-      }));
-    }
-  }, []);
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
-    // Clear error when field is changed
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ""
+        [name]: "",
       }));
     }
   };
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-
     if (!formData.name.trim()) newErrors.name = "Le nom est requis";
-    if (!formData.firstName.trim()) newErrors.email = "Le prénom est requis";
+    if (!formData.firstName.trim()) newErrors.firstName = "Le prénom est requis";
     if (!formData.phone.trim()) newErrors.phone = "Le téléphone est requis";
-    if (!formData.email.trim()) newErrors.location = "L'email est requis";
-        else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email invalide";
+    if (!formData.email.trim()) newErrors.email = "L'email est requis";
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email invalide";
     if (!formData.carModel.trim()) newErrors.carModel = "Le modèle de voiture est requis";
     if (!formData.carYear.trim()) newErrors.carYear = "L'année du véhicule est requise";
-    if (!formData.outboundFlightNumber.trim()) newErrors.outboundFlightNumber = "Le numéro de vol aller est requis";
-    if (!formData.returnFlightNumber.trim()) newErrors.returnFlightNumber = "Le numéro de vol retour est requis";
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -99,14 +71,6 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
     <div className="bg-white/95 backdrop-blur-sm p-6 rounded-lg shadow-xl">
       <h2 className="text-2xl font-bold mb-6 text-navy">Vos informations</h2>
 
-      {isLoggedIn && (
-        <div className="bg-green-50 p-4 rounded-lg mb-6 border border-green-200">
-          <p className="text-sm text-green-700">
-            ✓ Vos informations ont été pré-remplies automatiquement
-          </p>
-        </div>
-      )}
-
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Informations personnelles */}
         <div>
@@ -121,11 +85,9 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
                 onChange={handleInputChange}
                 className={cn(
                   "bg-white",
-                  errors.name && "border-red-500",
-                  isLoggedIn && "bg-gray-50"
+                  errors.name && "border-red-500"
                 )}
                 placeholder="Votre nom"
-                disabled={isLoggedIn}
               />
               {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
             </div>
@@ -135,16 +97,13 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
               <Input
                 id="firstName"
                 name="firstName"
-                type="firstName"
                 value={formData.firstName}
                 onChange={handleInputChange}
                 className={cn(
                   "bg-white",
-                  errors.email && "border-red-500",
-                  isLoggedIn && "bg-gray-50"
+                  errors.firstName && "border-red-500"
                 )}
-                placeholder="Votre jean"
-                disabled={isLoggedIn}
+                placeholder="Votre prénom"
               />
               {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
             </div>
@@ -234,45 +193,7 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
             />
           </div>
         </div>
-
-        {/* Informations de vol */}
-        <div>
-          <h3 className="text-lg font-semibold text-navy mb-4">Informations de vol</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <Label htmlFor="outboundFlightNumber" className="text-navy">Numéro de vol aller*</Label>
-              <Input
-                id="outboundFlightNumber"
-                name="outboundFlightNumber"
-                value={formData.outboundFlightNumber}
-                onChange={handleInputChange}
-                className={cn(
-                  "bg-white",
-                  errors.outboundFlightNumber && "border-red-500"
-                )}
-                placeholder="Ex: AF1234"
-              />
-              {errors.outboundFlightNumber && <p className="text-red-500 text-sm mt-1">{errors.outboundFlightNumber}</p>}
-            </div>
-
-            <div>
-              <Label htmlFor="returnFlightNumber" className="text-navy">Numéro de vol retour*</Label>
-              <Input
-                id="returnFlightNumber"
-                name="returnFlightNumber"
-                value={formData.returnFlightNumber}
-                onChange={handleInputChange}
-                className={cn(
-                  "bg-white",
-                  errors.returnFlightNumber && "border-red-500"
-                )}
-                placeholder="Ex: AF5678"
-              />
-              {errors.returnFlightNumber && <p className="text-red-500 text-sm mt-1">{errors.returnFlightNumber}</p>}
-            </div>
-          </div>
-        </div>
-
+      
         <div className="flex justify-between items-center pt-4">
           <Button type="button" variant="outline" onClick={onBack}>
             Retour

@@ -59,7 +59,6 @@ const ContactForm = () => {
       form.reset();
     } catch (error) {
       toast.error("Une erreur est survenue lors de l'envoi du message.");
-      console.error("Erreur :", error);
     } finally {
       setIsSubmitting(false);
     }

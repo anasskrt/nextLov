@@ -10,7 +10,7 @@ const Footer = () => {
               MS<span className="text-gold">Parking</span>
             </h3>
             <p className="mb-4">
-              Service premium de gardiennage et voiturier pour tous vos besoins de stationnement.
+              Service gardiennage et voiturier parter en vacance l'esprit léger.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-white hover:text-gold-light" aria-label="Facebook">
@@ -29,9 +29,12 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Liens Rapides</h3>
             <ul className="space-y-2">
               <li><a href="/" className="hover:text-gold-light transition-colors">Accueil</a></li>
-              <li><a href="/#services" className="hover:text-gold-light transition-colors">Nos Services</a></li>
               <li><a href="/#devis" className="hover:text-gold-light transition-colors">Demander un Devis</a></li>
+              <li><a href="/rules" className="hover:text-gold-light transition-colors">Nos Règles</a></li>
+              <li><a href="/faq" className="hover:text-gold-light transition-colors">FAQ</a></li>
               <li><a href="/contact" className="hover:text-gold-light transition-colors">Contact</a></li>
+              <li><a href="/CGU" className="hover:text-gold-light transition-colors">CGU</a></li>
+              <li><a href="/mentions-legales" className="hover:text-gold-light transition-colors">Mentions Légales</a></li>
             </ul>
           </div>
 
