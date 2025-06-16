@@ -52,7 +52,6 @@ const ProfilePage = () => {
       })
       .then((data) => {
         const { utilisateur, devis } = data;
-        console.log("Données utilisateur :", data);
         setUserName(`${utilisateur.prenom} ${utilisateur.nom}`);
         setUserEmail(utilisateur.email);
         setDevisList(devis || []);
