@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Calendar, CarFront, Mail, Phone, User } from "lucide-react";
@@ -17,7 +18,6 @@ import { CarInformation, SimplifiedQuoteData } from "@/lib/types";
 
 const QuoteValidationPage = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const [quoteData, setQuoteData] = useState<SimplifiedQuoteData | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -121,7 +121,7 @@ const QuoteValidationPage = () => {
                   <Button className="flex-1 bg-gold hover:bg-gold-dark text-navy" onClick={handleSignup}>Créer un compte</Button>
                 </div>
                 <div className="mt-3 text-center">
-                  <span className="text-sm text-gray-500">ou continuez en tant qu'invité</span>
+                  <span className="text-sm text-gray-500">ou continuez en tant qu&apos;invité</span>
                 </div>
               </div>
             )}

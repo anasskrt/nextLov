@@ -1,8 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -32,7 +31,6 @@ const PaymentForm = ({
 
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const router = useRouter();
 
   const handlePayment = async () => {
     setIsProcessing(true);
@@ -61,7 +59,7 @@ const PaymentForm = ({
       // const data = await res.json();
       const data = await res.json();
       setClientSecret(data.client_secret);
-    } catch (err) {
+    } catch {
       setIsProcessing(false);
     }
   };
@@ -162,7 +160,7 @@ const PaymentForm = ({
             <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
               <h4 className="font-semibold text-blue-800 mb-2">Informations de paiement</h4>
               <p className="text-blue-700 text-sm">
-                En cliquant sur "Payer maintenant", vous serez redirigé vers une page de paiement sécurisée pour finaliser votre réservation.
+                En cliquant sur &quot;Payer maintenant&quot;, vous serez redirigé vers une page de paiement sécurisée pour finaliser votre réservation.
               </p>
             </div>
 

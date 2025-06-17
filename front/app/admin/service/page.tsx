@@ -39,7 +39,7 @@ const AdminServices = () => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/service`);
       const data = await res.json();
       setServices(data);
-    } catch (err) {
+    } catch {
       setServices([]);
       toast({ title: "Erreur", description: "Impossible de charger les services.", variant: "destructive" });
     }
@@ -113,7 +113,7 @@ const AdminServices = () => {
       fetchServices();
       resetForm();
       setIsDialogOpen(false);
-    } catch (err) {
+    } catch  {
       toast({ title: "Erreur", description: "Échec de l'opération.", variant: "destructive" });
     }
   };

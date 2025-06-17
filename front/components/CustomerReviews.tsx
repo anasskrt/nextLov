@@ -57,7 +57,7 @@ export default function CustomerReviews() {
                 </div>
                 
                 <p className="text-gray-700 mb-4 flex-grow italic">
-                  "{review.text}"
+                  &quot;{review.text}&quot;
                 </p>
                 
                 <div className="border-t pt-4">

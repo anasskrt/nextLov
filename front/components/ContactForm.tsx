@@ -57,7 +57,7 @@ const ContactForm = () => {
 
       toast.success("Votre message a été envoyé avec succès !");
       form.reset();
-    } catch (error) {
+    } catch {
       toast.error("Une erreur est survenue lors de l'envoi du message.");
     } finally {
       setIsSubmitting(false);

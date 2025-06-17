@@ -23,7 +23,7 @@ import { useAuth } from "@/hooks/useAuth";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { isLoggedIn, user } = useAuth();
+  const { isLoggedIn } = useAuth();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -53,7 +53,7 @@ const Login = () => {
 
     toast.success("Connexion réussie");
     router.push("/");
-  } catch (error) {
+  } catch {
     toast.error("Échec de la connexion. Veuillez vérifier vos identifiants.");
   }
   };
@@ -112,7 +112,7 @@ const Login = () => {
               <p>
                 Pas encore de compte ?{" "}
                 <Link href="/inscription" className="text-navy hover:underline">
-                  S'inscrire
+                  S&apos;inscrire
                 </Link>
               </p>
             </div>

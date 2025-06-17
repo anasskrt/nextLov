@@ -1,17 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Loader2, CheckCircle2, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export default function StripeReturnPage() {
+function PaymentReturn() {
   const [status, setStatus] = useState<"pending" | "success" | "error">("pending");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   useEffect(() => {
     const sessionId = searchParams.get("session_id");
@@ -54,20 +53,32 @@ export default function StripeReturnPage() {
         <h2 className="text-2xl font-bold mb-2">Paiement validé !</h2>
         <p className="mb-4">Merci pour votre réservation, un email de confirmation va vous être envoyé.</p>
         <Button asChild>
-          <Link href="/">Retour à l’accueil</Link>
+          <Link href="/">Retour à l&apos;accueil</Link>
         </Button>
       </div>
     );
   }
 
+  return (      <div className="flex flex-col items-center justify-center h-[70vh]">
+        <XCircle className="w-16 h-16 text-red-600 mb-4" />
+        <h2 className="text-2xl font-bold mb-2">Erreur de paiement</h2>
+        <p className="mb-4">{errorMessage || "Une erreur est survenue lors de la vérification."}</p>
+        <Button asChild>
+          <Link href="/">Retour à l&apos;accueil</Link>
+        </Button>
+      </div>
+  );
+}
+
+export default function StripeReturnPage() {
   return (
-    <div className="flex flex-col items-center justify-center h-[70vh]">
-      <XCircle className="w-16 h-16 text-red-600 mb-4" />
-      <h2 className="text-2xl font-bold mb-2">Erreur de paiement</h2>
-      <p className="mb-4">{errorMessage || "Une erreur est survenue lors de la vérification."}</p>
-      <Button asChild>
-        <Link href="/">Retour à l’accueil</Link>
-      </Button>
-    </div>
+    <Suspense fallback={
+      <div className="flex flex-col items-center justify-center h-[70vh]">
+        <Loader2 className="animate-spin w-12 h-12 text-navy mb-4" />
+        <p className="text-lg">Chargement...</p>
+      </div>
+    }>
+      <PaymentReturn />
+    </Suspense>
   );
 }

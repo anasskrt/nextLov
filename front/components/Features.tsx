@@ -1,4 +1,4 @@
-import { Shield, Clock, Car, Award } from "lucide-react";
+import { Shield, Clock, Car, Award, Link } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Features = () => {
@@ -50,11 +50,11 @@ const Features = () => {
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-bold mb-4 text-navy">Service sur Mesure pour Tous Vos Besoins</h3>
           <p className="max-w-2xl mx-auto text-gray-600 mb-8">
-            Que vous partiez en voyage d'affaires, en vacances, ou que vous ayez besoin d'un service régulier,
-            notre équipe s'adapte à vos besoins spécifiques pour vous offrir une solution personnalisée.
+            Que vous partiez en voyage d&apos;affaires, en vacances, ou que vous ayez besoin d&apos;un service régulier,
+            notre équipe s&apos;adapte à vos besoins spécifiques pour vous offrir une solution personnalisée.
           </p>
           <Button className="bg-navy hover:bg-navy-light">
-            <a href="#devis">Obtenir un Devis Personnalisé</a>
+            <Link href="#devis">Obtenir un Devis Personnalisé</Link>
           </Button>
         </div>
       </div>

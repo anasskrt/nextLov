@@ -8,6 +8,7 @@ import { Users, FileText, BarChart3 } from "lucide-react";
 
 const AdminPage = () => {
   const pathname = usePathname();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const isRootAdmin = pathname === "/admin";
 
   const adminMenuItems = [

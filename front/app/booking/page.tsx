@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -15,7 +16,6 @@ const BookingProcessPage = () => {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState<Step>("services");
   const [selectedServices, setSelectedServices] = useState<any[]>([]);
-  const [totalServicePrice, setTotalServicePrice] = useState(0);
   const [userInfo, setUserInfo] = useState<any>(null);
   const [bookingDetails, setBookingDetails] = useState<any>(null);
 
@@ -34,7 +34,7 @@ useEffect(() => {
     parsed.returnDate = new Date(parsed.fullReturnDate);
 
     setBookingDetails(parsed);
-  } catch (error) {
+  } catch {
     router.push("/");
   }
 }, [router]);

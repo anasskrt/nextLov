@@ -38,7 +38,7 @@ const AdminCalendar = () => {
           date: new Date(b.date),
         }))
       );
-    } catch (err) {
+    } catch {
       setBookings([]);
     } finally {
       setLoading(false);
@@ -102,7 +102,7 @@ const AdminCalendar = () => {
       });
       // Refetch propre (sans reload la page)
       await fetchBookings();
-    } catch (err) {
+    } catch {
       alert("Erreur lors du changement de statut");
     } finally {
       setActionLoading(null);

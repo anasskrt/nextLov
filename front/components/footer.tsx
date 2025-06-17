@@ -1,4 +1,5 @@
 import { Facebook, Twitter, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -10,31 +11,31 @@ const Footer = () => {
               MS<span className="text-gold">Parking</span>
             </h3>
             <p className="mb-4">
-              Service gardiennage et voiturier parter en vacance l'esprit léger.
+              Service gardiennage et voiturier parter en vacance l&apos;esprit léger.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-gold-light" aria-label="Facebook">
+              <Link href="#" className="text-white hover:text-gold-light" aria-label="Facebook">
                 <Facebook size={20} />
-              </a>
-              <a href="#" className="text-white hover:text-gold-light" aria-label="Twitter">
+              </Link>
+              <Link href="#" className="text-white hover:text-gold-light" aria-label="Twitter">
                 <Twitter size={20} />
-              </a>
-              <a href="#" className="text-white hover:text-gold-light" aria-label="Instagram">
+              </Link>
+              <Link href="#" className="text-white hover:text-gold-light" aria-label="Instagram">
                 <Instagram size={20} />
-              </a>
+              </Link>
             </div>
           </div>
 
           <div>
             <h3 className="text-xl font-bold mb-4">Liens Rapides</h3>
             <ul className="space-y-2">
-              <li><a href="/" className="hover:text-gold-light transition-colors">Accueil</a></li>
-              <li><a href="/#devis" className="hover:text-gold-light transition-colors">Demander un Devis</a></li>
-              <li><a href="/rules" className="hover:text-gold-light transition-colors">Nos Règles</a></li>
-              <li><a href="/faq" className="hover:text-gold-light transition-colors">FAQ</a></li>
-              <li><a href="/contact" className="hover:text-gold-light transition-colors">Contact</a></li>
-              <li><a href="/CGU" className="hover:text-gold-light transition-colors">CGU</a></li>
-              <li><a href="/mentions-legales" className="hover:text-gold-light transition-colors">Mentions Légales</a></li>
+              <li><Link href="/" className="hover:text-gold-light transition-colors">Accueil</Link></li>
+              <li><Link href="/#devis" className="hover:text-gold-light transition-colors">Demander un Devis</Link></li>
+              <li><Link href="/rules" className="hover:text-gold-light transition-colors">Nos Règles</Link></li>
+              <li><Link href="/faq" className="hover:text-gold-light transition-colors">FAQ</Link></li>
+              <li><Link href="/contact" className="hover:text-gold-light transition-colors">Contact</Link></li>
+              <li><Link href="/CGU" className="hover:text-gold-light transition-colors">CGU</Link></li>
+              <li><Link href="/mentions-legales" className="hover:text-gold-light transition-colors">Mentions Légales</Link></li>
             </ul>
           </div>
 

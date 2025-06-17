@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Link } from "lucide-react";
 
 // ----- SEO -----
 export const metadata = {
@@ -127,7 +128,7 @@ const FAQ = () => {
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Trouvez rapidement les réponses à vos questions sur notre service
                 de voiturier. Si vous ne trouvez pas ce que vous cherchez,
-                n'hésitez pas à nous contacter.
+                n&apos;hésitez pas à nous contacter.
               </p>
             </div>
 
@@ -160,7 +161,7 @@ const FAQ = () => {
                 <Card>
                   <CardHeader>
                     <CardTitle className="text-lg text-navy">
-                      Besoin d'aide ?
+                      Besoin d&apos;aide ?
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -196,7 +197,7 @@ const FAQ = () => {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <div>
-                      <h4 className="font-medium text-navy">Délai d'annulation</h4>
+                      <h4 className="font-medium text-navy">Délai d&apos;annulation</h4>
                       <p className="text-sm text-gray-600">
                         24h avant le service
                       </p>
@@ -219,15 +220,15 @@ const FAQ = () => {
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-gray-600 mb-4">
-                      Notre équipe est là pour vous aider. N'hésitez pas à nous
+                      Notre équipe est là pour vous aider. N&apos;hésitez pas à nous
                       contacter !
                     </p>
-                    <a
+                    <Link
                       href="/contact"
                       className="inline-block bg-gold hover:bg-gold-dark text-navy font-semibold px-4 py-2 rounded-lg transition-colors"
                     >
                       Nous contacter
-                    </a>
+                    </Link>
                   </CardContent>
                 </Card>
               </div>

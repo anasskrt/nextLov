@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { QuoteData, SimplifiedQuoteData } from "@/lib/types";
+import { Link } from "lucide-react";
 
 interface QuoteResultProps {
   quote: QuoteData;
@@ -43,6 +44,7 @@ const calculatePrice = (quote: QuoteData): number => {
 const QuoteResult = ({ quote }: QuoteResultProps) => {
   const router = useRouter();
   const [saved, setSaved] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isValidated, setIsValidated] = useState(false);
 
   const price = calculatePrice(quote);
@@ -172,7 +174,7 @@ const QuoteResult = ({ quote }: QuoteResultProps) => {
           Vous avez des questions ou souhaitez réserver dès maintenant ?
         </p>
         <Button className="bg-navy hover:bg-navy-light">
-          <a href="#contact">Contactez-nous</a>
+          <Link href="#contact">Contactez-nous</Link>
         </Button>
       </div>
     </div>

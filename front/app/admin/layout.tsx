@@ -15,7 +15,3 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   );
 }
 
-function setChecked(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}
-

@@ -8,7 +8,6 @@ import { toast } from "sonner";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { useAuth } from "@/hooks/useAuth";
 import Cookies from "js-cookie";
 
 type Devis = {
@@ -28,14 +27,10 @@ const ProfilePage = () => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [devisList, setDevisList] = useState<Devis[]>([]);
-  const { isLoggedIn, user } = useAuth();
   
   const token = Cookies.get('token');
     
-  const router = useRouter();
-
-  useEffect(() => {
-
+  const router = useRouter();  useEffect(() => {
     if (!token) {
       router.push("/connexion");
       return;
@@ -61,7 +56,7 @@ const ProfilePage = () => {
         Cookies.remove('token');
         router.push("/connexion");
       });
-  }, [router]);
+  }, [router, token]);
 
   const handleLogout = () => {
     Cookies.remove('token');

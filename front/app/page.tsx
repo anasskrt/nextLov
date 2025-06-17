@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
@@ -11,7 +12,9 @@ import PricingHighlight from "@/components/PricingHighlight";
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col">
-      <SuccessToastHandler />
+      <Suspense>
+        <SuccessToastHandler />
+      </Suspense>
       <Header />
       <main className="flex-grow">
         <Hero />

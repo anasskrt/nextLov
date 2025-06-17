@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Check, AlertTriangle, Info, Car } from "lucide-react";
+import { Check, AlertTriangle, Info, Car, Link } from "lucide-react";
 import React from "react";
 
 // ----- SEO -----
@@ -188,7 +189,7 @@ export default function RulesPage() {
                 Règles du Service
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Veuillez prendre connaissance de toutes les règles ci-dessous avant d'utiliser notre service de voiturier. 
+                Veuillez prendre connaissance de toutes les règles ci-dessous avant d&apos;utiliser notre service de voiturier. 
                 Ces règles garantissent la sécurité et la qualité de notre prestation.
               </p>
             </div>
@@ -198,8 +199,8 @@ export default function RulesPage() {
                 <div>
                   <h2 className="font-semibold text-blue-900 mb-2">Information importante</h2>
                   <p className="text-blue-800">
-                    L'acceptation de ces règles est obligatoire pour utiliser notre service. 
-                    En réservant, vous confirmez avoir lu et accepté l'ensemble de ces conditions.
+                    L&apos;acceptation de ces règles est obligatoire pour utiliser notre service. 
+                    En réservant, vous confirmez avoir lu et accepté l&apos;ensemble de ces conditions.
                   </p>
                 </div>
               </div>
@@ -248,7 +249,7 @@ export default function RulesPage() {
                 </div>
               </div>
               <div className="mt-8 text-center">
-                <a href="/faq" className="text-gold underline hover:text-gold-dark">Voir aussi notre FAQ</a>
+                <Link href="/faq" className="text-gold underline hover:text-gold-dark">Voir aussi notre FAQ</Link>
               </div>
             </div>
           </div>

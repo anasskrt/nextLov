@@ -182,7 +182,7 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
           </div>
 
           <div className="mt-4">
-            <Label htmlFor="carLicensePlate" className="text-navy">Plaque d'immatriculation</Label>
+            <Label htmlFor="carLicensePlate" className="text-navy">Plaque d&apos;immatriculation</Label>
             <Input
               id="carLicensePlate"
               name="carLicensePlate"

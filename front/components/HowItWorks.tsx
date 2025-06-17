@@ -59,7 +59,7 @@ export default function HowItWorks() {
             <h3 className="text-2xl font-bold mb-4">Service disponible 24h/24, 7j/7</h3>
             <p className="text-lg mb-6">
               Nos équipes sont à votre disposition à tout moment pour vous offrir un service irréprochable.
-              Réservez dès maintenant et voyagez l'esprit tranquille.
+              Réservez dès maintenant et voyagez l&apos;esprit tranquille.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               <div>
@@ -68,7 +68,7 @@ export default function HowItWorks() {
               </div>
               <div>
                 <div className="text-3xl font-bold text-gold mb-2">7min</div>
-                <div>Temps du parking vers l'aéroport</div>
+                <div>Temps du parking vers l&apos;aéroport</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-gold mb-2">100%</div>

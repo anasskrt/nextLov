@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Check } from "lucide-react";
 
 interface Service {
@@ -33,8 +33,8 @@ const ServiceSelection = ({ onNext, onBack }: ServiceSelectionProps) => {
         const data = await res.json();
         setServices(data);
         setLoading(false);
-      } catch (err: any) {
-        setError(err.message || "Erreur");
+      } catch {
+        setError("Erreur");
         setLoading(false);
       }
     };

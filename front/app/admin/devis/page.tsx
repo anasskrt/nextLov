@@ -63,7 +63,7 @@ const AdminQuotes = () => {
       const data = await res.json();
       setQuotes(data.devis);
       setTotal(data.total);
-    } catch (err) {
+    } catch {
       setQuotes([]);
       setTotal(0);
     } finally {

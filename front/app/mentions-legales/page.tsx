@@ -44,27 +44,27 @@ const MentionsLegales = () => {
               <p className="mb-6">
                 Ce site est hébergé par :<br />
                 Render<br />
-                Adresse : Selon les conditions d'hébergement Render
+                Adresse : Selon les conditions d&apos;hébergement Render
               </p>
 
               <h2 className="text-xl font-semibold text-navy mb-4">Propriété intellectuelle</h2>
               <p className="mb-6">
-                L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques.
+                L&apos;ensemble de ce site relève de la législation française et internationale sur le droit d&apos;auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques.
               </p>
 
               <h2 className="text-xl font-semibold text-navy mb-4">Protection des données personnelles</h2>
               <p className="mb-6">
-                Conformément à la loi "Informatique et Libertés" du 6 janvier 1978 modifiée et au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données personnelles.
+                Conformément à la loi &quot;Informatique et Libertés&quot; du 6 janvier 1978 modifiée et au Règlement Général sur la Protection des Données (RGPD), vous disposez d&apos;un droit d&apos;accès, de rectification, de suppression et de portabilité de vos données personnelles.
               </p>
 
               <h2 className="text-xl font-semibold text-navy mb-4">Cookies</h2>
               <p className="mb-6">
-                Ce site utilise des cookies pour améliorer l'expérience utilisateur et analyser le trafic. En continuant à naviguer sur ce site, vous acceptez l'utilisation de cookies.
+                Ce site utilise des cookies pour améliorer l&apos;expérience utilisateur et analyser le trafic. En continuant à naviguer sur ce site, vous acceptez l&apos;utilisation de cookies.
               </p>
 
               <h2 className="text-xl font-semibold text-navy mb-4">Responsabilité</h2>
               <p className="mb-6">
-                Les informations contenues sur ce site sont aussi précises que possible et le site remis à jour à différentes périodes de l'année, mais peut toutefois contenir des inexactitudes ou des omissions.
+                Les informations contenues sur ce site sont aussi précises que possible et le site remis à jour à différentes périodes de l&apos;année, mais peut toutefois contenir des inexactitudes ou des omissions.
               </p>
             </div>
           </div>

@@ -59,12 +59,10 @@ const handleSubmit = async (e: React.FormEvent) => {
       throw new Error(errorData.message || "Erreur d'inscription");
     }
 
-    const data = await response.json();
-
     toast.success("Inscription réussie");
     router.push("/");
-  } catch (error: any) {
-    toast.error(error.message || "Échec de l'inscription. Veuillez réessayer.");
+  } catch {
+    toast.error( "Échec de l'inscription. Veuillez réessayer.");
   } finally {
     setIsLoading(false);
   }

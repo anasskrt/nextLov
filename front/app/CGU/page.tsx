@@ -21,18 +21,18 @@ const CGU = () => {
           <div className="bg-white rounded-lg shadow-md p-8">
             <div className="flex items-center gap-4 mb-8">
               <ScrollText className="h-8 w-8 text-navy" />
-              <h1 className="text-3xl font-bold text-navy">Conditions Générales d'Utilisation</h1>
+              <h1 className="text-3xl font-bold text-navy">Conditions Générales d&apos;Utilisation</h1>
             </div>
             
             <div className="prose max-w-none">
               <h2 className="text-xl font-semibold text-navy mb-4">Article 1 - Objet</h2>
               <p className="mb-6">
-                Les présentes conditions générales d'utilisation (CGU) ont pour objet de définir les modalités et conditions d'utilisation des services proposés sur le site msparking.fr (ci-après : le "Service"), ainsi que de définir les droits et obligations des parties dans ce cadre.
+                Les présentes conditions générales d&apos;utilisation (CGU) ont pour objet de définir les modalités et conditions d&apos;utilisation des services proposés sur le site msparking.fr (ci-après : le &quot;Service&quot;), ainsi que de définir les droits et obligations des parties dans ce cadre.
               </p>
 
               <h2 className="text-xl font-semibold text-navy mb-4">Article 2 - Acceptation des conditions</h2>
               <p className="mb-6">
-                L'accès et l'utilisation du site supposent l'acceptation et le respect de l'ensemble des termes des présentes conditions générales d'utilisation.
+                L&apos;accès et l&apos;utilisation du site supposent l&apos;acceptation et le respect de l&apos;ensemble des termes des présentes conditions générales d&apos;utilisation.
               </p>
 
               <h2 className="text-xl font-semibold text-navy mb-4">Article 3 - Services proposés</h2>
@@ -47,17 +47,17 @@ const CGU = () => {
 
               <h2 className="text-xl font-semibold text-navy mb-4">Article 4 - Tarifs et paiement</h2>
               <p className="mb-6">
-                Les tarifs des services sont indiqués en euros TTC. Le paiement s'effectue en ligne par carte bancaire via la plateforme sécurisée Stripe. La facturation intervient au moment de la confirmation de la réservation.
+                Les tarifs des services sont indiqués en euros TTC. Le paiement s&apos;effectue en ligne par carte bancaire via la plateforme sécurisée Stripe. La facturation intervient au moment de la confirmation de la réservation.
               </p>
 
               <h2 className="text-xl font-semibold text-navy mb-4">Article 5 - Responsabilité</h2>
               <p className="mb-6">
-                msparking s'engage à assurer la sécurité des véhicules confiés dans le cadre de ses services. Une assurance responsabilité civile professionnelle couvre les dommages éventuels. Le client doit signaler tout dommage préexistant lors de la prise en charge du véhicule.
+                msparking s&apos;engage à assurer la sécurité des véhicules confiés dans le cadre de ses services. Une assurance responsabilité civile professionnelle couvre les dommages éventuels. Le client doit signaler tout dommage préexistant lors de la prise en charge du véhicule.
               </p>
 
               <h2 className="text-xl font-semibold text-navy mb-4">Article 6 - Annulation et remboursement</h2>
               <p className="mb-6">
-                Toute annulation doit être signalée au moins 24h avant la prestation. En cas d'annulation tardive, des frais d'annulation peuvent s'appliquer selon les conditions tarifaires en vigueur.
+                Toute annulation doit être signalée au moins 24h avant la prestation. En cas d&apos;annulation tardive, des frais d&apos;annulation peuvent s&apos;appliquer selon les conditions tarifaires en vigueur.
               </p>
 
               <h2 className="text-xl font-semibold text-navy mb-4">Article 7 - Protection des données</h2>

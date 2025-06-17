@@ -1,7 +1,6 @@
 
-import { Star, Shield, Clock, CheckCircle, ArrowRight } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Star, Shield, Clock, CheckCircle } from "lucide-react";
+
 
 const PricingHighlight = () => {
   return (
@@ -39,7 +38,7 @@ const PricingHighlight = () => {
             
             <p className="text-2xl mb-12 text-white/90 leading-relaxed max-w-3xl mx-auto">
               Profitez de notre service de gardiennage automobile 
-              avec navette gratuite vers l'aéroport de Bordeaux. 
+              avec navette gratuite vers l&apos;aéroport de Bordeaux. 
               Votre véhicule en sécurité, votre voyage en toute sérénité.
             </p>
           </div>
@@ -60,7 +59,7 @@ const PricingHighlight = () => {
                 <Clock className="h-8 w-8 text-gold" />
               </div>
               <h4 className="font-bold text-xl text-white mb-3">Navette gratuite</h4>
-              <p className="text-white/70">Transfer inclus vers tous l'aéroport</p>
+              <p className="text-white/70">Transfer inclus vers tous l&apos;aéroport</p>
               <CheckCircle className="h-6 w-6 text-green-400 mx-auto mt-4" />
             </div>
             
