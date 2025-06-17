@@ -1,17 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export function middleware(req: NextRequest) {
-  const publicPaths = [
-    '/', '/connexion', '/booking', '/inscription', '/faq',
-    '/mentions-legales', '/politique-de-confidentialite', '/rules', '/contact', '/reset-password'
-  ];
-  const isAsset = /\.(png|jpg|jpeg|svg|webp|ico|gif|css|js|woff2?|ttf|eot|otf|mp4|webm|json)$/i.test(req.nextUrl.pathname);
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
+}
 
+export function middleware(req: NextRequest) {
+  // Define public paths that don't require authentication
+  const isPublicPath = req.nextUrl.pathname === '/' ||
+    req.nextUrl.pathname === '/connexion' ||
+    req.nextUrl.pathname === '/booking' ||
+    req.nextUrl.pathname === '/inscription' ||
+    req.nextUrl.pathname === '/faq' ||
+    req.nextUrl.pathname === '/mentions-legales' ||
+    req.nextUrl.pathname === '/politique-de-confidentialite' ||
+    req.nextUrl.pathname === '/rules' ||
+    req.nextUrl.pathname === '/contact' ||
+    req.nextUrl.pathname === '/reset-password';
+
+  // Check if the path is public or is a system path
   if (
-    publicPaths.includes(req.nextUrl.pathname) ||
+    isPublicPath ||
     req.nextUrl.pathname.startsWith('/_next') ||
-    req.nextUrl.pathname.startsWith('/api') ||
-    isAsset
+    req.nextUrl.pathname.startsWith('/api')
   ) {
     return NextResponse.next();
   }
@@ -26,6 +45,5 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/connexion', req.url));
   }
 
-  // NOTE: On ne vérifie pas le rôle ici (voir ci-dessous)
   return NextResponse.next();
 }
