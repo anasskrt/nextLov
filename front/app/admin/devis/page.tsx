@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Search, Filter, Download, Eye, ChevronLeft, ChevronRight } from "lucide-react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
+import Cookies from "js-cookie";
 
 const PAGE_SIZE = 10;
 
@@ -58,7 +59,10 @@ const AdminQuotes = () => {
         search: searchTerm,
         price: priceFilter,
       });
-      const res = await fetch(`${process.env.BACKEND_URL}/devis?${params.toString()}`);
+      const token = Cookies.get('token');
+      const res = await fetch(`/api/admin/devis?${params.toString()}`, {
+        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+      });
       if (!res.ok) throw new Error("Erreur lors du chargement des devis");
       const data = await res.json();
       setQuotes(data.devis);

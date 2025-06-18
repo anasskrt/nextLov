@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Plus, Edit, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import Cookies from "js-cookie";
 
 interface Service {
   id: number;
@@ -95,17 +96,25 @@ const AdminServices = () => {
     try {
       if (editingService) {
         // PATCH (Edition)
+        const token = Cookies.get('token');
         await fetch(`/api/admin/service/${editingService.id}`, {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
           body: JSON.stringify(editingService),
         });
         toast({ title: "Service modifié", description: "Le service a été modifié avec succès." });
       } else {
         // POST (Création)
+        const token = Cookies.get('token');
         await fetch("/api/admin/service", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
           body: JSON.stringify(serviceData)
         });
         toast({ title: "Service ajouté", description: "Le service a été ajouté avec succès." });
@@ -132,9 +141,13 @@ const AdminServices = () => {
   const handleDelete = async (serviceId: number) => {
     // Soft delete : active = false
     try {
-      await fetch(`${process.env.BACKEND_URL}/service/${serviceId}`, {
+      const token = Cookies.get('token');
+      await fetch(`/api/admin/service/${serviceId}`, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
       });
       fetchServices();
       toast({

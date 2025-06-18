@@ -10,6 +10,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Plus, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
+import Cookies from "js-cookie";
 
 interface Tarif {
   id: number;
@@ -85,7 +86,10 @@ const AdminPricing = () => {
         // (À ajouter dans le back : endpoint PATCH sur /tarif/:id)
         await fetch(`/api/tarif?id=${editingTarif.id}`, {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            ...(Cookies.get('token') ? { Authorization: `Bearer ${Cookies.get('token')}` } : {}),
+          },
           body: JSON.stringify({
             prixJournalier: price,
             actif: formData.actif,

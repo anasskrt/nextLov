@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { format, isSameDay } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Car, Clock, CheckCircle } from "lucide-react";
+import Cookies from "js-cookie";
 
 type Booking = {
   id: string;
@@ -29,7 +30,10 @@ const AdminCalendar = () => {
   const fetchBookings = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/devis/calendar");
+      const token = Cookies.get('token');
+      const res = await fetch("/api/devis/calendar", {
+        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+      });
       if (!res.ok) throw new Error("Erreur lors du chargement des réservations");
       const data = await res.json();
       setBookings(
@@ -95,9 +99,13 @@ const AdminCalendar = () => {
     try {
       // id numérique à partir de booking.id (ex: "entry-12" → 12)
       const idNum = Number(booking.id.replace(/^\D+/, ""));
+      const token = Cookies.get('token');
       await fetch(`/api/devis/calendar?id=${idNum}`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
         body: JSON.stringify({ statut: newStatus }),
       });
       // Refetch propre (sans reload la page)
