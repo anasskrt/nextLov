@@ -28,7 +28,7 @@ const ServiceSelection = ({ onNext, onBack }: ServiceSelectionProps) => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const res = await fetch(`${process.env.BACKEND_URL}/service`);
+        const res = await fetch("/api/service");
         if (!res.ok) throw new Error("Erreur de récupération des services");
         const data = await res.json();
         setServices(data);

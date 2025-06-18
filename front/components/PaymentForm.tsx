@@ -20,7 +20,6 @@ interface PaymentFormProps {
   onBack: () => void;
 }
 
-
 const PaymentForm = ({
   totalAmount,
   services,
@@ -28,7 +27,6 @@ const PaymentForm = ({
   bookingDetails,
   onBack,
 }: PaymentFormProps) => {
-
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -43,10 +41,10 @@ const PaymentForm = ({
     };
 
     try {
-      const res = await fetch(`${process.env.BACKEND_URL}/stripe/init`, {
+      const res = await fetch("/api/stripe/init", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
       });
@@ -71,25 +69,31 @@ const PaymentForm = ({
 
   if (clientSecret) {
     return <StripeEmbeddedCheckout clientSecret={clientSecret} />;
-
   }
   return (
-
-    
     <div className="bg-white/95 backdrop-blur-sm p-6 rounded-lg shadow-xl">
-      <h2 className="text-2xl font-bold mb-6 text-navy">Finaliser votre réservation</h2>
+      <h2 className="text-2xl font-bold mb-6 text-navy">
+        Finaliser votre réservation
+      </h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Récapitulatif */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-navy">Récapitulatif de votre commande</CardTitle>
+            <CardTitle className="text-navy">
+              Récapitulatif de votre commande
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h4 className="font-semibold text-navy mb-2">Services supplémentaires sélectionnés:</h4>
+              <h4 className="font-semibold text-navy mb-2">
+                Services supplémentaires sélectionnés:
+              </h4>
               {services.map((service, index) => (
-                <div key={index} className="flex justify-between items-center py-1">
+                <div
+                  key={index}
+                  className="flex justify-between items-center py-1"
+                >
                   <span>{service.name}</span>
                   <span className="font-semibold">{service.price}€</span>
                 </div>
@@ -97,49 +101,78 @@ const PaymentForm = ({
             </div>
 
             <div className="border-t pt-2">
-              <h4 className="font-semibold text-navy mb-2">Informations client:</h4>
+              <h4 className="font-semibold text-navy mb-2">
+                Informations client:
+              </h4>
               <div className="text-sm space-y-1">
-                <p><strong>Nom:</strong> {userInfo.name}</p>
-                <p><strong>Email:</strong> {userInfo.email}</p>
-                <p><strong>Téléphone:</strong> {userInfo.phone}</p>
-                <p><strong>Véhicule:</strong> {userInfo.carModel}</p>
+                <p>
+                  <strong>Nom:</strong> {userInfo.name}
+                </p>
+                <p>
+                  <strong>Email:</strong> {userInfo.email}
+                </p>
+                <p>
+                  <strong>Téléphone:</strong> {userInfo.phone}
+                </p>
+                <p>
+                  <strong>Véhicule:</strong> {userInfo.carModel}
+                </p>
               </div>
             </div>
 
-          <div className="border-t pt-2">
-            <h4 className="font-semibold text-navy mb-2">Période:</h4>
-            <div className="text-sm">
-              <p>
-                <strong>Départ :</strong>{" "}
-                {bookingDetails.fullDepartureDate
-                  ? new Date(bookingDetails.fullDepartureDate).toLocaleDateString("fr-FR", {
-                      weekday: "short", day: "2-digit", month: "2-digit", year: "numeric"
-                    })
-                  : "-"}
-                {" à "}
-                {bookingDetails.fullDepartureDate
-                  ? new Date(bookingDetails.fullDepartureDate).toLocaleTimeString("fr-FR", {
-                      hour: "2-digit", minute: "2-digit"
-                    })
-                  : "-"}
-              </p>
-              <p>
-                <strong>Retour :</strong>{" "}
-                {bookingDetails.fullReturnDate
-                  ? new Date(bookingDetails.fullReturnDate).toLocaleDateString("fr-FR", {
-                      weekday: "short", day: "2-digit", month: "2-digit", year: "numeric"
-                    })
-                  : "-"}
-                {" à "}
-                {bookingDetails.fullReturnDate
-                  ? new Date(bookingDetails.fullReturnDate).toLocaleTimeString("fr-FR", {
-                      hour: "2-digit", minute: "2-digit"
-                    })
-                  : "-"}
-              </p>
+            <div className="border-t pt-2">
+              <h4 className="font-semibold text-navy mb-2">Période:</h4>
+              <div className="text-sm">
+                <p>
+                  <strong>Départ :</strong>{" "}
+                  {bookingDetails.fullDepartureDate
+                    ? new Date(bookingDetails.fullDepartureDate).toLocaleDateString(
+                        "fr-FR",
+                        {
+                          weekday: "short",
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                        }
+                      )
+                    : "-"}
+                  {" à "}
+                  {bookingDetails.fullDepartureDate
+                    ? new Date(bookingDetails.fullDepartureDate).toLocaleTimeString(
+                        "fr-FR",
+                        {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        }
+                      )
+                    : "-"}
+                </p>
+                <p>
+                  <strong>Retour :</strong>{" "}
+                  {bookingDetails.fullReturnDate
+                    ? new Date(bookingDetails.fullReturnDate).toLocaleDateString(
+                        "fr-FR",
+                        {
+                          weekday: "short",
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                        }
+                      )
+                    : "-"}
+                  {" à "}
+                  {bookingDetails.fullReturnDate
+                    ? new Date(bookingDetails.fullReturnDate).toLocaleTimeString(
+                        "fr-FR",
+                        {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        }
+                      )
+                    : "-"}
+                </p>
+              </div>
             </div>
-          </div>
-
 
             <div className="border-t pt-4">
               <div className="flex justify-between items-center text-lg font-bold">
@@ -154,20 +187,28 @@ const PaymentForm = ({
         <Card>
           <CardHeader>
             <CardTitle className="text-navy">Paiement sécurisé</CardTitle>
-            <CardDescription>Votre paiement est sécurisé et protégé</CardDescription>
+            <CardDescription>
+              Votre paiement est sécurisé et protégé
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-              <h4 className="font-semibold text-blue-800 mb-2">Informations de paiement</h4>
+              <h4 className="font-semibold text-blue-800 mb-2">
+                Informations de paiement
+              </h4>
               <p className="text-blue-700 text-sm">
-                En cliquant sur &quot;Payer maintenant&quot;, vous serez redirigé vers une page de paiement sécurisée pour finaliser votre réservation.
+                En cliquant sur &quot;Payer maintenant&quot;, vous serez redirigé
+                vers une page de paiement sécurisée pour finaliser votre
+                réservation.
               </p>
             </div>
 
             <div className="space-y-4">
               <div className="bg-gray-50 p-4 rounded-lg">
                 <h5 className="font-semibold mb-2">Montant à payer:</h5>
-                <div className="text-2xl font-bold text-gold">{formattedAmount}</div>
+                <div className="text-2xl font-bold text-gold">
+                  {formattedAmount}
+                </div>
               </div>
 
               <Button
