@@ -22,12 +22,17 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json(data, { status: backendRes.status });
-  } catch (error: any) {
-    // Log l'erreur côté serveur pour la voir dans les logs Render
-    console.error("Erreur fetch backend :", error);
-    return NextResponse.json(
-      { message: "Erreur proxy API Next.js : " + error.message },
-      { status: 502 }
-    );
-  }
+  } catch (error: unknown) {
+        console.error("Erreur fetch backend :", error);
+        let message = "Erreur proxy API Next.js";
+
+        if (error instanceof Error) {
+            message += " : " + error.message;
+        }
+
+        return NextResponse.json(
+            { message },
+            { status: 502 }
+        );
+    }
 }
