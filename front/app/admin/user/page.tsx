@@ -15,7 +15,7 @@ export default function AdminUsers() {
 
   useEffect(() => {
       const token = Cookies.get('token');
-    fetch(`${process.env.BACKEND_URL}/user`, {
+    fetch("/api/admin/user", {
       headers: {
         Authorization: `Bearer ${token}`
       }

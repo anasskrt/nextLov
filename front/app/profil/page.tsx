@@ -36,7 +36,7 @@ const ProfilePage = () => {
       return;
     }
 
-    fetch(`${process.env.BACKEND_URL}/user/mon-espace`, {
+    fetch(`api/user/mon-espace`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

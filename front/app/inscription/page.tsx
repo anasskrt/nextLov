@@ -40,7 +40,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   setIsLoading(true);
 
   try {
-    const response = await fetch("api/auth/inscription", {
+    const response = await fetch("/api/auth/inscription", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

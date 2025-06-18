@@ -36,7 +36,7 @@ const AdminServices = () => {
   const fetchServices = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.BACKEND_URL}/service`);
+      const res = await fetch("/api/admin/service");
       const data = await res.json();
       setServices(data);
     } catch {
@@ -95,15 +95,15 @@ const AdminServices = () => {
     try {
       if (editingService) {
         // PATCH (Edition)
-        await fetch(`${process.env.BACKEND_URL}/service/${editingService.id}`, {
+        await fetch(`/api/admin/service/${editingService.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(serviceData)
+          body: JSON.stringify(editingService),
         });
         toast({ title: "Service modifié", description: "Le service a été modifié avec succès." });
       } else {
         // POST (Création)
-        await fetch(`${process.env.BACKEND_URL}/service`, {
+        await fetch("/api/admin/service", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(serviceData)

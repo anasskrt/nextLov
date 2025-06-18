@@ -20,7 +20,7 @@ function PaymentReturn() {
       return;
     }
     // Appel au back pour vérifier le statut de la session Stripe
-    fetch(`${process.env.BACKEND_URL}/stripe/verify-session?session_id=${sessionId}`)
+    fetch("/api/stripe/verify-session?session_id=" + sessionId)
       .then(res => res.json())
       .then(data => {
         if (data.status === "success") {

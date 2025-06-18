@@ -34,7 +34,7 @@ const AdminPricing = () => {
   const fetchTarifs = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.BACKEND_URL}/tarif/getAlls`);
+      const res = await fetch("/api/tarif");
       const data = await res.json();
       setTarifs(data);
     } catch {
@@ -83,9 +83,21 @@ const AdminPricing = () => {
       if (editingTarif) {
         // Si tu veux gérer la modification : PATCH à faire ici (pas géré dans ton back actuel)
         // (À ajouter dans le back : endpoint PATCH sur /tarif/:id)
+        await fetch(`/api/tarif?id=${editingTarif.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            prixJournalier: price,
+            actif: formData.actif,
+          })
+        });
+        toast({
+          title: "Tarif modifié",
+          description: "Le tarif a été modifié avec succès."
+        });
       } else {
         // Création d’un nouveau tarif
-        await fetch(`${process.env.BACKEND_URL}/tarif/create`, {
+        await fetch("/api/tarif", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
