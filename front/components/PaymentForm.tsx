@@ -43,7 +43,7 @@ const PaymentForm = ({
     };
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/stripe/init`, {
+      const res = await fetch(`${process.env.BACKEND_URL}/stripe/init`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

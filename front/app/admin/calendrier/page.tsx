@@ -29,7 +29,7 @@ const AdminCalendar = () => {
   const fetchBookings = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/devis/calendar`);
+      const res = await fetch(`${process.env.BACKEND_URL}/devis/calendar`);
       if (!res.ok) throw new Error("Erreur lors du chargement des réservations");
       const data = await res.json();
       setBookings(
@@ -95,7 +95,7 @@ const AdminCalendar = () => {
     try {
       // id numérique à partir de booking.id (ex: "entry-12" → 12)
       const idNum = Number(booking.id.replace(/^\D+/, ""));
-      await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/devis/${idNum}/status`, {
+      await fetch(`${process.env.BACKEND_URL}/devis/${idNum}/status`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ statut: newStatus }),

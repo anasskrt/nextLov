@@ -58,7 +58,7 @@ const AdminQuotes = () => {
         search: searchTerm,
         price: priceFilter,
       });
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/devis?${params.toString()}`);
+      const res = await fetch(`${process.env.BACKEND_URL}/devis?${params.toString()}`);
       if (!res.ok) throw new Error("Erreur lors du chargement des devis");
       const data = await res.json();
       setQuotes(data.devis);

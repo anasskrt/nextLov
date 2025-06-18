@@ -106,7 +106,7 @@ const BookingForm = () => {
     lastPayload.current = { dateDebut, dateFin };
 
     // 4. Envoie la requête POST
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/devis/init`, {
+    fetch(`${process.env.BACKEND_URL}/devis/init`, {
         method: "POST",
         headers: {
         "Content-Type": "application/json",

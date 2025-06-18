@@ -16,7 +16,7 @@ export function AdminGuard({ children }: { children: React.ReactNode }) {
     }
 
     // Vérifie le rôle
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/whoIAm`, {
+    fetch(`${process.env.BACKEND_URL}/auth/whoIAm`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

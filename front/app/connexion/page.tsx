@@ -30,7 +30,7 @@ const Login = () => {
   e.preventDefault();
 
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/connexion`, {
+    const response = await fetch(`${process.env.BACKEND_URL}/auth/connexion`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

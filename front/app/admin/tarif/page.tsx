@@ -34,7 +34,7 @@ const AdminPricing = () => {
   const fetchTarifs = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/tarif/getAlls`);
+      const res = await fetch(`${process.env.BACKEND_URL}/tarif/getAlls`);
       const data = await res.json();
       setTarifs(data);
     } catch {
@@ -85,7 +85,7 @@ const AdminPricing = () => {
         // (À ajouter dans le back : endpoint PATCH sur /tarif/:id)
       } else {
         // Création d’un nouveau tarif
-        await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/tarif/create`, {
+        await fetch(`${process.env.BACKEND_URL}/tarif/create`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -113,7 +113,7 @@ const AdminPricing = () => {
   // 3. Delete un tarif
   const handleDelete = async (tarifId: number) => {
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/tarif/${tarifId}`, {
+      await fetch(`${process.env.BACKEND_URL}/tarif/${tarifId}`, {
         method: "DELETE"
       });
       fetchTarifs();
