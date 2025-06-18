@@ -6,15 +6,6 @@ export async function GET() {
   return NextResponse.json(data, { status: backendRes.status });
 }
 
-export async function GET_USERS(req: NextRequest) {
-  const authHeader = req.headers.get("authorization");
-  const backendRes = await fetch(`${process.env.BACKEND_URL}/user`, {
-    headers: authHeader ? { Authorization: authHeader } : undefined,
-  });
-  const data = await backendRes.json();
-  return NextResponse.json(data, { status: backendRes.status });
-}
-
 export async function PATCH(req: NextRequest) {
   const url = new URL(req.url);
   const id = url.pathname.split("/").pop();
