@@ -8,6 +8,8 @@ export async function POST(req: NextRequest) {
   let backendRes;
   let data;
 
+  console.log("Proxy API: tente de joindre", `${backendUrl}/auth/inscription`);
+
   try {
     backendRes = await fetch(`${backendUrl}/auth/inscription`, {
       method: "POST",
