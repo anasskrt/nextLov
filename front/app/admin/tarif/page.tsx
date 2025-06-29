@@ -35,7 +35,12 @@ const AdminPricing = () => {
   const fetchTarifs = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/tarif");
+      const token = Cookies.get("token");
+      const res = await fetch("/api/tarif", {
+        headers: {
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+      });
       const data = await res.json();
       setTarifs(data);
     } catch {
