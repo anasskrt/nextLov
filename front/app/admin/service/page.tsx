@@ -90,12 +90,10 @@ const AdminServices = () => {
       description: formData.description,
       price,
       included: includedArray,
-      active: true
     };
 
     try {
-      if (editingService) {
-        // PATCH (Edition)
+      if (serviceData && editingService) {
         const token = Cookies.get('token');
         await fetch(`/api/admin/service/${editingService.id}`, {
           method: "PATCH",
@@ -103,11 +101,10 @@ const AdminServices = () => {
             "Content-Type": "application/json",
             ...(token ? { Authorization: `Bearer ${token}` } : {}),
           },
-          body: JSON.stringify(editingService),
+          body: JSON.stringify(serviceData),
         });
         toast({ title: "Service modifié", description: "Le service a été modifié avec succès." });
       } else {
-        // POST (Création)
         const token = Cookies.get('token');
         await fetch("/api/admin/service", {
           method: "POST",
@@ -139,8 +136,8 @@ const AdminServices = () => {
   };
 
   const handleDelete = async (serviceId: number) => {
-    // Soft delete : active = false
     try {
+      console.log(serviceId)
       const token = Cookies.get('token');
       await fetch(`/api/admin/service/${serviceId}`, {
         method: "DELETE",
