@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -37,7 +37,7 @@ const BookingForm = () => {
 
   const lastPayload = useRef<{ dateDebut: string; dateFin: string } | null>(null);
 
-  const validateDateTime = () => {
+  const validateDateTime = useCallback(() => {
     const newErrors: Record<string, string> = {};
     if (!departureDate) newErrors.departureDate = "La date de départ est requise";
     if (!formData.departureTime) newErrors.departureTime = "L'heure de départ est requise";
@@ -49,7 +49,7 @@ const BookingForm = () => {
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  };
+  }, [departureDate, returnDate, formData]);
 
   useEffect(() => {
     const isValid =
@@ -103,6 +103,7 @@ const BookingForm = () => {
     returnDate,
     formData.departureTime,
     formData.returnTime,
+    validateDateTime
   ]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

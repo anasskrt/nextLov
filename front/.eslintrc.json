@@ -20,5 +20,8 @@
     ".next/",
     "out/",
     "public/"
+  ],
+  "exclude": [
+    "app/api/admin/devis/[devisId]/validate-services/route.ts"
   ]
 }

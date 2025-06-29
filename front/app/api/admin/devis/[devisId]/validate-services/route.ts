@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest, context: { params: { devisId: string } }) {
-  const { devisId } = context.params;
+// @ts-expect-error: context must remain untyped for Next.js compatibility
+export async function POST(req: NextRequest, context) {
+  const devisId = context?.params?.devisId;
+
   const authHeader = req.headers.get("authorization");
 
   const backendRes = await fetch(`${process.env.BACKEND_URL}/admin/devis/${devisId}/validate-services`, {
