@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
+"use client"
+// "use client" supprimé pour permettre l'export de metadata (Server Component)
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -19,26 +20,25 @@ const BookingProcessPage = () => {
   const [userInfo, setUserInfo] = useState<any>(null);
   const [bookingDetails, setBookingDetails] = useState<any>(null);
 
-useEffect(() => {
-  const stored = sessionStorage.getItem("bookingDetails");
-  if (!stored) {
-    router.push("/");
-    return;
-  }
+  useEffect(() => {
+    const stored = sessionStorage.getItem("bookingDetails");
+    if (!stored) {
+      router.push("/");
+      return;
+    }
 
-  try {
-    const parsed = JSON.parse(stored);
+    try {
+      const parsed = JSON.parse(stored);
 
-    // ✅ Convertir les dates string en objets Date
-    parsed.departureDate = new Date(parsed.fullDepartureDate);
-    parsed.returnDate = new Date(parsed.fullReturnDate);
+      // ✅ Convertir les dates string en objets Date
+      parsed.departureDate = new Date(parsed.fullDepartureDate);
+      parsed.returnDate = new Date(parsed.fullReturnDate);
 
-    setBookingDetails(parsed);
-  } catch {
-    router.push("/");
-  }
-}, [router]);
-
+      setBookingDetails(parsed);
+    } catch {
+      router.push("/");
+    }
+  }, [router]);
 
   const handleServiceSelection = (services: any[]) => {
     setSelectedServices(services);
@@ -54,16 +54,15 @@ useEffect(() => {
     setCurrentStep("payment");
   };
 
-const calculateTotalAmount = () => {
-  const montantFinal = bookingDetails?.estimation?.montantFinal ?? 0;
+  const calculateTotalAmount = () => {
+    const montantFinal = bookingDetails?.estimation?.montantFinal ?? 0;
 
-  const totalServices = selectedServices.reduce((sum, service) => {
-    return sum + (typeof service.price === 'number' ? service.price : 0);
-  }, 0);
+    const totalServices = selectedServices.reduce((sum, service) => {
+      return sum + (typeof service.price === "number" ? service.price : 0);
+    }, 0);
 
-  return montantFinal + totalServices;
-};
-
+    return montantFinal + totalServices;
+  };
 
   const stepTitles = {
     services: "Choisissez vos services",
@@ -122,14 +121,17 @@ const calculateTotalAmount = () => {
           <div className="mb-8 bg-white p-4 rounded-lg shadow-sm">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium">Étape actuelle:</span>
-              <span className="text-gold font-bold">{stepTitles[currentStep]}</span>
+              <span className="text-gold font-bold">
+                {stepTitles[currentStep]}
+              </span>
             </div>
             <div className="flex space-x-2">
               {["services", "userinfo", "rules", "payment"].map((step, index) => (
                 <div
                   key={step}
                   className={`h-2 flex-1 rounded ${
-                    ["services", "userinfo", "rules", "payment"].indexOf(currentStep) >= index
+                    ["services", "userinfo", "rules", "payment"].indexOf(currentStep) >=
+                    index
                       ? "bg-gold"
                       : "bg-gray-300"
                   }`}

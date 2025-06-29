@@ -111,6 +111,16 @@ const FAQ = () => {
       answer:
         "Nos services de prise en charge et de restitution sont disponibles 24h/24 tous les jours. Pour des créneaux de 22h à 6h nous ajoutons un frais.",
     },
+    {
+      question: "Le service est-il accessible aux personnes en situation de handicap ?",
+      answer:
+        "Oui, nous accueillons les personnes en situation de handicap. Une marche est mise à disposition afin de faciliter l’accès au véhicule. N'hésitez pas à nous le signaler lors de votre réservation pour que nous puissions préparer votre accueil dans les meilleures conditions.",
+    },
+    {
+      question: "Puis-je utiliser le service avec un véhicule utilitaire ?",
+      answer:
+        "Les véhicules utilitaires ne sont pas acceptés automatiquement. Si vous souhaitez réserver avec ce type de véhicule, merci de nous contacter au préalable via le formulaire de la page Contact ou par téléphone afin de vérifier la faisabilité.",
+    },
   ];
 
   return (

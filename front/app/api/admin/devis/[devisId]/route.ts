@@ -1,34 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest, { params }: { params: { devisId: string } }) {
   const authHeader = req.headers.get("authorization");
-  const backendRes = await fetch(`${process.env.BACKEND_URL}/devis/calendar`, {
+  const { devisId } = params;
+  const backendRes = await fetch(`${process.env.BACKEND_URL}/vol/${devisId}`, {
     headers: authHeader ? { Authorization: authHeader } : undefined,
   });
   const data = await backendRes.json();
   return NextResponse.json(data, { status: backendRes.status });
 }
 
+export async function POST(req: NextRequest, context: { params: { devisId: string } }) {
 
-export async function PATCH(req: NextRequest) {
-  const url = new URL(req.url);
-  const id = url.searchParams.get("id"); // ✅ correction ici
-  const body = await req.json();
+  const { params } = context;
+  const devisId = params?.devisId;
+
+
   const authHeader = req.headers.get("authorization");
-
-  if (!id) {
-    return NextResponse.json({ error: "ID manquant" }, { status: 400 });
-  }
-
-  const backendRes = await fetch(`${process.env.BACKEND_URL}/devis/${id}/status`, {
-    method: "PATCH",
+  const body = await req.json();
+  const backendRes = await fetch(`${process.env.BACKEND_URL}/vol/${devisId}`, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       ...(authHeader ? { Authorization: authHeader } : {}),
     },
     body: JSON.stringify(body),
   });
-
   const data = await backendRes.json();
   return NextResponse.json(data, { status: backendRes.status });
 }

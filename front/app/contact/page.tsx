@@ -4,10 +4,11 @@ import GoogleMap from "@/components/GoogleMap";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata = {
-  title: "Contactez-nous | ValetPark",
-  description: "Contactez notre équipe ValetPark pour toute question ou demande de devis.",
+  title: "Contact | MsParking Bordeaux",
+  description: "Contactez l'équipe MsParking pour toute question, demande de devis ou assistance concernant notre service de voiturier à Bordeaux.",
+  keywords: "contact, parking, Bordeaux, voiturier, devis, assistance, téléphone, email",
   alternates: {
-    canonical: "https://www.valetpark.fr/contact", // adapte à l'URL de ta page
+    canonical: "https://www.msparking.fr/contact",
   },
 };
 

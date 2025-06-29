@@ -27,47 +27,59 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+  const isValidPassword = (pwd: string) => {
+    const regex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+    return regex.test(pwd);
+  };
 
-  if (password !== confirmPassword) {
-    toast.error("Les mots de passe ne correspondent pas");
-    return;
-  }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  setIsLoading(true);
+    setPasswordError("");
 
-  try {
-    const response = await fetch("/api/auth/inscription", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        nom: name,
-        prenom: surname,
-        email: email,
-        motDePasse: password,
-        telephone: phone,
-      }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Erreur d'inscription");
+    if (password !== confirmPassword) {
+      toast.error("Les mots de passe ne correspondent pas");
+      return;
     }
 
-    toast.success("Inscription réussie");
-    router.push("/");
-  } catch {
-    toast.error( "Échec de l'inscription. Veuillez réessayer.");
-  } finally {
-    setIsLoading(false);
-  }
-};
+    if (!isValidPassword(password)) {
+      setPasswordError("Le mot de passe doit contenir au moins 6 caractères, une majuscule et un chiffre.");
+      return;
+    }
 
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/api/auth/inscription", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nom: name,
+          prenom: surname,
+          email: email,
+          motDePasse: password,
+          telephone: phone,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Erreur d'inscription");
+      }
+
+      toast.success("Inscription réussie");
+      router.push("/");
+    } catch {
+      toast.error("Échec de l'inscription. Veuillez réessayer.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -134,6 +146,9 @@ const handleSubmit = async (e: React.FormEvent) => {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
+                {passwordError && (
+                  <p className="text-sm text-red-500">{passwordError}</p>
+                )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="confirmPassword">Confirmer le mot de passe</Label>

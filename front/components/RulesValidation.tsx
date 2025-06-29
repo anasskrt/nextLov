@@ -74,6 +74,7 @@ const RulesValidation = ({ onNext, onBack }: RulesValidationProps) => {
             <div className="bg-gray-50 p-4 border border-gray-200 rounded-lg">
               <h4 className="font-semibold text-navy mb-2">Rappel important :</h4>
               <ul className="text-sm text-gray-700 space-y-1">
+                <li>• Si le véhicule est un utilitaire prevenez nous via le formulaire de contact ou le numéro affiché.</li>
                 <li>• Préparation du véhicule avant la prise en charge</li>
                 <li>• Venir en avance pour éviter les retards</li>
                 <li>• 5 personnes max et bagages limités</li>

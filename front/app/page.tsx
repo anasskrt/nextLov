@@ -8,6 +8,7 @@ import SuccessToastHandler from "@/components/SuccessToastHandler";
 import HowItWorks from "@/components/HowItWorks";
 import CustomerReviews from "@/components/CustomerReviews";
 import PricingHighlight from "@/components/PricingHighlight";
+import { icons } from "lucide-react";
 
 export default function HomePage() {
   return (

@@ -11,6 +11,10 @@ import { Search, Filter, Download, Eye, ChevronLeft, ChevronRight } from "lucide
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import Cookies from "js-cookie";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import VolInfoDialog from "@/components/VolInfoDialog";
+import ServiceStatusDialog from "@/components/ServiceStatusDialog";
+import ServiceStatusDialogInline from "@/components/ServiceStatusDialog";
 
 const PAGE_SIZE = 10;
 
@@ -31,6 +35,13 @@ type Quote = {
   dateFin?: string;
   montantFinal?: number;
   statut?: string;
+  infosVol?: {
+    numVol: string;
+    terminal: string;
+  } | null;
+  services?: { name: string }[];
+  serviceStatus?: boolean; // ton boolean global
+
 };
 
 const STATUS_LABELS = {
@@ -166,6 +177,7 @@ const AdminQuotes = () => {
                   <TableHead>Dates</TableHead>
                   <TableHead>Prix</TableHead>
                   <TableHead>Statut</TableHead>
+                  <TableHead>Infos vol</TableHead>
                   <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>
@@ -204,10 +216,22 @@ const AdminQuotes = () => {
                     <TableCell className="font-semibold">{Number(quote.montantFinal || 0)}€</TableCell>
                     <TableCell>{getStatusBadge(quote.statut)}</TableCell>
                     <TableCell>
-                      <Button variant="outline" size="sm" className="flex items-center gap-1">
-                        <Eye className="h-3 w-3" />
-                        Voir
-                      </Button>
+                      {quote.infosVol && quote.infosVol.numVol && quote.infosVol.terminal ? (
+                        `${quote.infosVol.numVol} / ${quote.infosVol.terminal}`
+                      ) : (
+                        <VolInfoDialog devisId={quote.id} forceShowForm />
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {quote.services && quote.services.length > 0 ? (
+                        <ServiceStatusDialogInline
+                          devisId={quote.id}
+                          services={quote.services}
+                          serviceStatus={quote.serviceStatus}
+                        />
+                      ) : (
+                        <span className="text-gray-400 italic">Aucun service</span>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}
