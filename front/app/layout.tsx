@@ -3,8 +3,8 @@ import ClientProviders from "./client-providers";
 import "./globals.css";
 
 export const metadata = {
-  title: "MsParking - Parking Bordeaux Aéroport",
-  description: "Réservez votre place de parking avec navette gratuite à Bordeaux Aéroport.",
+  title: "MsParking - Parking aéroport de Bordeaux sécurisé",
+  description: "MsParking, l’alternative au parking de l’aéroport de Bordeaux : navette gratuite, gardiennage sécurisé 24h/24 pour votre voiture.",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",

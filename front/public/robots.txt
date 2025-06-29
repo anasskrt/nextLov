@@ -5,3 +5,5 @@ Disallow: /inscription/
 Disallow: /reset-password/
 Disallow: /profil/
 Allow: /
+
+Sitemap: https://msparking.fr/sitemap.xml
