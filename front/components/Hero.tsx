@@ -20,6 +20,9 @@ const Hero = () => {
             <div className="mt-2 text-sm text-yellow-200 bg-yellow-900/60 rounded px-3 py-2 max-w-md">
               <strong>Notice :</strong> L&apos;heure d&apos;aller doit être prévue au moins <b>45 minutes avant la fin de l&apos;enregistrement à l&apos;aéroport</b> pour garantir la prise en charge de votre véhicule dans les meilleures conditions.
             </div>
+            <div className="mt-2 text-sm text-yellow-200 bg-yellow-900/60 rounded px-3 py-2 max-w-md">
+              <strong>Information :</strong> Pour toutes les heures d&apos;arrivée et de retour prévues entre 22h et 6h, des frais supplémentaires sont ajoutés.
+            </div>
           </div>
 
           <BookingForm />

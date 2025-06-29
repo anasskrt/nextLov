@@ -32,9 +32,9 @@ const ContactPage = () => {
                 <div className="p-6">
                   <h2 className="text-2xl font-bold text-navy mb-4">Notre localisation</h2>
                   <div className="mb-4">
-                    <p className="text-gray-600 mb-2">123 Avenue des avenu</p>
-                    <p className="text-gray-600 mb-2">33100 Bordeaux, France</p>
-                    <p className="text-gray-600">+33 1 23 45 67 89</p>
+                    <p className="text-gray-600 mb-2">159 avenue de beutre</p>
+                    <p className="text-gray-600 mb-2">33600 Pessac</p>
+                    <p className="text-gray-600">+33 06 09 04 18 79</p>
                   </div>
                 </div>
                 <div className="h-80">
@@ -54,7 +54,7 @@ const ContactPage = () => {
               <InfoCard
                 icon="phone"
                 title="Téléphone"
-                text="+33 1 23 45 67 89"
+                text="+33 06 09 04 18 79"
               />
               <InfoCard
                 icon="mail"

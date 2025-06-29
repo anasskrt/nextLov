@@ -11,7 +11,7 @@ const Footer = () => {
               MS<span className="text-gold">Parking</span>
             </h3>
             <p className="mb-4">
-              Service gardiennage et voiturier parter en vacance l&apos;esprit léger.
+              Service gardiennage et voiturier parter en vacance l&apos;esprit léger. Parking aéroport de bordeaux, service de navette.
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="text-white hover:text-gold-light" aria-label="Facebook">
@@ -44,11 +44,11 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-start">
                 <MapPin size={20} className="mr-2 flex-shrink-0 mt-1" />
-                <span>123 Avenue des avenus, 31000 Boreaux</span>
+                <span>159 avenue de beutre, 33600 Pessac</span>
               </li>
               <li className="flex items-center">
                 <Phone size={20} className="mr-2 flex-shrink-0" />
-                <span>+33 1 23 45 67 89</span>
+                <span>+33 06 09 04 18 79</span>
               </li>
               <li className="flex items-center">
                 <Mail size={20} className="mr-2 flex-shrink-0" />

@@ -30,8 +30,8 @@ const MentionsLegales = () => {
                 <strong>msparking</strong><br />
                 Société par actions simplifiée au capital de 10 000 €<br />
                 RCS Bordeaux 123 456 789<br />
-                Siège social : 123 Avenue des Champs-Élysées, 33140 Bordeaux<br />
-                Téléphone : +33 1 23 45 67 89<br />
+                Siège social : 159 avenue de beutre, 33600 Pessac<br />
+                Téléphone : +33 06 09 04 18 79<br />
                 Email : contact@msparking.fr
               </p>
 

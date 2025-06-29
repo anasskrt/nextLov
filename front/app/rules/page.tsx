@@ -245,7 +245,7 @@ export default function RulesPage() {
                 </div>
                 <div className="flex items-center justify-center gap-2">
                   <span>📞</span>
-                  <span>+33 1 23 45 67 89</span>
+                  <span>+33 06 09 04 18 79</span>
                 </div>
               </div>
               <div className="mt-8 text-center">

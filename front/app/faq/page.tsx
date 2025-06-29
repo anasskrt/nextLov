@@ -182,7 +182,7 @@ const FAQ = () => {
                       <p className="text-sm text-gray-600">
                         Notre équipe est disponible pour vous aider
                       </p>
-                      <p className="text-sm font-medium">📞 01 23 45 67 89</p>
+                      <p className="text-sm font-medium">📞 06 09 04 18 79</p>
                       <p className="text-sm font-medium">
                         ✉️ contact@msparking.fr
                       </p>

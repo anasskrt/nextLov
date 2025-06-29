@@ -6,7 +6,7 @@ export default function HowItWorks() {
     {
       icon: Car,
       title: "Déposez votre véhicule",
-      description: "Venez déposer votre voiture à notre parking sécurisé MSParking situé au 123 Avenue des avenues, 33100 Bordeaux. Notre équipe vous accueille 24h/24."
+      description: "Venez déposer votre voiture à notre parking sécurisé MSParking situé au 159 avenue de beutre, 33600 Pessac. Notre équipe vous accueille 24h/24."
     },
     {
       icon: Users,

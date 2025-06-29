@@ -7,19 +7,19 @@ const Features = () => {
       icon: <Shield className="w-10 h-10 text-gold" />,
       title: "Sécurité Maximale",
       description:
-        "Parking sécurisé 24h/24 avec vidéosurveillance et personnel présent sur place en permanence.",
+        "Parking sécurisé 24h/24 avec vidéo-surveillance et personnel présent sur place en permanence.",
     },
     {
       icon: <Clock className="w-10 h-10 text-gold" />,
       title: "Service Ponctuel",
       description:
-        "Nos voituriers sont toujours à l'heure pour récupérer ou livrer votre véhicule selon votre planning.",
+        "Notre navette est toujours prête pile à l'heure pour vous accueillir.",
     },
     {
       icon: <Car className="w-10 h-10 text-gold" />,
       title: "Soin du Véhicule",
       description:
-        "Services additionnels disponibles: lavage, nettoyage intérieur, contrôle technique et plus encore.",
+        "Services additionnels disponibles: lavage, nettoyage intérieur, et plus encore.",
     },
     {
       icon: <Award className="w-10 h-10 text-gold" />,
@@ -32,7 +32,7 @@ const Features = () => {
   return (
     <section className="py-16 bg-gray-50" id="services">
       <div className="page-container">
-        <h2 className="section-heading text-center">Nos Services Premium</h2>
+        <h2 className="section-heading text-center">Nos Services de Qualités</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
           {features.map((feature, index) => (

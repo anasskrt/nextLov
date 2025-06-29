@@ -14,7 +14,7 @@ const PricingHighlight = () => {
           {/* Badge premium */}
           <div className="inline-flex items-center gap-2 bg-gold/20 text-gold px-4 py-2 rounded-full text-sm font-medium mb-8 border border-gold/30">
             <Star className="h-4 w-4" />
-            Service Premium
+            Service de qualité
           </div>
 
           {/* Titre principal avec design amélioré */}
@@ -23,7 +23,7 @@ const PricingHighlight = () => {
               Stationnement
               <br />
               <span className="text-gold bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent">
-                sécurisé
+                journalier
               </span>
             </h2>
             <div className="flex items-baseline justify-center gap-4 mb-6">
@@ -59,7 +59,7 @@ const PricingHighlight = () => {
                 <Clock className="h-8 w-8 text-gold" />
               </div>
               <h4 className="font-bold text-xl text-white mb-3">Navette gratuite</h4>
-              <p className="text-white/70">Transfer inclus vers tous l&apos;aéroport</p>
+              <p className="text-white/70">Transfer inclus vers l&apos;aéroport de bordeaux</p>
               <CheckCircle className="h-6 w-6 text-green-400 mx-auto mt-4" />
             </div>
             

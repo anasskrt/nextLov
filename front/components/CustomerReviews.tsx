@@ -68,24 +68,6 @@ export default function CustomerReviews() {
             </Card>
           ))}
         </div>
-
-        <div className="text-center bg-navy rounded-lg p-8 text-white">
-          <h3 className="text-2xl font-bold mb-4">Chaque client compte</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            <div>
-              <div className="text-3xl font-bold text-gold mb-2">4.9/5</div>
-              <div className="text-sm">Note moyenne</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-gold mb-2">100%</div>
-              <div className="text-sm">Service dédié à chaque client</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-gold mb-2">99.8%</div>
-              <div className="text-sm">Taux de satisfaction</div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
