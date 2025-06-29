@@ -202,7 +202,7 @@ const BookingForm = () => {
         </div>
 
         <div className="text-xs text-gray-500 italic mb-2">
-          L'heure d'aller doit être prévue au moins 45 minutes avant la fin de l'enregistrement à l'aéroport.
+          L&apos;heure d&apos;aller doit être prévue au moins 45 minutes avant la fin de l&apos;enregistrement à l&apos;aéroport.
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

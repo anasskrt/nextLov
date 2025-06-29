@@ -7,13 +7,11 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Search, Filter, Download, Eye, ChevronLeft, ChevronRight } from "lucide-react";
+import { Search, Filter, Download, ChevronLeft, ChevronRight } from "lucide-react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import Cookies from "js-cookie";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import VolInfoDialog from "@/components/VolInfoDialog";
-import ServiceStatusDialog from "@/components/ServiceStatusDialog";
 import ServiceStatusDialogInline from "@/components/ServiceStatusDialog";
 
 const PAGE_SIZE = 10;

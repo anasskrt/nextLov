@@ -18,7 +18,7 @@ const Hero = () => {
               Confiez-nous votre véhicule, nous vous déposons en navette gratuitement et en toute sérénité aéroport de Bordeaux.
             </p>
             <div className="mt-2 text-sm text-yellow-200 bg-yellow-900/60 rounded px-3 py-2 max-w-md">
-              <strong>Notice :</strong> L'heure d'aller doit être prévue au moins <b>45 minutes avant la fin de l'enregistrement à l'aéroport</b> pour garantir la prise en charge de votre véhicule dans les meilleures conditions.
+              <strong>Notice :</strong> L&apos;heure d&apos;aller doit être prévue au moins <b>45 minutes avant la fin de l&apos;enregistrement à l&apos;aéroport</b> pour garantir la prise en charge de votre véhicule dans les meilleures conditions.
             </div>
           </div>
 

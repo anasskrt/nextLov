@@ -19,6 +19,7 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json(data, { status: backendRes.status });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return NextResponse.json({ message: "Proxy API: fetch failed" }, { status: 502 });
   }

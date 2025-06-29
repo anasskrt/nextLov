@@ -37,6 +37,7 @@ const ServiceStatusDialogInline = ({
       if (!res.ok) throw new Error("Erreur lors de la validation.");
       setServiceStatus(true);
       if (onStatusChange) onStatusChange(true);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setErrMsg("Échec de la validation.");
     } finally {
