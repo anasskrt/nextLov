@@ -8,6 +8,7 @@ import SuccessToastHandler from "@/components/SuccessToastHandler";
 import HowItWorks from "@/components/HowItWorks";
 import CustomerReviews from "@/components/CustomerReviews";
 import PricingHighlight from "@/components/PricingHighlight";
+import WhyChooseUs from "@/components/WhyChooseUs";
 
 export default function HomePage() {
   return (
@@ -19,6 +20,7 @@ export default function HomePage() {
       <main className="flex-grow">
         <Hero />
         <HowItWorks />
+        <WhyChooseUs />
         <Features />
         <PricingHighlight />
         <CustomerReviews />

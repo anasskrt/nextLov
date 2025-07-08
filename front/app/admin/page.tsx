@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, FileText, BarChart3 } from "lucide-react";
+import { Users, FileText, BarChart3, Settings } from "lucide-react";
 
 const AdminPage = () => {
   const pathname = usePathname();
@@ -46,6 +46,13 @@ const AdminPage = () => {
       icon: BarChart3,
       path: "/admin/tarif",
       count: "---"
+    },
+    {
+      title: "Gestion des transports",
+      description: "Gérer les options de transport",
+      icon: Settings,
+      path: "/admin/transports",
+      count: "4"
     }
   ];
 

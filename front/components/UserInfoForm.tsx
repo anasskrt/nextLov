@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 
 interface UserInfo {
   name: string;
@@ -14,6 +15,7 @@ interface UserInfo {
   carModel: string;
   carYear: string;
   carLicensePlate: string;
+  selectedTransport?: string;
 }
 
 interface UserInfoFormProps {
@@ -32,6 +34,9 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
     carLicensePlate: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [transports, setTransports] = useState<any[]>([]);
+  const [selectedTransport, setSelectedTransport] = useState<any>(null);
+  const [transportError, setTransportError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -57,15 +62,31 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
     if (!formData.carModel.trim()) newErrors.carModel = "Le modèle de voiture est requis";
     if (!formData.carYear.trim()) newErrors.carYear = "L'année du véhicule est requise";
     setErrors(newErrors);
+    if (!selectedTransport) errors.transport = "Le mode de transport est requis";
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      onNext(formData);
+      onNext({ ...formData, selectedTransport: selectedTransport || "" });    
     }
   };
+
+    useEffect(() => {
+    const fetchTransports = async () => {
+      try {
+        const res = await fetch("/api/transports");
+        if (!res.ok) throw new Error("Erreur de récupération des transports");
+        const data = await res.json();
+        setTransports(data.filter((t: any) => t.actif === true));       
+      } catch {
+        setTransportError("Erreur lors du chargement des modes de transport");
+      }
+    };
+    fetchTransports();
+  }, []);
+
 
   return (
     <div className="bg-white/95 backdrop-blur-sm p-6 rounded-lg shadow-xl">
@@ -191,6 +212,34 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
               className="bg-white"
               placeholder="Ex: AB-123-CD"
             />
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold text-navy mb-4">Mode de transport</h3>
+            {transportError && <div className="text-red-500 mb-2">{transportError}</div>}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {transports.map((transport) => (
+                <Card
+                  key={transport.id}
+                  className={cn(
+                    "cursor-pointer border-2 transition-all",
+                    selectedTransport && selectedTransport.id === transport.id
+                      ? "border-gold ring-2 ring-gold"
+                      : "border-gray-200 hover:border-gold"
+                  )}
+                  onClick={() => setSelectedTransport(transport)}
+                >
+                  <div className="p-4 flex flex-col h-full justify-between">
+                    <div>
+                      <CardTitle className="text-navy text-lg mb-2">{transport.type}</CardTitle>
+                      <CardDescription className="mb-2">{transport.consignes}</CardDescription>
+                    </div>
+                    <div className="text-xl font-bold text-gold mt-2">{transport.prix}€</div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+            {errors.transport && <p className="text-red-500 text-sm mt-1">{errors.transport}</p>}
           </div>
         </div>
       

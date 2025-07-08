@@ -30,13 +30,19 @@ const PaymentForm = ({
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  let transportPrice = 0;
+  if (userInfo && userInfo.selectedTransport && userInfo.selectedTransport.prix) {
+    transportPrice = Number(userInfo.selectedTransport.prix);
+  }
+  const finalAmount = totalAmount + transportPrice;
+
   const handlePayment = async () => {
     setIsProcessing(true);
 
     const payload = {
       userInfo,
       services,
-      totalAmount,
+      totalAmount: finalAmount,
       bookingDetails,
     };
 
@@ -65,7 +71,7 @@ const PaymentForm = ({
   const formattedAmount = new Intl.NumberFormat("fr-FR", {
     style: "currency",
     currency: "EUR",
-  }).format(totalAmount);
+  }).format(finalAmount);
 
   if (clientSecret) {
     return <StripeEmbeddedCheckout clientSecret={clientSecret} />;

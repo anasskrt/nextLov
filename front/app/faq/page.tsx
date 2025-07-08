@@ -12,17 +12,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Link } from "lucide-react";
+import Link from "next/link";
 
 // ----- SEO -----
 export const metadata = {
-  title: "FAQ - Service Voiturier | MSParking",
+  title: "FAQ - Gardiennage Automobile & Voiturier | MSParking Bordeaux",
   keywords:
-    "FAQ, questions fréquentes, service voiturier, sécurité, réservation, prix, conditions",
+    "FAQ, questions fréquentes, gardiennage automobile, parking sécurisé, voiturier Bordeaux, réservation parking, navette aéroport, sécurité véhicule",
   description:
-    "Questions fréquentes sur notre service de voiturier : sécurité, réservation, prix, conditions. Trouvez toutes les réponses pour une expérience sereine.",
+    "Réponses aux questions fréquentes sur notre service de gardiennage automobile, parking sécurisé et voiturier à Bordeaux-Mérignac avec MSParking. Trouvez toutes les réponses pour voyager sereinement.",
   alternates: {
-    canonical: "https://tonsite.fr/faq",
+    canonical: "https://msparking.fr/faq",
   },
 };
 
@@ -54,72 +54,72 @@ const FAQ = () => {
     {
       question: "Comment fonctionne le service de voiturier ?",
       answer:
-        "Notre service est simple : vous réservez en ligne, vous déposez votre véhicule à l'heure indiquée, nous vous déposons à l'aéroport de Bordeaux-Mérignac, nous gardons votre véhicule dans un parking sécurisé pendant votre absence, enfin nous vous récupérons à l'aéroport et nous vous restituons votre véhicule à votre retour.",
+        "Réservez en ligne, déposez votre véhicule à l'heure indiquée, nous vous déposons à l'aéroport de Bordeaux-Mérignac, gardons votre véhicule sécurisé, puis vous récupérons à votre retour pour la restitution de votre véhicule.",
     },
     {
-      question: "Quels est la limite de bagages autorisés ?",
+      question: "Quelle est la limite de bagages autorisés ?",
       answer:
-        "Chaque passager peut apporter une valise et un sac à main. Merci de respecter cette limite pour garantir le confort et la sécurité de tous dans la navette.",
+        "Chaque passager peut apporter une valise et un sac à main pour garantir confort et sécurité dans la navette.",
     },
     {
-      question: "La navette accueille jusqu’à 5 personnes maximum",
+      question: "Combien de personnes peuvent prendre la navette ?",
       answer:
-        "Cette limite assure un trajet agréable et sécurisé pour tous les passagers.",
+        "Notre navette accueille jusqu’à 5 personnes maximum, garantissant un trajet confortable et sécurisé.",
     },
     {
       question: "Où puis-je utiliser ce service ?",
       answer:
-        "Nous sommes situé près de l'aéroport de Bordeaux, retrouvez dans contact l'adresse exacte.",
+        "Notre parking est situé à proximité immédiate de l'aéroport de Bordeaux-Mérignac. Retrouvez notre adresse exacte sur la page Contact.",
     },
     {
       question: "Quels sont les tarifs ?",
       answer:
-        "Nos tarifs varient en fonction de la durée de stationnement et des options choisies. Retrouvez tous les détails sur notre page d'accueil. Nous proposons des tarifs compétitifs et transparents, sans frais cachés.",
+        "Les tarifs varient selon la durée et les options choisies. Consultez notre page d'accueil pour des tarifs compétitifs sans frais cachés.",
     },
     {
       question: "Puis-je annuler ma réservation ?",
       answer:
-        "Oui, vous pouvez annuler votre réservation jusqu'à 24 heures avant l'heure prévue sans frais. Les annulations tardives peuvent entraîner des frais selon nos conditions générales.",
+        "Oui, sans frais jusqu'à 24h avant votre arrivée. Des frais peuvent s'appliquer en cas d'annulation tardive selon nos conditions générales.",
     },
     {
       question: "Comment puis-je être sûr de la sécurité de mon véhicule ?",
       answer:
-        "Nos parkings sont sécurisés 24h/24 avec surveillance vidéo, accès contrôlé et personnel de sécurité. Tous nos voituriers sont formés et assurés.",
+        "Nos parkings sont surveillés 24h/24 par vidéo HD, patrouilles régulières, accès contrôlés et personnel formé et assuré.",
     },
     {
       question: "Que se passe-t-il en cas de retard ?",
       answer:
-        "En cas de retard de votre part à l’arrivée au parking, notre équipe fera son possible pour vous accompagner dans les meilleurs délais. Cependant, nous ne pourrons être tenus responsables si ce retard entraîne la perte de votre vol, ni assurer un remboursement.",
+        "En cas de retard, informez-nous au plus vite. Nous ferons notre possible pour vous accommoder mais ne serons pas responsables d’éventuels manquements liés à votre retard.",
     },
     {
       question: "Quels types de véhicules acceptez-vous ?",
       answer:
-        "Nous acceptons la plupart des véhicules particuliers : berlines, SUV, break, coupés, cabriolets. Pour tout véhicule spécifique, veuillez nous contacter.",
+        "Berlines, SUV, breaks, coupés, cabriolets sont acceptés. Contactez-nous directement pour les véhicules spéciaux ou utilitaires.",
     },
     {
       question: "Comment se passe le paiement ?",
       answer:
-        "Le paiement s'effectue en ligne lors de la réservation par carte bancaire. Le paiement est sécurisé et crypté.",
+        "Le paiement s'effectue en ligne, sécurisé et crypté, par carte bancaire lors de la réservation.",
     },
     {
       question: "Que faire si j'ai oublié quelque chose dans ma voiture ?",
       answer:
-        "Si vous avez oublié un objet dans votre voiture, soyez assuré que personne n’y touchera. Votre véhicule reste fermé et sécurisé pendant toute la durée de votre stationnement.",
+        "Votre véhicule reste fermé et sécurisé durant tout votre séjour. Aucun objet ne sera déplacé ou retiré.",
     },
     {
       question: "Le service est-il disponible 24h/24 ?",
       answer:
-        "Nos services de prise en charge et de restitution sont disponibles 24h/24 tous les jours. Pour des créneaux de 22h à 6h nous ajoutons un frais.",
+        "Oui, nos services sont disponibles en continu. Des frais supplémentaires peuvent s'appliquer entre 22h et 6h.",
     },
     {
       question: "Le service est-il accessible aux personnes en situation de handicap ?",
       answer:
-        "Oui, nous accueillons les personnes en situation de handicap. Une marche est mise à disposition afin de faciliter l’accès au véhicule. N'hésitez pas à nous le signaler lors de votre réservation pour que nous puissions préparer votre accueil dans les meilleures conditions.",
+        "Oui, une assistance adaptée est disponible. Informez-nous lors de votre réservation pour que nous préparions votre accueil.",
     },
     {
-      question: "Puis-je utiliser le service avec un véhicule utilitaire ?",
+      question: "Puis-je réserver avec un véhicule utilitaire ?",
       answer:
-        "Les véhicules utilitaires ne sont pas acceptés automatiquement. Si vous souhaitez réserver avec ce type de véhicule, merci de nous contacter au préalable via le formulaire de la page Contact ou par téléphone afin de vérifier la faisabilité.",
+        "Veuillez nous contacter directement pour vérifier la faisabilité de votre réservation avec un véhicule utilitaire.",
     },
   ];
 
@@ -136,21 +136,18 @@ const FAQ = () => {
                 Questions Fréquemment Posées
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Trouvez rapidement les réponses à vos questions sur notre service
-                de voiturier. Si vous ne trouvez pas ce que vous cherchez,
-                n&apos;hésitez pas à nous contacter.
+                Toutes les réponses pour profiter sereinement de notre service de gardiennage automobile et voiturier à Bordeaux-Mérignac.
               </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Colonne FAQ */}
               <div className="lg:col-span-2">
                 <Card>
                   <CardHeader>
                     <CardTitle className="text-2xl text-navy">FAQ</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <Accordion type="single" collapsible className="w-full">
+                    <Accordion type="single" collapsible>
                       {faqs.map((faq, index) => (
                         <AccordionItem key={index} value={`item-${index}`}>
                           <AccordionTrigger className="text-left">
@@ -166,7 +163,6 @@ const FAQ = () => {
                 </Card>
               </div>
 
-              {/* Colonne Infos */}
               <div className="space-y-6">
                 <Card>
                   <CardHeader>

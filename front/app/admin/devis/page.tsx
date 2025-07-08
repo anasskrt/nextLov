@@ -39,7 +39,9 @@ type Quote = {
   } | null;
   services?: { name: string }[];
   serviceStatus?: boolean; // ton boolean global
-
+  transport : {
+    type : string;
+  }
 };
 
 const STATUS_LABELS = {
@@ -177,6 +179,7 @@ const AdminQuotes = () => {
                   <TableHead>Statut</TableHead>
                   <TableHead>Infos vol</TableHead>
                   <TableHead>Actions</TableHead>
+                  <TableHead>Transport</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -230,6 +233,15 @@ const AdminQuotes = () => {
                       ) : (
                         <span className="text-gray-400 italic">Aucun service</span>
                       )}
+                    </TableCell>
+                    <TableCell>
+                      <div>
+                        {quote.transport && quote.transport.type ? (
+                          quote.transport.type
+                        ) : (
+                          <span className="text-gray-400 italic">Aucun transport</span>
+                        )}
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))}
