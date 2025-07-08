@@ -45,7 +45,7 @@ const HowItWorks = () => {
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"> Le parking idéal pour vos voyages</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            MSParking offre un <strong>service de gardiennage automobile et voiturier premium</strong> à l'aéroport Bordeaux-Mérignac. Profitez d'un stationnement sécurisé, d'une navette et d'une surveillance constante pour voyager sereinement.
+            MSParking offre un <strong>service de gardiennage automobile et voiturier premium</strong> à l&apos;aéroport Bordeaux-Mérignac. Profitez d&apos;un stationnement sécurisé, d&apos;une navette et d&apos;une surveillance constante pour voyager sereinement.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <div className="flex items-center gap-2 text-sm text-gray-600">

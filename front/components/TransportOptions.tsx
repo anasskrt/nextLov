@@ -10,7 +10,7 @@ const TransportOptions = () => {
             Deux Solutions de Transport Adaptées
           </h3>
           <p className="text-lg text-gray-600 mb-8">
-            Optez pour la tranquillité avec nos solutions pratiques et confortables pour vos déplacements vers l'aéroport de Bordeaux-Mérignac.
+            Optez pour la tranquillité avec nos solutions pratiques et confortables pour vos déplacements vers l&apos;aéroport de Bordeaux-Mérignac.
           </p>
           
           {/* Navette */}
@@ -22,7 +22,7 @@ const TransportOptions = () => {
               <h4 className="text-2xl font-bold text-navy">Service Navette</h4>
             </div>
             <p className="text-gray-600 mb-4 leading-relaxed">
-              Déposez votre véhicule directement sur notre parking sécurisé à seulement <strong>7 min de l'aéroport</strong>. Après un état des lieux détaillé, notre navette vous conduit au terminal. À votre retour, contactez-nous après avoir récupéré vos bagages : nous vous récupérerons rapidement pour vous restituer votre voiture.
+              Déposez votre véhicule directement sur notre parking sécurisé à seulement <strong>7 min de l&apos;aéroport</strong>. Après un état des lieux détaillé, notre navette vous conduit au terminal. À votre retour, contactez-nous après avoir récupéré vos bagages : nous vous récupérerons rapidement pour vous restituer votre voiture.
             </p>
             <div className="flex items-center gap-4 text-sm text-blue-600">
               <span className="flex items-center gap-1">
@@ -49,7 +49,7 @@ const TransportOptions = () => {
               <h4 className="text-2xl font-bold text-navy">Service Voiturier Premium</h4>
             </div>
             <p className="text-gray-600 mb-4 leading-relaxed">
-              Gagnez du temps avec notre <strong>service voiturier premium</strong>. Nous prenons en charge votre véhicule directement sur le parking de l'aéroport de Bordeaux-Mérignac après un état des lieux minutieux. À votre retour, votre voiture vous attend sur place, prête à partir immédiatement.
+              Gagnez du temps avec notre <strong>service voiturier premium</strong>. Nous prenons en charge votre véhicule directement sur le parking de l&apos;aéroport de Bordeaux-Mérignac après un état des lieux minutieux. À votre retour, votre voiture vous attend sur place, prête à partir immédiatement.
             </p>
             <div className="flex items-center gap-4 text-sm text-gold">
               <span className="flex items-center gap-1">
@@ -68,7 +68,7 @@ const TransportOptions = () => {
           </div>
 
           <p className="mt-8 text-gray-500 text-sm">
-            Pour plus d'informations sur les modalités de chaque service, consultez notre <a href="/faq" className="text-primary underline">FAQ détaillée</a>.
+            Pour plus d&apos;informations sur les modalités de chaque service, consultez notre <a href="/faq" className="text-primary underline">FAQ détaillée</a>.
           </p>
         </div>
         

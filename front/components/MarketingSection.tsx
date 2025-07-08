@@ -14,15 +14,15 @@ const MarketingSection = () => {
 
           <div className="max-w-4xl mx-auto space-y-8">
             <p className="text-2xl text-gray-700 leading-relaxed">
-              Simplifiez vos déplacements à l'aéroport de Bordeaux-Mérignac avec un service de gardiennage automobile professionnel, fiable et économique. Avec MSParking, votre voiture est entre de bonnes mains.
+              Simplifiez vos déplacements à l&apos;aéroport de Bordeaux-Mérignac avec un service de gardiennage automobile professionnel, fiable et économique. Avec MSParking, votre voiture est entre de bonnes mains.
             </p>
 
             <p className="text-xl text-gray-600 leading-relaxed">
-              <strong>Voyagez en toute sérénité !</strong> Pendant votre absence, votre véhicule est surveillé 24h/24 dans notre parking sécurisé à seulement 7 min de l'aéroport. Notre équipe expérimentée assure une vigilance constante pour votre tranquillité d'esprit.
+              <strong>Voyagez en toute sérénité !</strong> Pendant votre absence, votre véhicule est surveillé 24h/24 dans notre parking sécurisé à seulement 7 min de l&apos;aéroport. Notre équipe expérimentée assure une vigilance constante pour votre tranquillité d&apos;esprit.
             </p>
 
             <p className="text-xl text-gray-600 leading-relaxed">
-              Choisissez entre notre navette rapide ou notre service voiturier premium selon vos besoins. Plus besoin de chercher une place ou de vous inquiéter pour votre voiture : avec MSParking, partez l'esprit léger et revenez sereinement.
+              Choisissez entre notre navette rapide ou notre service voiturier premium selon vos besoins. Plus besoin de chercher une place ou de vous inquiéter pour votre voiture : avec MSParking, partez l&apos;esprit léger et revenez sereinement.
             </p>
           </div>
 
@@ -32,7 +32,7 @@ const MarketingSection = () => {
                 Une expérience parking adaptée à vos besoins
               </h3>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Profitez d’un service complet : gardiennage sécurisé, navette rapide, voiturier personnalisé, disponibilité permanente et tarifs attractifs. MSParking transforme votre trajet vers l'aéroport en une expérience agréable et sans stress.
+                Profitez d’un service complet : gardiennage sécurisé, navette rapide, voiturier personnalisé, disponibilité permanente et tarifs attractifs. MSParking transforme votre trajet vers l&apos;aéroport en une expérience agréable et sans stress.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
