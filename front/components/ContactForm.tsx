@@ -18,8 +18,6 @@ import {
 import { toast } from "sonner";
 
 const contactSchema = z.object({
-  firstName: z.string().min(2, "Le prénom doit contenir au moins 2 caractères"),
-  lastName: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
   email: z.string().email("Veuillez entrer un email valide"),
   phone: z.string().min(10, "Veuillez entrer un numéro de téléphone valide"),
   subject: z.string().min(5, "Le sujet doit contenir au moins 5 caractères"),
@@ -34,8 +32,6 @@ const ContactForm = () => {
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
       email: "",
       phone: "",
       subject: "",
@@ -45,7 +41,7 @@ const ContactForm = () => {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-
+    console.log("Form data:", data);
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
