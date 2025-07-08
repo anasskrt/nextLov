@@ -22,6 +22,7 @@
     "public/"
   ],
   "exclude": [
-    "app/api/admin/devis/[devisId]/validate-services/route.ts"
+    "app/api/admin/devis/[devisId]/validate-services/route.ts",
+    "app/api/admin/transports/[id]/route.ts"
   ]
 }

@@ -39,7 +39,6 @@ const AdminTransports = () => {
 
   const fetchTransports = async () => {
     try {
-      const token = Cookies.get('token');
       const response = await fetch('/api/transports');
       if (response.ok) {
         const data = await response.json();
@@ -76,7 +75,7 @@ const AdminTransports = () => {
     setIsLoading(true);
     try {
       const token = Cookies.get('token');
-      const response = await fetch(`/api/admin/transport/${id}`, {
+      const response = await fetch(`/api/admin/transports/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -97,7 +96,7 @@ const AdminTransports = () => {
       } else {
         throw new Error('Erreur lors de la mise à jour');
       }
-    } catch (error) {
+    } catch {
       toast({
         variant: "destructive",
         title: "Erreur",
@@ -146,7 +145,7 @@ const AdminTransports = () => {
       } else {
         throw new Error('Erreur lors de la création');
       }
-    } catch (error) {
+    } catch {
       toast({
         variant: "destructive",
         title: "Erreur",
