@@ -70,20 +70,20 @@ const WhyChooseUs = () => {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div>
-              <div className="text-3xl font-bold text-gold mb-2">10+</div>
-              <div className="text-sm">Années d'expérience</div>
+              <div className="text-3xl font-bold text-gold mb-2">24h/24</div>
+              <div className="text-sm">Surveillance continue</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-gold mb-2">15000+</div>
-              <div className="text-sm">Clients satisfaits</div>
+              <div className="text-3xl font-bold text-gold mb-2">7 min</div>
+              <div className="text-sm">Depuis l'aéroport</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-gold mb-2">99.8%</div>
-              <div className="text-sm">Taux de satisfaction</div>
+              <div className="text-3xl font-bold text-gold mb-2">100%</div>
+              <div className="text-sm">Service qualité</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-gold mb-2">0</div>
-              <div className="text-sm">Incident sécurité</div>
+              <div className="text-3xl font-bold text-gold mb-2">Nouveau</div>
+              <div className="text-sm">Parking équipé</div>
             </div>
           </div>
           <div className="mt-8">

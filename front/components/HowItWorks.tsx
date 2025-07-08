@@ -7,31 +7,31 @@ const HowItWorks = () => {
   const steps = [
     {
       icon: Car,
-      title: "Déposez votre véhicule",
-      subtitle: "Service voiturier Premium",
-      description: "Déposez votre véhicule facilement au dépose-minute avec notre voiturier à l'aéroport Bordeaux-Mérignac, ou rendez-vous directement dans notre parking sécurisé MSParking situé à Bordeaux-Pessac. Notre équipe de professionnels vous accueille chaleureusement 24h/24.",
-      features: ["Parking privé sécurisé", "Accueil personnalisé 24h/24", "Assurance incluse"]
+      title: "Arrivée au parking ou au dépose-minute",
+      subtitle: "Accueil professionnel & prise en charge sécurisée",
+      description: "À votre arrivée, notre équipe vous accueille 24h/24. Que vous choisissiez la navette ou le voiturier, un état du véhicule est réalisé systématiquement. Nous vous accompagnons ensuite dans les meilleures conditions.",
+      features: ["Parking privé sécurisé", "Accueil 24h/24", "Contrôle du véhicule à l’arrivée"]
     },
     {
       icon: Users,
-      title: "Transport rapide vers l'aéroport",
-      subtitle: "Navette incluse",
-      description: "Profitez de notre navette et rapide, qui vous conduit en moins de 7 minutes vers l'aéroport Bordeaux-Mérignac. Transport confortable et climatisé pour garantir votre ponctualité.",
-      features: ["Navette rapide (7 min)", "Véhicule climatisé", "Ponctualité garantie"]
+      title: "Départ vers l’aéroport Bordeaux-Mérignac",
+      subtitle: "Transfert confortable et rapide",
+      description: "En moins de 7 minutes, vous êtes à l’aéroport. Nos voituriers ou notre navette climatisée vous déposent rapidement, avec ponctualité et courtoisie.",
+      features: ["Transfert express (7 min)", "Véhicule climatisé", "Ponctualité garantie"]
     },
     {
       icon: Plane,
-      title: "Voyagez en toute tranquillité",
-      subtitle: "Parking surveillé 24h/24",
-      description: "Votre véhicule est surveillé en permanence avec caméras HD, éclairage nocturne puissant et patrouilles régulières. Nous assurons un gardiennage optimal et sécurisé tout au long de votre voyage.",
+      title: "Pendant votre voyage",
+      subtitle: "Votre véhicule entre de bonnes mains",
+      description: "Pendant toute la durée de votre absence, votre voiture est gardée dans un environnement sécurisé, sous surveillance vidéo continue.",
       features: ["Surveillance caméra 24h/24", "Éclairage nocturne renforcé", "Patrouilles fréquentes"]
     },
     {
       icon: ArrowRight,
-      title: "Récupération facile du véhicule",
-      subtitle: "Retour rapide et pratique",
-      description: "Avec le service voiturier, votre voiture vous attend directement à l'aéroport Bordeaux-Mérignac. Avec la navette, retrouvez facilement notre équipe grâce à une carte interactive fournie lors du dépôt. Votre véhicule vous sera restitué en parfait état.",
-      features: ["Récupération rapide", "Communication facilitée", "Véhicule prêt et sécurisé"]
+      title: "Retour simplifié et rapide",
+      subtitle: "Récupérez votre véhicule sans stress",
+      description: "À votre retour, vous nous contactez dès récupération de vos bagages. Votre voiture vous est restituée rapidement, soit à l’aéroport, soit au parking selon votre mode de transport.",
+      features: ["Localisation claire via carte interactive", "Communication facilitée", "Véhicule prêt et sécurisé"]
     }
   ];
 
@@ -40,12 +40,9 @@ const HowItWorks = () => {
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-16">
-          <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
-            Gardiennage Voiturier Bordeaux-Mérignac
-          </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6 leading-tight">
-            Comment fonctionne notre service de 
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"> gardiennage automobile à Bordeaux-Mérignac</span> ?
+            MSParking Bordeaux-Mérignac :
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"> Le parking idéal pour vos voyages</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             MSParking offre un <strong>service de gardiennage automobile et voiturier premium</strong> à l'aéroport Bordeaux-Mérignac. Profitez d'un stationnement sécurisé, d'une navette et d'une surveillance constante pour voyager sereinement.
