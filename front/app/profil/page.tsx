@@ -15,7 +15,7 @@ type Devis = {
   dateDebut: string;
   dateFin: string;
   montantFinal: number;
-  estConverti: boolean;
+  statut: string;
   voiture: {
     plaque: string;
     marque: string;
@@ -47,6 +47,7 @@ const ProfilePage = () => {
       })
       .then((data) => {
         const { utilisateur, devis } = data;
+        console.log("User data:", data); // Debugging line
         setUserName(`${utilisateur.prenom} ${utilisateur.nom}`);
         setUserEmail(utilisateur.email);
         setDevisList(devis || []);
@@ -63,6 +64,13 @@ const ProfilePage = () => {
 
     toast.success("Vous êtes déconnecté");
     router.push("/");
+  };
+
+  const statusMap: Record<string, string> = {
+    RESTITUE: "restitué",
+    EN_ATTENTE: "en attente",
+    ANNULE: "annulé",
+    EN_COURS: "en cours",
   };
 
   return (
@@ -158,7 +166,7 @@ const ProfilePage = () => {
 
                             <td className="px-4 py-2">{devis.montantFinal} €</td>
                             <td className="px-4 py-2">
-                              {devis.estConverti ? "Converti en réservation" : "En attente"}
+                              {statusMap[devis.statut as string] || devis.statut?.toString().toLowerCase() || "-"}
                             </td>
                           </tr>
                         ))}

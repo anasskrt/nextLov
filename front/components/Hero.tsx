@@ -9,25 +9,39 @@ const Hero = () => {
       />
 
       <div className="relative max-w-screen-xl mx-auto px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">
-              Gardiennage de Voitures aéroport de Bordeaux.
-            </h1>
-            <p className="text-lg sm:text-xl mb-8">
-              Confiez-nous votre véhicule : nous vous déposons en navette et en toute sérénité à l&apos;aéroport de Bordeaux. Votre voiture vous attendra dans notre parking sécurisé situé à seulement 7 minutes de l&apos;aéroport.
-            </p>
-            <div className="mt-2 text-sm text-yellow-200 bg-yellow-900/60 rounded px-3 py-2 max-w-md">
-              <strong>Notice :</strong> L&apos;heure d&apos;aller doit être prévue au moins <b>45 minutes avant la fin de l&apos;enregistrement à l&apos;aéroport</b> pour garantir la prise en charge de votre véhicule dans les meilleures conditions.
-            </div>
-            <div className="mt-2 text-sm text-yellow-200 bg-yellow-900/60 rounded px-3 py-2 max-w-md">
-              <strong>Information :</strong> Pour toutes les heures d&apos;arrivée et de retour prévues entre 22h et 6h, des frais supplémentaires sont ajoutés.
-            </div>
-          </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="max-w-2xl">
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">
+            Gardiennage automobile à l’aéroport de Bordeaux-Mérignac
+          </h1>
 
-          <BookingForm />
+          <p className="text-lg sm:text-xl mb-8">
+            Choisissez le confort avec MSParking. Que vous optiez pour notre{" "}
+            <strong>service voiturier premium</strong> ou notre{" "}
+            <strong>navette rapide depuis notre parking sécurisé</strong> à Pessac,
+            nous prenons soin de votre véhicule pendant votre voyage.
+          </p>
+
+          <p className="text-lg sm:text-xl text-gray-700 mb-6">
+            Notre parking privé est situé à seulement 7 minutes de l&apos;aéroport. Une
+            solution simple, rapide et flexible pour partir l’esprit tranquille.
+          </p>
+
+          <div className="mt-2 text-sm text-yellow-200 bg-yellow-900/60 rounded px-3 py-2 max-w-md">
+            <strong>Notice :</strong> Pour la navette, prévoyez votre arrivée au
+            parking au moins <b>45 minutes avant la fin de l’enregistrement</b> à
+            l’aéroport.
+          </div>
+          <div className="mt-2 text-sm text-yellow-200 bg-yellow-900/60 rounded px-3 py-2 max-w-md">
+            <strong>Info :</strong> Des frais de nuit sont appliqués pour les
+            arrivées ou retours entre <b>22h et 6h</b>.
+          </div>
         </div>
+
+        <BookingForm />
       </div>
+</div>
+
     </div>
   );
 };

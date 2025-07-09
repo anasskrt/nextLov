@@ -18,6 +18,7 @@ type Booking = {
   status: "entry" | "return";
   date: string | Date;
   time: string;
+  transportType: string;
 };
 
 const AdminCalendar = () => {
@@ -36,6 +37,7 @@ const AdminCalendar = () => {
       });
       if (!res.ok) throw new Error("Erreur lors du chargement des réservations");
       const data = await res.json();
+      console.log("Bookings data:", data); // Debugging line
       setBookings(
         data.map((b: Booking) => ({
           ...b,
@@ -186,6 +188,7 @@ const AdminCalendar = () => {
                     <div className="text-sm text-gray-600">
                       <div>{booking.clientName}</div>
                       <div>{booking.time}</div>
+                      <div>{booking.transportType}</div>
                     </div>
                     {/* Action bouton */}
                     {(booking.status === "entry" || booking.status === "return") && (
