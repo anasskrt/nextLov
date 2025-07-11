@@ -30,12 +30,20 @@ const PaymentForm = ({
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  // Calculate the total price of selected services (support both {id, price} and full service objects)
+  const servicesTotal = services.reduce((sum, service) => {
+    if (typeof service.price === "number") {
+      return sum + service.price;
+    }
+    return sum;
+  }, 0);
+
   let transportPrice = 0;
   if (userInfo && userInfo.selectedTransport && userInfo.selectedTransport.prix) {
     transportPrice = Number(userInfo.selectedTransport.prix);
   }
-  const finalAmount = totalAmount + transportPrice;
-
+  const finalAmount = servicesTotal + transportPrice + totalAmount;
+  console.log(finalAmount, servicesTotal, transportPrice, totalAmount);
   const handlePayment = async () => {
     setIsProcessing(true);
 
@@ -95,15 +103,32 @@ const PaymentForm = ({
               <h4 className="font-semibold text-navy mb-2">
                 Services supplémentaires sélectionnés:
               </h4>
+              {services.length === 0 && <div>Aucun service sélectionné</div>}
               {services.map((service, index) => (
                 <div
                   key={index}
                   className="flex justify-between items-center py-1"
                 >
-                  <span>{service.name}</span>
-                  <span className="font-semibold">{service.price}€</span>
+                  <span>{service.name || service.id}</span>
+                  <span className="font-semibold">
+                    {typeof service.price === "number"
+                      ? `${service.price}€`
+                      : service.price}
+                  </span>
                 </div>
               ))}
+            </div>
+
+            <div className="border-t pt-2">
+              <div>
+                <h4 className="font-semibold text-navy mb-2">
+                  Transport sélectionnés:
+                </h4>
+                <div className="flex justify-between items-center py-1">
+                  <span>{userInfo.selectedTransport.type}</span>
+                  <span className="font-semibold">{userInfo.selectedTransport.prix}€</span>
+                </div>
+              </div>
             </div>
 
             <div className="border-t pt-2">
@@ -178,6 +203,10 @@ const PaymentForm = ({
                     : "-"}
                 </p>
               </div>
+                  <div className="flex justify-between items-center py-1">
+                    <span>prix du parking pour la durée </span>
+                    <span className="font-semibold">{totalAmount}€</span>
+                </div>
             </div>
 
             <div className="border-t pt-4">

@@ -57,11 +57,7 @@ const BookingProcessPage = () => {
   const calculateTotalAmount = () => {
     const montantFinal = bookingDetails?.estimation?.montantFinal ?? 0;
 
-    const totalServices = selectedServices.reduce((sum, service) => {
-      return sum + (typeof service.price === "number" ? service.price : 0);
-    }, 0);
-
-    return montantFinal + totalServices;
+    return montantFinal;
   };
 
   const stepTitles = {

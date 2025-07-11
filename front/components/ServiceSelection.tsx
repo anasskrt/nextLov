@@ -19,7 +19,7 @@ interface ServiceSelectionProps {
 }
 
 const ServiceSelection = ({ onNext, onBack }: ServiceSelectionProps) => {
-  const [selectedServices, setSelectedServices] = useState<(string | number)[]>([]);
+  const [selectedServices, setSelectedServices] = useState<{ id: string | number; price: number | string }[]>([]);
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -41,36 +41,35 @@ const ServiceSelection = ({ onNext, onBack }: ServiceSelectionProps) => {
     fetchServices();
   }, []);
 
-  const handleServiceToggle = (serviceId: string | number) => {
-    setSelectedServices(prev =>
-      prev.includes(serviceId)
-        ? prev.filter(id => id !== serviceId)
-        : [...prev, serviceId]
-    );
+  const handleServiceToggle = (serviceId: string | number, servicePrice: number | string) => {
+    setSelectedServices(prev => {
+      const exists = prev.find(s => s.id === serviceId);
+      if (exists) {
+        return prev.filter(s => s.id !== serviceId);
+      } else {
+        return [...prev, { id: serviceId, price: servicePrice }];
+      }
+    });
   };
 
   const handleNext = () => {
-    const selected = services.filter(service => selectedServices.includes(service.id));
+    const selected = services.filter(service => selectedServices.some(sel => sel.id === service.id));
     onNext(selected);
   };
 
   const isServiceSelected = (serviceId: string | number) =>
-    selectedServices.includes(serviceId);
+    selectedServices.some(s => s.id === serviceId);
 
   const calculateTotal = () => {
-    return services
-      .filter(service => selectedServices.includes(service.id))
-      .reduce((sum, service) => {
-        if (typeof service.price === "number") {
-          return sum + service.price;
-        }
-        return sum;
-      }, 0);
+    return selectedServices.reduce((sum, s) => {
+      if (typeof s.price === "number") {
+        return sum + s.price;
+      }
+      return sum;
+    }, 0);
   };
 
-  const hasQuoteService = services
-    .filter(service => selectedServices.includes(service.id))
-    .some(service => typeof service.price === "string");
+  const hasQuoteService = selectedServices.some(s => typeof s.price === "string");
 
   // Render loading/error
   if (loading) return <div>Chargement des services...</div>;
@@ -79,7 +78,7 @@ const ServiceSelection = ({ onNext, onBack }: ServiceSelectionProps) => {
   return (
     <div className="bg-white/95 backdrop-blur-sm p-6 rounded-lg shadow-xl">
       <h2 className="text-2xl font-bold mb-6 text-navy">Services optionnels</h2>
-      
+      <p className="mb-6 italic text-gray-500">Veuillez sélectionner les services optionnels que vous souhaitez ajouter à votre réservation.</p>
       <div className="flex flex-col space-y-4 mb-6">
         {services.map((service) => (
           <Card 
@@ -89,7 +88,7 @@ const ServiceSelection = ({ onNext, onBack }: ServiceSelectionProps) => {
                 ? 'ring-2 ring-gold border-gold'
                 : 'border-gray-200 hover:border-gold'
             }`}
-            onClick={() => handleServiceToggle(service.id)}
+            onClick={() => handleServiceToggle(service.id, service.price)}
           >
             <div className="flex items-start p-4">
               <div className="flex-grow">
