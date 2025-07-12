@@ -18,13 +18,8 @@ const Hero = () => {
           <p className="text-lg sm:text-xl mb-8">
             Choisissez le confort avec MSParking. Que vous optiez pour notre{" "}
             <strong>service voiturier premium</strong> ou notre{" "}
-            <strong>navette rapide depuis notre parking sécurisé</strong> à Pessac,
+            <strong>navette rapide depuis notre parking sécurisé</strong> à 7 minutes de l’aéroport,{" "}
             nous prenons soin de votre véhicule pendant votre voyage.
-          </p>
-
-          <p className="text-lg sm:text-xl text-gray-700 mb-6">
-            Notre parking privé est situé à seulement 7 minutes de l&apos;aéroport. Une
-            solution simple, rapide et flexible pour partir l’esprit tranquille.
           </p>
 
           <div className="mt-2 text-sm text-yellow-200 bg-yellow-900/60 rounded px-3 py-2 max-w-md">

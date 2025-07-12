@@ -4,11 +4,12 @@ import "./globals.css";
 
 export const metadata = {
   title: "MsParking - Parking aéroport de Bordeaux sécurisé",
-  description: "MsParking, parking près de l'aéroport de Bordeaux, sécurisé. Service de voiturier et navette.",
+  description: "MsParking, gardiennage près de l'aéroport de Bordeaux, sécurisé. Service de voiturier et navette.",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
+  keywords: "parking aéroport Bordeaux, parking sécurisé, voiturier Bordeaux, navette aéroport, parking pas cher, réservation parking, parking longue durée, parking courte durée, gardiennage aéroport Bordeaux, gardiennage automobile aéroport Bordeaux",
   alternates: {
     canonical: "https://msparking.fr/",
   },
