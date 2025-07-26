@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "MsParking - Parking aéroport de Bordeaux sécurisé",
-  description: "MsParking, gardiennage près de l'aéroport de Bordeaux, sécurisé. Service de voiturier et navette.",
+  description: "MsParking, parking près de l'aéroport de Bordeaux, sécurisé. Service de voiturier et navette.",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",

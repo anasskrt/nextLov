@@ -12,7 +12,7 @@ const Hero = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <div className="max-w-2xl">
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">
-            Gardiennage automobile à l’aéroport de Bordeaux-Mérignac
+            Parking proche de l'aéroport de Bordeaux
           </h1>
 
           <p className="text-lg sm:text-xl mb-8">
