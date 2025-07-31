@@ -54,6 +54,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }
           `
         }} />
+
+        <script src="https://analytics.ahrefs.com/analytics.js" data-key="qnSclJTHLbwDD3Lezqr/Wg" async></script>
       </head>
       <body>
         <ClientProviders>{children}</ClientProviders>
