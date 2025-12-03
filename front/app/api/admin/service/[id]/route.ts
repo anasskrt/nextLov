@@ -1,11 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminToken } from "@/lib/auth";
 
 export async function DELETE(req: NextRequest) {
-  console.log('test')
+  // ✅ Vérification admin (double protection avec middleware)
+  const authHeader = req.headers.get("authorization");
+  const user = verifyAdminToken(authHeader || '');
+  
+  if (!user) {
+    return NextResponse.json(
+      { error: 'Unauthorized - Admin access required' },
+      { status: 403 }
+    );
+  }
 
   const url = new URL(req.url);
   const id = url.pathname.split("/").pop();
-  const authHeader = req.headers.get("authorization");
 
   if (!id) {
     return NextResponse.json({ error: "ID manquant dans l'URL" }, { status: 400 });
@@ -28,10 +37,20 @@ export async function DELETE(req: NextRequest) {
 }
 
 export async function PATCH(req: NextRequest) {
+  // ✅ Vérification admin (double protection avec middleware)
+  const authHeader = req.headers.get("authorization");
+  const user = verifyAdminToken(authHeader || '');
+  
+  if (!user) {
+    return NextResponse.json(
+      { error: 'Unauthorized - Admin access required' },
+      { status: 403 }
+    );
+  }
+
   const url = new URL(req.url);
   const id = url.pathname.split("/").pop();
   const body = await req.json();
-  const authHeader = req.headers.get("authorization");
   const backendRes = await fetch(`${process.env.BACKEND_URL}/service/${id}`, {
     method: "PATCH",
     headers: {

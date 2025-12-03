@@ -9,8 +9,13 @@ import HowItWorks from "@/components/HowItWorks";
 import CustomerReviews from "@/components/CustomerReviews";
 import PricingHighlight from "@/components/PricingHighlight";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import GarageService from "@/components/GarageService";
+import LatestBlogPosts from "@/components/LatestBlogPosts";
+import { getAllPosts } from "@/lib/blog";
 
 export default function HomePage() {
+  const posts = getAllPosts();
+
   return (
     <div className="min-h-screen flex flex-col">
       <Suspense>
@@ -22,7 +27,9 @@ export default function HomePage() {
         <HowItWorks />
         <WhyChooseUs />
         <Features />
+        <GarageService />
         <PricingHighlight />
+        <LatestBlogPosts posts={posts} />
         <CustomerReviews />
       </main>
       <Footer />

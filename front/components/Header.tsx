@@ -38,6 +38,9 @@ const Header = () => {
             <Link href="/contact" className="font-medium text-navy hover:text-navy-light transition-colors">
               Contact
             </Link>
+            <Link href="/blog" className="font-medium text-navy hover:text-navy-light transition-colors">
+              Blog
+            </Link>
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">

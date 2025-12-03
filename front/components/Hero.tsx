@@ -1,5 +1,15 @@
 import BookingForm from "@/components/BookingForm";
 
+// Dans /app/page.tsx
+export const metadata = {
+  title: "MsParking - Parking Aéroport Bordeaux Mérignac | Voiturier & Navette Sécurisés",
+  description: "Parking sécurisé à 7 min de l'aéroport de Bordeaux-Mérignac. Service voiturier premium ou navette gratuite 24h/24. Réservation en ligne dès 10€/jour.",
+  keywords: "parking aéroport Bordeaux, parking Bordeaux Mérignac, voiturier aéroport Bordeaux, navette aéroport, parking sécurisé Bordeaux, parking pas cher Bordeaux, gardiennage automobile Bordeaux",
+  alternates: {
+    canonical: "https://msparking.fr/",
+  },
+};
+
 const Hero = () => {
   return (
     <div className="relative bg-gray-900 text-white">

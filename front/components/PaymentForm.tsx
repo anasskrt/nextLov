@@ -44,15 +44,62 @@ const PaymentForm = ({
   }
   const finalAmount = servicesTotal + transportPrice + totalAmount;
   console.log(finalAmount, servicesTotal, transportPrice, totalAmount);
+  
   const handlePayment = async () => {
     setIsProcessing(true);
+
+    // Construire les line_items pour Stripe
+    const lineItems = [];
+    
+    // 1. Ligne principale : Parking
+    lineItems.push({
+      name: "Gardiennage automobile - Parking sécurisé",
+      description: `Du ${bookingDetails.fullDepartureDate ? new Date(bookingDetails.fullDepartureDate).toLocaleDateString("fr-FR") : "-"} au ${bookingDetails.fullReturnDate ? new Date(bookingDetails.fullReturnDate).toLocaleDateString("fr-FR") : "-"}`,
+      amount: totalAmount,
+      quantity: 1,
+    });
+
+    // 2. Ligne transport
+    if (userInfo?.selectedTransport) {
+      lineItems.push({
+        name: `Transport : ${userInfo.selectedTransport.type}`,
+        description: userInfo.selectedTransport.consignes || "Service de transport",
+        amount: transportPrice,
+        quantity: 1,
+      });
+    }
+
+    // 3. Lignes services supplémentaires
+    services.forEach((service) => {
+      if (typeof service.price === "number") {
+        lineItems.push({
+          name: service.name || "Service supplémentaire",
+          description: service.description || "",
+          amount: service.price,
+          quantity: 1,
+        });
+      }
+    });
 
     const payload = {
       userInfo,
       services,
       totalAmount: finalAmount,
       bookingDetails,
+      lineItems,
+      metadata: {
+        customerName: userInfo.name,
+        customerPhone: userInfo.phone,
+        carModel: userInfo.carModel,
+        carPlate: userInfo.carPlate || "",
+        departureTime: bookingDetails.fullDepartureDate ? new Date(bookingDetails.fullDepartureDate).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }) : "",
+        returnTime: bookingDetails.fullReturnDate ? new Date(bookingDetails.fullReturnDate).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }) : "",
+        transportType: userInfo.selectedTransport?.type || "Non spécifié",
+        servicesCount: services.length,
+      },
     };
+
+    console.log("Payment payload:", payload);
 
     try {
       const res = await fetch("/api/stripe/init", {
@@ -64,14 +111,29 @@ const PaymentForm = ({
       });
 
       if (!res.ok) {
-        throw new Error("Erreur lors de la création de la réservation");
+        const errorData = await res.json().catch(() => ({ 
+          message: "Erreur lors de la création de la réservation" 
+        }));
+        console.error("Erreur API Stripe:", errorData);
+        alert(`Erreur: ${errorData.message || "Impossible de créer la session de paiement"}`);
+        setIsProcessing(false);
+        return;
       }
 
-      // Optionnel : tu peux lire la réponse ici :
-      // const data = await res.json();
       const data = await res.json();
+      console.log("Stripe response:", data);
+      
+      if (!data.client_secret) {
+        console.error("Client secret manquant dans la réponse:", data);
+        alert("Erreur: Session de paiement invalide. Veuillez réessayer.");
+        setIsProcessing(false);
+        return;
+      }
+      
       setClientSecret(data.client_secret);
-    } catch {
+    } catch (error) {
+      console.error("Erreur lors de l'initialisation du paiement:", error);
+      alert("Une erreur est survenue lors de l'initialisation du paiement. Veuillez vérifier votre connexion et réessayer.");
       setIsProcessing(false);
     }
   };
@@ -202,7 +264,6 @@ const PaymentForm = ({
                       )
                     : "-"}
                 </p>
-              </div>
                   <div className="flex justify-between items-center py-1">
                     <span>prix du parking pour la durée </span>
                     <span className="font-semibold">{totalAmount}€</span>
@@ -215,6 +276,7 @@ const PaymentForm = ({
                 <span className="text-gold">{formattedAmount}</span>
               </div>
             </div>
+          </div>
           </CardContent>
         </Card>
 
