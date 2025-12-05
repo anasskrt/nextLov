@@ -46,6 +46,7 @@ function PaymentReturn() {
         setStatus("error");
         setErrorMessage(data.message || "Le paiement n'a pas pu être vérifié.");
       }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setStatus("error");
       setErrorMessage("Erreur réseau lors de la vérification du paiement.");
@@ -92,7 +93,7 @@ function PaymentReturn() {
             <Link href="/profil">Voir ma réservation</Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/">Retour à l'accueil</Link>
+            <Link href="/">Retour à l&apos;accueil</Link>
           </Button>
         </div>
       </div>

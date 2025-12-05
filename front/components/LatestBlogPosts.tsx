@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Calendar, Clock, User } from "lucide-react";
+import { ArrowRight, Calendar, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -97,7 +97,7 @@ const LatestBlogPosts = ({ posts }: LatestBlogPostsProps) => {
                   href={`/blog/${post.slug}`}
                   className="inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all group/link"
                 >
-                  Lire l'article
+                  Lire l&apos;article
                   <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                 </Link>
               </CardContent>

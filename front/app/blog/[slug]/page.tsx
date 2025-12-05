@@ -125,7 +125,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           {/* Appel à l'action */}
           <div className="mt-12 bg-gradient-to-r from-navy to-navy-light text-white rounded-lg p-8 text-center">
             <h3 className="text-2xl font-bold mb-4">
-              Besoin d'un parking sécurisé à Bordeaux ?
+              Besoin d&apos;un parking sécurisé à Bordeaux ?
             </h3>
             <p className="text-white/90 mb-6">
               Réservez dès maintenant votre place de parking avec MSParking
