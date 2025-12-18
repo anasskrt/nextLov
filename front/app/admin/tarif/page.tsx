@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
 import Cookies from "js-cookie";
@@ -112,6 +112,10 @@ const AdminPricing = () => {
     }
   };
 
+    const handleDialogClose = () => {
+      setIsDialogOpen(false);
+  };
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('fr-FR', {
       day: '2-digit',
@@ -157,6 +161,14 @@ const AdminPricing = () => {
                   onCheckedChange={(checked) => handleInputChange("actif", checked as boolean)}
                 />
                 <Label htmlFor="actif">Tarif actif</Label>
+              </div>
+                            <div className="flex justify-end space-x-2">
+                <Button variant="outline" onClick={handleDialogClose}>
+                  Annuler
+                </Button>
+                <Button onClick={handleSubmit} className="bg-navy hover:bg-navy-light text-white">
+                  {"Ajouter"}
+                </Button>
               </div>
             </div>
           </DialogContent>
