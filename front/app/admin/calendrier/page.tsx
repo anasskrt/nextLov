@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Badge } from "@/components/ui/badge";
-import { format, isSameDay } from "date-fns";
+import { format, isSameDay, addHours } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Car, Clock, CheckCircle } from "lucide-react";
 import Cookies from "js-cookie";
@@ -19,6 +19,14 @@ type Booking = {
   date: string; // Gardé en string pour éviter les problèmes de timezone
   time: string;
   transportType: string;
+};
+
+/**
+ * Convertit une date string en objet Date et ajoute 1 heure
+ * pour compenser le décalage de la base de données
+ */
+const fixTimezone = (dateString: string): Date => {
+  return addHours(new Date(dateString), 1);
 };
 
 const AdminCalendar = () => {
@@ -52,7 +60,7 @@ const AdminCalendar = () => {
   }, []);
 
   const getBookingsForDate = (date: Date) => {
-    return bookings.filter(booking => isSameDay(new Date(booking.date), date));
+    return bookings.filter(booking => isSameDay(fixTimezone(booking.date), date));
   };
 
   const getStatusBadge = (status: string) => {
@@ -78,7 +86,7 @@ const AdminCalendar = () => {
 
   const getDaysWithBookings = () => {
     // Retourne tous les jours uniques qui ont des réservations
-    const days = new Set(bookings.map(booking => format(new Date(booking.date), "yyyy-MM-dd")));
+    const days = new Set(bookings.map(booking => format(fixTimezone(booking.date), "yyyy-MM-dd")));
     return Array.from(days).map(day => new Date(day));
   };
 
