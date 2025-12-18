@@ -37,8 +37,16 @@ const AdminServices = () => {
   const fetchServices = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/admin/service");
+      const token = Cookies.get("token");
+      const res = await fetch(`/api/admin/service/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        });
       const data = await res.json();
+      console.log("Fetch services data:", data); // Debugging line
       setServices(data);
     } catch {
       setServices([]);

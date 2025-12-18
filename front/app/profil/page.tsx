@@ -77,11 +77,11 @@ const ProfilePage = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1 flex flex-col items-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-5xl">
+        <div className="w-full max-w-7xl">
           <h1 className="text-3xl font-bold mb-8 text-center">Mon Profil</h1>
 
           <div className="flex flex-col md:flex-row gap-6">
-            <Card className="md:w-1/3">
+            <Card className="md:w-1/4">
               <CardHeader className="flex flex-col items-center">
                 <Avatar className="h-24 w-24 mb-4">
                   <AvatarFallback className="text-2xl bg-navy text-white">
@@ -109,7 +109,7 @@ const ProfilePage = () => {
               </CardContent>
             </Card>
 
-            <Card className="flex-1">
+            <Card className="flex-1 md:w-3/4">
               <CardHeader>
                 <CardTitle>Mes devis</CardTitle>
                 <CardDescription>
@@ -134,7 +134,8 @@ const ProfilePage = () => {
                         <tr>
                           <th className="px-4 py-2">#</th>
                           <th className="px-4 py-2">Voiture</th>
-                          <th className="px-4 py-2">Dates</th>
+                          <th className="px-4 py-2">Date dépôt</th>
+                          <th className="px-4 py-2">Date reprise</th>
                           <th className="px-4 py-2">Montant</th>
                           <th className="px-4 py-2">Statut</th>
                         </tr>
@@ -153,8 +154,9 @@ const ProfilePage = () => {
                                 year: "numeric",
                                 hour: "2-digit",
                                 minute: "2-digit",
-                              })}<br />
-                              <span className="mx-1">→</span>
+                              })}
+                            </td>
+                            <td className="px-4 py-2">
                               {new Date(devis.dateFin).toLocaleString("fr-FR", {
                                 day: "2-digit",
                                 month: "2-digit",

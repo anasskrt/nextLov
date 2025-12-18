@@ -28,9 +28,15 @@ const VolInfoDialog = ({ devisId, forceShowForm = false }: VolInfoDialogProps) =
       const res = await fetch(`/api/admin/devis/${devisId}`);
       if (!res.ok) throw new Error("Erreur lors du chargement des infos vol");
       const data = await res.json();
-      setVols(Array.isArray(data) ? data : [data]);
+      
+      // Si data contient infosVol, l'utiliser, sinon tableau vide
+      if (data && data.infosVol) {
+        setVols([data.infosVol]);
+      } else {
+        setVols([]);
+      }
     } catch (e: any) {
-      setError(e.message);
+      setError(e.message || "Erreur lors du chargement des infos vol");
       setVols([]);
     } finally {
       setLoading(false);

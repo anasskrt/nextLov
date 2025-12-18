@@ -17,14 +17,14 @@ const AdminPage = () => {
       description: "Voir et gérer tous les devis clients",
       icon: FileText,
       path: "/admin/devis",
-      count: "24"
+      count: "---"
     },
     {
       title: "Gestion des utilisateurs",
       description: "Gérer les comptes clients",
       icon: Users,
       path: "/admin/user",
-      count: "156"
+      count: "---"
     },
     {
       title: "Calendrier des réservations",
@@ -52,7 +52,7 @@ const AdminPage = () => {
       description: "Gérer les options de transport",
       icon: Settings,
       path: "/admin/transports",
-      count: "4"
+      count: "---"
     }
   ];
 

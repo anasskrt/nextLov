@@ -6,13 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Search, Filter, Download, ChevronLeft, ChevronRight } from "lucide-react";
-import { format } from "date-fns";
+import { Search, Filter, Download, ChevronLeft, ChevronRight, Calendar as CalendarIcon } from "lucide-react";
+import { format, parseISO } from "date-fns";
 import { fr } from "date-fns/locale";
 import Cookies from "js-cookie";
 import VolInfoDialog from "@/components/VolInfoDialog";
 import ServiceStatusDialogInline from "@/components/ServiceStatusDialog";
 import ParkingInfoDialog from "@/components/ParkingInfoDialog";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 const PAGE_SIZE = 10;
 
@@ -46,8 +48,8 @@ type Quote = {
 };
 
 const STATUS_LABELS = {
-  EN_ATTENTE: { text: "Attente véhicule", color: "bg-blue-100 text-blue-800" },
-  EN_COURS: { text: "Véhicule reçu", color: "bg-red-100 text-red-800" },
+  EN_ATTENTE: { text: "À Garer", color: "bg-blue-100 text-blue-800" },
+  EN_COURS: { text: "À Rendre", color: "bg-red-100 text-red-800" },
   RESTITUE: { text: "Véhicule rendu", color: "bg-gray-100 text-gray-800" },
   REFUSE: { text: "Refusé", color: "bg-red-100 text-red-800" },
 };
@@ -60,6 +62,9 @@ const AdminQuotes = () => {
   const [priceFilter] = useState("all");
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
+  const [dateFilter, setDateFilter] = useState<Date | undefined>(undefined);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [actionLoading, setActionLoading] = useState<number | string | null>(null);
 
   const fetchQuotes = async () => {
     setLoading(true);
@@ -85,17 +90,52 @@ const AdminQuotes = () => {
       if (!res.ok) throw new Error("Erreur lors du chargement des devis");
       const data = await res.json();
       
+      let filteredDevis = data.devis;
+      
       // Si le filtre est "ACTIFS", filtrer côté client EN_ATTENTE + EN_COURS
       if (statusFilter === "ACTIFS") {
-        const filteredDevis = data.devis.filter((d: Quote) => 
+        filteredDevis = filteredDevis.filter((d: Quote) => 
           d.statut === "EN_ATTENTE" || d.statut === "EN_COURS"
         );
-        setQuotes(filteredDevis);
-        setTotal(filteredDevis.length);
-      } else {
-        setQuotes(data.devis);
-        setTotal(data.total);
       }
+      
+      // Filtrer par date si une date est sélectionnée
+      if (dateFilter) {
+        filteredDevis = filteredDevis.filter((d: Quote) => {
+          // Pour statut EN_ATTENTE (entry), on regarde dateDebut
+          // Pour statut EN_COURS (return), on regarde dateFin
+          const dateToCheck = d.statut === "EN_ATTENTE" 
+            ? d.dateDebut 
+            : d.dateFin;
+          
+          if (!dateToCheck) return false;
+          
+          const devisDate = parseISO(dateToCheck);
+          const filterDate = dateFilter;
+          
+          // Comparer uniquement les dates (jour/mois/année)
+          return (
+            devisDate.getDate() === filterDate.getDate() &&
+            devisDate.getMonth() === filterDate.getMonth() &&
+            devisDate.getFullYear() === filterDate.getFullYear()
+          );
+        });
+      }
+      
+      // Trier par date (la plus proche en premier)
+      filteredDevis.sort((a: Quote, b: Quote) => {
+        const dateA = a.statut === "EN_ATTENTE" ? a.dateDebut : a.dateFin;
+        const dateB = b.statut === "EN_ATTENTE" ? b.dateDebut : b.dateFin;
+        
+        if (!dateA) return 1;
+        if (!dateB) return -1;
+        
+        return new Date(dateA).getTime() - new Date(dateB).getTime();
+      });
+      
+      setQuotes(filteredDevis);
+      setTotal(filteredDevis.length);
+      console.log("Fetched quotes:", filteredDevis); // Ligne de débogage
     } catch {
       setQuotes([]);
       setTotal(0);
@@ -107,9 +147,42 @@ const AdminQuotes = () => {
   useEffect(() => {
     fetchQuotes();
     // eslint-disable-next-line
-  }, [page, statusFilter, searchTerm, priceFilter]);
+  }, [page, statusFilter, searchTerm, priceFilter, dateFilter]);
 
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+
+  // --- Fonction pour gérer le changement de statut ---
+  const handleChangeStatus = async (quote: Quote) => {
+    setActionLoading(quote.id);
+
+    // Déterminer le nouveau statut selon le statut actuel
+    let newStatus = "";
+    if (quote.statut === "EN_ATTENTE") newStatus = "EN_COURS";
+    else if (quote.statut === "EN_COURS") newStatus = "RESTITUE";
+    else return; // Pas d'action pour les autres statuts
+
+    try {
+      const token = Cookies.get('token');
+      const res = await fetch(`/api/admin/devis/${quote.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({ statut: newStatus }),
+      });
+
+      if (!res.ok) throw new Error("Erreur lors du changement de statut");
+
+      // Recharger les devis après le changement
+      await fetchQuotes();
+    } catch (error) {
+      console.error("Erreur:", error);
+      alert("Erreur lors du changement de statut");
+    } finally {
+      setActionLoading(null);
+    }
+  };
 
   return (
     <div>
@@ -127,7 +200,7 @@ const AdminQuotes = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             <div className="relative">
               <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
               <Input
@@ -140,12 +213,53 @@ const AdminQuotes = () => {
                 className="pl-10"
               />
             </div>
+            
+            <Popover open={showCalendar} onOpenChange={setShowCalendar}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className={`justify-start text-left font-normal ${!dateFilter && "text-muted-foreground"}`}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {dateFilter ? format(dateFilter, "dd/MM/yyyy", { locale: fr }) : "Filtrer par date"}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={dateFilter}
+                  onSelect={(date) => {
+                    setDateFilter(date);
+                    setShowCalendar(false);
+                    setPage(1);
+                  }}
+                  initialFocus
+                  locale={fr}
+                />
+                {dateFilter && (
+                  <div className="p-3 border-t">
+                    <Button
+                      variant="outline"
+                      className="w-full"
+                      onClick={() => {
+                        setDateFilter(undefined);
+                        setShowCalendar(false);
+                        setPage(1);
+                      }}
+                    >
+                      Réinitialiser
+                    </Button>
+                  </div>
+                )}
+              </PopoverContent>
+            </Popover>
+            
             <Select value={statusFilter} onValueChange={(v) => { setStatusFilter(v); setPage(1); }}>
               <SelectTrigger>
                 <SelectValue placeholder="Statut" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="ACTIFS">Véhicules actifs (Attente + Reçu)</SelectItem>
+                <SelectItem value="ACTIFS">Véhicules actifs</SelectItem>
                 {Object.entries(STATUS_LABELS).map(([key, { text }]) => (
                   <SelectItem key={key} value={key}>{text}</SelectItem>
                 ))}
@@ -164,8 +278,13 @@ const AdminQuotes = () => {
       ) : (
         <Card>
           <CardHeader>
-            <CardTitle>
-              Liste des Devis ({total}) – page {page} / {totalPages}
+            <CardTitle className="flex items-center justify-between">
+              <span>Liste des Devis ({total})</span>
+              {dateFilter && (
+                <span className="text-sm font-normal text-gray-600">
+                  Filtrée pour le {format(dateFilter, "dd MMMM yyyy", { locale: fr })}
+                </span>
+              )}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -180,7 +299,8 @@ const AdminQuotes = () => {
                   <TableHead>Dates</TableHead>
                   <TableHead>Infos vol</TableHead>
                   <TableHead>Parking</TableHead>
-                  <TableHead>Actions</TableHead>
+                  <TableHead>Services</TableHead>
+                  <TableHead>Statut</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -217,16 +337,18 @@ const AdminQuotes = () => {
                         : ""}
                     </TableCell>
                     <TableCell>
-                      <div className="text-sm">
-                        <div>
-                          Du: {quote.dateDebut
+                      <div className="text-sm space-y-1">
+                        <div className={quote.statut === "EN_ATTENTE" ? "font-semibold text-green-700" : ""}>
+                          {quote.statut === "EN_ATTENTE" && "📍 "}
+                          Arrivée: {quote.dateDebut
                             ? format(new Date(quote.dateDebut), "dd/MM/yyyy 'à' HH:mm", { locale: fr })
-                            : ""}
+                            : "N/A"}
                         </div>
-                        <div>
-                          Au: {quote.dateFin
+                        <div className={quote.statut === "EN_COURS" ? "font-semibold text-red-700" : ""}>
+                          {quote.statut === "EN_COURS" && "📍 "}
+                          Départ: {quote.dateFin
                             ? format(new Date(quote.dateFin), "dd/MM/yyyy 'à' HH:mm", { locale: fr })
-                            : ""}
+                            : "N/A"}
                         </div>
                       </div>
                     </TableCell>
@@ -252,6 +374,32 @@ const AdminQuotes = () => {
                         />
                       ) : (
                         <span className="text-gray-400 italic">Aucun service</span>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {(quote.statut === "EN_ATTENTE" || quote.statut === "EN_COURS") && (
+                        <Button
+                          size="sm"
+                          className={`${
+                            quote.statut === "EN_ATTENTE"
+                              ? "bg-orange-500 hover:bg-orange-600"
+                              : "bg-green-600 hover:bg-green-700"
+                          } text-white`}
+                          disabled={actionLoading === quote.id}
+                          onClick={() => handleChangeStatus(quote)}
+                        >
+                          {actionLoading === quote.id
+                            ? "Traitement..."
+                            : quote.statut === "EN_ATTENTE"
+                            ? "MIT PARKING"
+                            : "RENDU"}
+                        </Button>
+                      )}
+                      {quote.statut === "RESTITUE" && (
+                        <span className="text-gray-500 italic">Terminé</span>
+                      )}
+                      {quote.statut === "REFUSE" && (
+                        <span className="text-red-500 italic">Refusé</span>
                       )}
                     </TableCell>
                   </TableRow>
