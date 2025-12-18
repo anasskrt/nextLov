@@ -16,7 +16,7 @@ type Booking = {
   licensePlate: string;
   carModel: string;
   status: "entry" | "return";
-  date: string | Date;
+  date: string; // Gardé en string pour éviter les problèmes de timezone
   time: string;
   transportType: string;
 };
@@ -38,12 +38,8 @@ const AdminCalendar = () => {
       if (!res.ok) throw new Error("Erreur lors du chargement des réservations");
       const data = await res.json();
       console.log("Bookings data:", data); // Debugging line
-      setBookings(
-        data.map((b: Booking) => ({
-          ...b,
-          date: new Date(b.date),
-        }))
-      );
+      // On garde les dates en string pour éviter les problèmes de timezone
+      setBookings(data);
     } catch {
       setBookings([]);
     } finally {
@@ -56,7 +52,7 @@ const AdminCalendar = () => {
   }, []);
 
   const getBookingsForDate = (date: Date) => {
-    return bookings.filter(booking => isSameDay(booking.date, date));
+    return bookings.filter(booking => isSameDay(new Date(booking.date), date));
   };
 
   const getStatusBadge = (status: string) => {
@@ -82,7 +78,7 @@ const AdminCalendar = () => {
 
   const getDaysWithBookings = () => {
     // Retourne tous les jours uniques qui ont des réservations
-    const days = new Set(bookings.map(booking => format(booking.date, "yyyy-MM-dd")));
+    const days = new Set(bookings.map(booking => format(new Date(booking.date), "yyyy-MM-dd")));
     return Array.from(days).map(day => new Date(day));
   };
 

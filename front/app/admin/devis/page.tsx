@@ -13,6 +13,7 @@ import { fr } from "date-fns/locale";
 import Cookies from "js-cookie";
 import VolInfoDialog from "@/components/VolInfoDialog";
 import ServiceStatusDialogInline from "@/components/ServiceStatusDialog";
+import ParkingInfoDialog from "@/components/ParkingInfoDialog";
 
 const PAGE_SIZE = 10;
 
@@ -42,6 +43,7 @@ type Quote = {
   transport : {
     type : string;
   }
+  infoParking?: string | null;
 };
 
 const STATUS_LABELS = {
@@ -55,7 +57,7 @@ const AdminQuotes = () => {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [total, setTotal] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("EN_ATTENTE");
+  const [statusFilter, setStatusFilter] = useState("ACTIFS"); // Nouveau filtre pour EN_ATTENTE + EN_COURS
   const [priceFilter, setPriceFilter] = useState("all");
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -63,21 +65,38 @@ const AdminQuotes = () => {
   const fetchQuotes = async () => {
     setLoading(true);
     try {
+      // Si le filtre est "ACTIFS", on ne filtre pas par statut côté serveur
+      // On récupère tous les devis et on filtre côté client
       const params = new URLSearchParams({
         page: String(page),
         limit: String(PAGE_SIZE),
-        statut: statusFilter,
         search: searchTerm,
         price: priceFilter,
       });
+      
+      // Ajouter le filtre statut seulement si ce n'est pas "ACTIFS"
+      if (statusFilter !== "ACTIFS") {
+        params.append("statut", statusFilter);
+      }
+      
       const token = Cookies.get('token');
       const res = await fetch(`/api/admin/devis?${params.toString()}`, {
         headers: token ? { Authorization: `Bearer ${token}` } : undefined,
       });
       if (!res.ok) throw new Error("Erreur lors du chargement des devis");
       const data = await res.json();
-      setQuotes(data.devis);
-      setTotal(data.total);
+      
+      // Si le filtre est "ACTIFS", filtrer côté client EN_ATTENTE + EN_COURS
+      if (statusFilter === "ACTIFS") {
+        const filteredDevis = data.devis.filter((d: Quote) => 
+          d.statut === "EN_ATTENTE" || d.statut === "EN_COURS"
+        );
+        setQuotes(filteredDevis);
+        setTotal(filteredDevis.length);
+      } else {
+        setQuotes(data.devis);
+        setTotal(data.total);
+      }
     } catch {
       setQuotes([]);
       setTotal(0);
@@ -133,20 +152,10 @@ const AdminQuotes = () => {
                 <SelectValue placeholder="Statut" />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value="ACTIFS">Véhicules actifs (Attente + Reçu)</SelectItem>
                 {Object.entries(STATUS_LABELS).map(([key, { text }]) => (
                   <SelectItem key={key} value={key}>{text}</SelectItem>
                 ))}
-              </SelectContent>
-            </Select>
-            <Select value={priceFilter} onValueChange={(v) => { setPriceFilter(v); setPage(1); }}>
-              <SelectTrigger>
-                <SelectValue placeholder="Prix" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Tous les prix</SelectItem>
-                <SelectItem value="low">Moins de 100€</SelectItem>
-                <SelectItem value="medium">100€ - 200€</SelectItem>
-                <SelectItem value="high">Plus de 200€</SelectItem>
               </SelectContent>
             </Select>
             <Button variant="outline" className="flex items-center gap-2">
@@ -171,21 +180,35 @@ const AdminQuotes = () => {
               <TableHeader>
                 <TableRow>
                   <TableHead>ID</TableHead>
+                  <TableHead>Transport</TableHead>
                   <TableHead>Client</TableHead>
                   <TableHead>Contact</TableHead>
                   <TableHead>Véhicule</TableHead>
                   <TableHead>Dates</TableHead>
-                  <TableHead>Prix</TableHead>
-                  <TableHead>Statut</TableHead>
                   <TableHead>Infos vol</TableHead>
+                  <TableHead>Parking</TableHead>
                   <TableHead>Actions</TableHead>
-                  <TableHead>Transport</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {quotes.map((quote) => (
-                  <TableRow key={quote.id}>
+                {quotes.map((quote) => {
+                  // Déterminer la couleur de fond selon le statut
+                  const rowBgColor = 
+                    quote.statut === "EN_ATTENTE" ? "bg-green-50" :
+                    quote.statut === "EN_COURS" ? "bg-red-50" : "";
+                  
+                  return (
+                    <TableRow key={quote.id} className={rowBgColor}>
                     <TableCell className="font-medium">{quote.id}</TableCell>
+                    <TableCell>
+                      <div>
+                        {quote.transport && quote.transport.type ? (
+                          quote.transport.type
+                        ) : (
+                          <span className="text-gray-400 italic">Aucun transport</span>
+                        )}
+                      </div>
+                    </TableCell>
                     <TableCell>
                       {quote.utilisateur.nom} {quote.utilisateur.prenom}
                     </TableCell>
@@ -214,14 +237,18 @@ const AdminQuotes = () => {
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell className="font-semibold">{Number(quote.montantFinal || 0)}€</TableCell>
-                    <TableCell>{getStatusBadge(quote.statut)}</TableCell>
                     <TableCell>
                       {quote.infosVol && quote.infosVol.numVol && quote.infosVol.terminal ? (
                         `${quote.infosVol.numVol} / ${quote.infosVol.terminal}`
                       ) : (
                         <VolInfoDialog devisId={quote.id} forceShowForm />
                       )}
+                    </TableCell>
+                    <TableCell>
+                      <ParkingInfoDialog 
+                        devisId={quote.id} 
+                        existingInfo={quote.infoParking} 
+                      />
                     </TableCell>
                     <TableCell>
                       {quote.services && quote.services.length > 0 ? (
@@ -234,17 +261,9 @@ const AdminQuotes = () => {
                         <span className="text-gray-400 italic">Aucun service</span>
                       )}
                     </TableCell>
-                    <TableCell>
-                      <div>
-                        {quote.transport && quote.transport.type ? (
-                          quote.transport.type
-                        ) : (
-                          <span className="text-gray-400 italic">Aucun transport</span>
-                        )}
-                      </div>
-                    </TableCell>
                   </TableRow>
-                ))}
+                  );
+                })}
               </TableBody>
             </Table>
             {/* Pagination */}
