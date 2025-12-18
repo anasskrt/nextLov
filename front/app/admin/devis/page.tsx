@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 import { Search, Filter, Download, ChevronLeft, ChevronRight } from "lucide-react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -58,7 +57,7 @@ const AdminQuotes = () => {
   const [total, setTotal] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("ACTIFS"); // Nouveau filtre pour EN_ATTENTE + EN_COURS
-  const [priceFilter, setPriceFilter] = useState("all");
+  const [priceFilter] = useState("all");
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
 
@@ -111,12 +110,6 @@ const AdminQuotes = () => {
   }, [page, statusFilter, searchTerm, priceFilter]);
 
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
-
-  const getStatusBadge = (status: string | undefined) => {
-    const s = STATUS_LABELS[status as keyof typeof STATUS_LABELS];
-    if (!s) return <Badge variant="outline">Inconnu</Badge>;
-    return <Badge className={s.color}>{s.text}</Badge>;
-  };
 
   return (
     <div>
