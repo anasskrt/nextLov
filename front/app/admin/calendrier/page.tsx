@@ -29,6 +29,16 @@ const fixTimezone = (dateString: string): Date => {
   return addHours(new Date(dateString), 1);
 };
 
+/**
+ * Corrige l'heure affichée en ajoutant +1h
+ * Exemple: "10:11" → "11:11"
+ */
+const fixTimeString = (timeString: string): string => {
+  const [hours, minutes] = timeString.split(':').map(Number);
+  const correctedHours = (hours + 1) % 24; // Ajoute 1h et gère le passage à minuit
+  return `${correctedHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+};
+
 const AdminCalendar = () => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -191,7 +201,7 @@ const AdminCalendar = () => {
                     </div>
                     <div className="text-sm text-gray-600">
                       <div>{booking.clientName}</div>
-                      <div>{booking.time}</div>
+                      <div>{fixTimeString(booking.time)}</div>
                       <div>{booking.transportType}</div>
                     </div>
                     {/* Action bouton */}
