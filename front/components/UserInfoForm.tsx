@@ -62,8 +62,9 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email invalide";
     if (!formData.carModel.trim()) newErrors.carModel = "Le modèle de voiture est requis";
     if (!formData.carYear.trim()) newErrors.carYear = "L'année du véhicule est requise";
+    if (!formData.carLicensePlate.trim()) newErrors.carLicensePlate = "La plaque d'immatriculation est requise";
+    if (!selectedTransport) newErrors.transport = "Le mode de transport est requis";
     setErrors(newErrors);
-    if (!selectedTransport) errors.transport = "Le mode de transport est requis";
     return Object.keys(newErrors).length === 0;
   };
 
@@ -204,19 +205,23 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
           </div>
 
           <div className="mt-4">
-            <Label htmlFor="carLicensePlate" className="text-navy">Plaque d&apos;immatriculation</Label>
+            <Label htmlFor="carLicensePlate" className="text-navy">Plaque d&apos;immatriculation*</Label>
             <Input
               id="carLicensePlate"
               name="carLicensePlate"
               value={formData.carLicensePlate}
               onChange={handleInputChange}
-              className="bg-white"
+              className={cn(
+                "bg-white",
+                errors.carLicensePlate && "border-red-500"
+              )}
               placeholder="Ex: AB-123-CD"
             />
+            {errors.carLicensePlate && <p className="text-red-500 text-sm mt-1">{errors.carLicensePlate}</p>}
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold text-navy mb-4">Mode de transport</h3>
+            <h3 className="text-lg font-semibold text-navy mb-4">Mode de transport*</h3>
             {transportError && <div className="text-red-500 mb-2">{transportError}</div>}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {transports.map((transport) => (
@@ -226,9 +231,18 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
                     "cursor-pointer border-2 transition-all",
                     selectedTransport && selectedTransport.id === transport.id
                       ? "border-gold ring-2 ring-gold"
-                      : "border-gray-200 hover:border-gold"
+                      : "border-gray-200 hover:border-gold",
+                    errors.transport && "border-red-500"
                   )}
-                  onClick={() => setSelectedTransport(transport)}
+                  onClick={() => {
+                    setSelectedTransport(transport);
+                    if (errors.transport) {
+                      setErrors((prev) => ({
+                        ...prev,
+                        transport: "",
+                      }));
+                    }
+                  }}
                 >
                   <div className="p-4 flex flex-col h-full justify-between">
                     <div>
@@ -240,7 +254,7 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
                 </Card>
               ))}
             </div>
-            {errors.transport && <p className="text-red-500 text-sm mt-1">{errors.transport}</p>}
+            {errors.transport && <p className="text-red-500 text-sm mt-2">{errors.transport}</p>}
           </div>
         </div>
       

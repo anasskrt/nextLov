@@ -62,7 +62,7 @@ const QuoteValidationPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name || !email || !phone || !car.make || !car.model || !car.year) {
+    if (!name || !email || !phone || !car.make || !car.model || !car.year || !car.licensePlate) {
       toast.error("Veuillez remplir tous les champs obligatoires.");
       return;
     }
@@ -142,7 +142,7 @@ const QuoteValidationPage = () => {
                   <InputField label="Marque*" icon={CarFront} name="make" value={car.make} onChange={handleCarInfoChange} />
                   <InputField label="Modèle*" name="model" value={car.model} onChange={handleCarInfoChange} />
                   <InputField label="Année*" name="year" value={car.year} onChange={handleCarInfoChange} />
-                  <InputField label="Immatriculation" name="licensePlate" value={car.licensePlate} onChange={handleCarInfoChange} />
+                  <InputField label="Immatriculation*" name="licensePlate" value={car.licensePlate} onChange={handleCarInfoChange} />
                 </div>
               </div>
 
