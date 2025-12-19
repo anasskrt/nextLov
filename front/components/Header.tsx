@@ -82,9 +82,14 @@ const Header = () => {
             </Link>
             <Link href="/faq" className="block px-3 py-2 text-navy font-medium hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>FAQ</Link>
 
-            <Link href="/#contact" className="block px-3 py-2 text-navy font-medium hover:bg-gray-50 rounded-md">
+            <Link href="/contact" className="block px-3 py-2 text-navy font-medium hover:bg-gray-50 rounded-md">
               Contact
             </Link>
+
+            <Link href="/blog" className="block px-3 py-2 text-navy font-medium hover:bg-gray-50 rounded-md">
+              Blog
+            </Link>
+
             {isAdmin && (
               <Link href="/admin" className="block px-3 py-2 text-navy font-medium hover:bg-gray-50 rounded-md" onClick={() => setIsMenuOpen(false)}>Administration</Link>
             )}

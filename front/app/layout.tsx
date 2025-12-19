@@ -55,7 +55,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           `
         }} />
 
-        <script src="https://analytics.ahrefs.com/analytics.js" data-key="qnSclJTHLbwDD3Lezqr/Wg" async></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16808260855"></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-16808260855');
+          `,
+        }}
+      />
+
       </head>
       <body>
         <ClientProviders>{children}</ClientProviders>
