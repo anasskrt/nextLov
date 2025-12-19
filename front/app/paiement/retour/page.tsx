@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import Link from "next/link";
+import { trackConversion } from "@/lib/analytics";
 
 function PaymentReturn() {
   const [status, setStatus] = useState<"pending" | "processing" | "success" | "failed" | "expired" | "error">("pending");
@@ -34,9 +35,7 @@ function PaymentReturn() {
         sessionStorage.removeItem("bookingDetails");
         
         // Déclencher la conversion Google Ads
-        if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
-          (window as any).gtag_report_conversion();
-        }
+        trackConversion(1.0, sessionId || '');
       } else if (data.status === "pending" || data.status === "processing") {
         // Le webhook n'est pas encore arrivé, on attend
         setStatus("processing");
@@ -52,9 +51,7 @@ function PaymentReturn() {
           setErrorMessage("Votre paiement est validé. Vous recevrez un email de confirmation sous peu.");
           
           // Déclencher la conversion Google Ads
-          if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
-            (window as any).gtag_report_conversion();
-          }
+          trackConversion(1.0, sessionId || '');
         }
       } else if (data.status === "error" && data.message?.includes("échoué")) {
         // Paiement explicitement échoué/refusé
