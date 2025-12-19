@@ -32,6 +32,11 @@ function PaymentReturn() {
       if (data.status === "success") {
         setStatus("success");
         sessionStorage.removeItem("bookingDetails");
+        
+        // Déclencher la conversion Google Ads
+        if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
+          (window as any).gtag_report_conversion();
+        }
       } else if (data.status === "pending" || data.status === "processing") {
         // Le webhook n'est pas encore arrivé, on attend
         setStatus("processing");
@@ -45,6 +50,11 @@ function PaymentReturn() {
           // Après 20s, considérer comme succès (le webhook finira par arriver)
           setStatus("success");
           setErrorMessage("Votre paiement est validé. Vous recevrez un email de confirmation sous peu.");
+          
+          // Déclencher la conversion Google Ads
+          if (typeof window !== 'undefined' && (window as any).gtag_report_conversion) {
+            (window as any).gtag_report_conversion();
+          }
         }
       } else if (data.status === "error" && data.message?.includes("échoué")) {
         // Paiement explicitement échoué/refusé

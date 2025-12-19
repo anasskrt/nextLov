@@ -63,6 +63,23 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'AW-16808260855');
+            
+            // Fonction de conversion pour les achats
+            function gtag_report_conversion(url) {
+              var callback = function () {
+                if (typeof(url) != 'undefined') {
+                  window.location = url;
+                }
+              };
+              gtag('event', 'conversion', {
+                'send_to': 'AW-16808260855/7SATCKqYz9MbEPfp5s4-',
+                'value': 1.0,
+                'currency': 'EUR',
+                'transaction_id': '',
+                'event_callback': callback
+              });
+              return false;
+            }
           `,
         }}
       />
