@@ -72,11 +72,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 }
               };
               gtag('event', 'conversion', {
-                'send_to': 'AW-17817481996/7SATCKqYz9MbEPfp5s4-',
-                'value': 1.0,
-                'currency': 'EUR',
+                'send_to': 'AW-17817481996/L3n9CNibwNQbEIzmhLBC',
                 'transaction_id': '',
-                'event_callback': callback
               });
               return false;
             }
