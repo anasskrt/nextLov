@@ -62,7 +62,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'AW-16808260855');
+            gtag('config', 'AW-17817481996');
             
             // Fonction de conversion pour les achats
             function gtag_report_conversion(url) {
@@ -72,7 +72,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 }
               };
               gtag('event', 'conversion', {
-                'send_to': 'AW-16808260855/7SATCKqYz9MbEPfp5s4-',
+                'send_to': 'AW-17817481996/7SATCKqYz9MbEPfp5s4-',
                 'value': 1.0,
                 'currency': 'EUR',
                 'transaction_id': '',
