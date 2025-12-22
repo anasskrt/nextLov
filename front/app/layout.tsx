@@ -19,6 +19,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr">
       <head>
+        {/* Google Tag Manager */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-5PQLW6NK');
+            `,
+          }}
+        />
+        {/* End Google Tag Manager */}
+        
         <meta name="google-site-verification" content="0wDXseD4IEkekrK-9Nd4o4tZZxpQDeYr6nKyvK5pyGs" />
         <meta name="description" content="MsParking, parking sécurisé près de l'aéroport de Bordeaux. Réservez votre place avec voiturier ou navette, ouvert 24h/24, prix attractifs, à 5 minutes de l'aéroport de Bordeaux." />
         <meta name="keywords" content="parking aéroport Bordeaux, parking Bordeaux, voiturier Bordeaux, navette aéroport, parking sécurisé, parking pas cher, MsParking, Mérignac, Pessac, réservation parking, parking longue durée, parking courte durée, parking proche aéroport Bordeaux" />
@@ -81,8 +95,32 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         }}
       />
 
+      {/* Microsoft Clarity */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "upp1icbpah");
+          `,
+        }}
+      />
+
       </head>
       <body>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe 
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5PQLW6NK"
+            height="0" 
+            width="0" 
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
+        
         <ClientProviders>{children}</ClientProviders>
       </body>
     </html>

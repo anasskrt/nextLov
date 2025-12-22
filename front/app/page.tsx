@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import PromoBanner from "@/components/PromoBanner";
 import Features from "@/components/Features";
 import Footer from "@/components/Footer";
 
@@ -22,8 +23,9 @@ export default function HomePage() {
         <SuccessToastHandler />
       </Suspense>
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow pt-20">
         <Hero />
+        <PromoBanner />
         <HowItWorks />
         <WhyChooseUs />
         <Features />

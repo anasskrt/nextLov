@@ -22,14 +22,13 @@ const Hero = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <div className="max-w-2xl">
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">
-            Parking proche de l&apos;aéroport de Bordeaux
+            Votre Parking Sécurisé à 7 min de l'Aéroport
           </h1>
 
           <p className="text-lg sm:text-xl mb-8">
-            Choisissez le confort avec MSParking. Que vous optiez pour notre{" "}
-            <strong>service voiturier premium</strong> ou notre{" "}
-            <strong>navette rapide depuis notre parking sécurisé</strong> à 7 minutes de l’aéroport,{" "}
-            nous prenons soin de votre véhicule pendant votre voyage.
+            Partez l'esprit tranquille avec <strong>MSParking</strong>. 
+            Profitez de notre <strong>service voiturier 24h/7h</strong>. Votre véhicule est gardé dans 
+            notre parking privé et surveillé pendant que vous voyagez.
           </p>
 
           <div className="mt-2 text-sm text-yellow-200 bg-yellow-900/60 rounded px-3 py-2 max-w-md">
