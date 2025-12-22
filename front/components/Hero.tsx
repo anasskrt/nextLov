@@ -22,11 +22,11 @@ const Hero = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <div className="max-w-2xl">
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">
-            Votre Parking Sécurisé à 7 min de l'Aéroport
+            Votre Parking Sécurisé à 7 min de l&apos;Aéroport
           </h1>
 
           <p className="text-lg sm:text-xl mb-8">
-            Partez l'esprit tranquille avec <strong>MSParking</strong>. 
+            Partez l&apos;esprit tranquille avec <strong>MSParking</strong>. 
             Profitez de notre <strong>service voiturier 24h/7h</strong>. Votre véhicule est gardé dans 
             notre parking privé et surveillé pendant que vous voyagez.
           </p>
