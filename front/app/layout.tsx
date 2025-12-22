@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import ClientProviders from "./client-providers";
 import "./globals.css";
+import Script from "next/script";
 
 export const metadata = {
   title: "MsParking - Parking aéroport de Bordeaux sécurisé",
@@ -27,7 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-5PQLW6NK');
+              })(window,document,'script','dataLayer','GTM-5SV992GZ');
             `,
           }}
         />
@@ -69,32 +70,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           `
         }} />
 
-      <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16808260855"></script>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17817481996');
-            
-            // Fonction de conversion pour les achats
-            function gtag_report_conversion(url) {
-              var callback = function () {
-                if (typeof(url) != 'undefined') {
-                  window.location = url;
-                }
-              };
-              gtag('event', 'conversion', {
-                'send_to': 'AW-17817481996/L3n9CNibwNQbEIzmhLBC',
-                'transaction_id': '',
-              });
-              return false;
-            }
-          `,
-        }}
-      />
-
       {/* Microsoft Clarity */}
       <script
         dangerouslySetInnerHTML={{
@@ -108,15 +83,34 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         }}
       />
 
+      <Script
+        id="gtm-script"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function(w,d,s,l,i){
+              w[l]=w[l]||[];
+              w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+              var f=d.getElementsByTagName(s)[0],
+                  j=d.createElement(s),
+                  dl=l!='dataLayer'?'&l='+l:'';
+              j.async=true;
+              j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+              f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-5SV992GZ');
+          `,
+        }}
+      />
+
       </head>
       <body>
         {/* Google Tag Manager (noscript) */}
         <noscript>
-          <iframe 
-            src="https://www.googletagmanager.com/ns.html?id=GTM-5PQLW6NK"
-            height="0" 
-            width="0" 
-            style={{ display: 'none', visibility: 'hidden' }}
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5SV992GZ"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
         {/* End Google Tag Manager (noscript) */}

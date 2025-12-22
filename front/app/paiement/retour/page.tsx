@@ -7,14 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import Link from "next/link";
-import Script from "next/script";
 
 function PaymentReturn() {
   const [status, setStatus] = useState<"pending" | "processing" | "success" | "failed" | "expired" | "error">("pending");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [retryCount, setRetryCount] = useState(0);
   const [redirectCountdown, setRedirectCountdown] = useState<number | null>(null);
-  const [conversionTriggered, setConversionTriggered] = useState(false);
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -35,8 +33,6 @@ function PaymentReturn() {
         setStatus("success");
         sessionStorage.removeItem("bookingDetails");
         
-        // Déclencher la conversion Google Ads au chargement de la page
-        setConversionTriggered(true);
       } else if (data.status === "pending" || data.status === "processing") {
         // Le webhook n'est pas encore arrivé, on attend
         setStatus("processing");
@@ -50,9 +46,6 @@ function PaymentReturn() {
           // Après 20s, considérer comme succès (le webhook finira par arriver)
           setStatus("success");
           setErrorMessage("Votre paiement est validé. Vous recevrez un email de confirmation sous peu.");
-          
-          // Déclencher la conversion Google Ads au chargement de la page
-          setConversionTriggered(true);
         }
       } else if (data.status === "error" && data.message?.includes("échoué")) {
         // Paiement explicitement échoué/refusé
@@ -110,43 +103,6 @@ function PaymentReturn() {
   if (status === "success") {
     return (
       <>
-        {/* Google tag (gtag.js) - Initialisation */}
-        {conversionTriggered && (
-          <>
-            <Script
-              id="google-ads-gtag"
-              src="https://www.googletagmanager.com/gtag/js?id=AW-17817481996"
-              strategy="afterInteractive"
-            />
-            <Script
-              id="google-ads-init"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', 'AW-17817481996');
-                `,
-              }}
-            />
-            <Script
-              id="google-ads-conversion"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
-                  gtag('event', 'conversion', {
-                    'send_to': 'AW-17817481996/L3n9CNibwNQbEIzmhLBC',
-                    'value': 1.0,
-                    'currency': 'EUR',
-                    'transaction_id': '${sessionId || ''}'
-                  });
-                `,
-              }}
-            />
-          </>
-        )}
-        
         <div className="flex flex-col items-center justify-center h-[70vh] text-center px-4">
           <CheckCircle2 className="w-16 h-16 text-green-600 mb-4" />
           <h2 className="text-3xl font-bold mb-2 text-navy">Paiement validé !</h2>
