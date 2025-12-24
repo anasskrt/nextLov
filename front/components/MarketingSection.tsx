@@ -22,7 +22,7 @@ const MarketingSection = () => {
             </p>
 
             <p className="text-xl text-gray-600 leading-relaxed">
-              Choisissez entre notre navette rapide ou notre service voiturier premium selon vos besoins. Plus besoin de chercher une place ou de vous inquiéter pour votre voiture : avec MSParking, partez l&apos;esprit léger et revenez sereinement.
+              Choisissez entre notre navette rapide ou notre service voiturier selon vos besoins. Plus besoin de chercher une place ou de vous inquiéter pour votre voiture : avec MSParking, partez l&apos;esprit léger et revenez sereinement.
             </p>
           </div>
 

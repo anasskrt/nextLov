@@ -17,7 +17,7 @@ const ContactPage = () => {
       <div className="min-h-screen flex flex-col">
         <Header />
 
-        <main className="flex-grow bg-gray-50">
+        <main className="flex-grow bg-gray-50 pt-20">
           <div className="max-w-screen-xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h1 className="text-4xl font-bold text-navy mb-4">Contactez-nous</h1>
@@ -32,7 +32,7 @@ const ContactPage = () => {
                 <div className="p-6">
                   <h2 className="text-2xl font-bold text-navy mb-4">Notre localisation</h2>
                   <div className="mb-4">
-                    <p className="text-gray-600 mb-2">159 avenue de beutre</p>
+                    <p className="text-gray-600 mb-2">157 avenue de beutre</p>
                     <p className="text-gray-600 mb-2">33600 Pessac</p>
                     <p className="text-gray-600">+33 06 09 04 18 79</p>
                   </div>

@@ -87,7 +87,7 @@ const QuoteValidationPage = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="flex-grow page-container py-8">
+      <main className="flex-grow page-container py-8 pt-20">
         <h1 className="section-heading text-center mb-6">Validation de votre devis</h1>
 
         <Card className="max-w-2xl mx-auto">

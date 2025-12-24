@@ -67,7 +67,7 @@ const PricingHighlight = () => {
               <div className="bg-gold/20 p-4 rounded-xl w-fit mx-auto mb-4">
                 <Star className="h-8 w-8 text-gold" />
               </div>
-              <h4 className="font-bold text-xl text-white mb-3">Service premium</h4>
+              <h4 className="font-bold text-xl text-white mb-3">Service</h4>
               <p className="text-white/70">Qualité et excellence garanties</p>
               <CheckCircle className="h-6 w-6 text-green-400 mx-auto mt-4" />
             </div>

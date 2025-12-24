@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <>
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow bg-gray-50">
+      <main className="flex-grow bg-gray-50 pt-20">
         {/* En-tête de l'article */}
         <div className="bg-gradient-to-br from-navy to-navy-light text-white py-12">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

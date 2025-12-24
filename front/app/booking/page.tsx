@@ -111,7 +111,7 @@ const BookingProcessPage = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="flex-grow bg-gray-50">
+      <main className="flex-grow bg-gray-50 pt-20">
         <div className="max-w-screen-xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
           {/* Progress */}
           <div className="mb-8 bg-white p-4 rounded-lg shadow-sm">

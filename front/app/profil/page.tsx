@@ -76,7 +76,7 @@ const ProfilePage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 flex flex-col items-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <main className="flex-1 flex flex-col items-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 pt-20">
         <div className="w-full max-w-7xl">
           <h1 className="text-3xl font-bold mb-8 text-center">Mon Profil</h1>
 

@@ -182,7 +182,7 @@ export default function RulesPage() {
       <RulesJsonLd />
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-grow bg-gray-50" role="main">
+        <main className="flex-grow bg-gray-50 pt-20" role="main">
           <div className="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h1 className="text-4xl font-bold text-navy mb-4">

@@ -28,8 +28,7 @@ type Quote = {
   };
   voiture?: {
     marque?: string;
-    modele?: string;
-    plaque?: string;
+    couleur?: string;
   };
   dateDebut?: string;
   dateFin?: string;
@@ -333,7 +332,7 @@ const AdminQuotes = () => {
                     </TableCell>
                     <TableCell>
                       {quote.voiture
-                        ? `${quote.voiture.marque || ""} ${quote.voiture.modele || ""} (${quote.voiture.plaque || ""})`
+                        ? `${quote.voiture.marque || ""} ${quote.voiture.couleur || ""}`
                         : ""}
                     </TableCell>
                     <TableCell>

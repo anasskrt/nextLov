@@ -124,7 +124,7 @@ function ResetPasswordContent() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 pt-20">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <Lock className="mx-auto h-12 w-12 text-navy" />

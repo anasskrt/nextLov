@@ -44,7 +44,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-start">
                 <MapPin size={20} className="mr-2 flex-shrink-0 mt-1" />
-                <span>159 avenue de beutre, 33600 Pessac</span>
+                <span>157 avenue de beutre, 33600 Pessac</span>
               </li>
               <li className="flex items-center">
                 <Phone size={20} className="mr-2 flex-shrink-0" />

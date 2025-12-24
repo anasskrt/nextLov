@@ -19,7 +19,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow pt-20">
         <div className="bg-gradient-to-br from-navy to-navy-light text-white py-16">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">

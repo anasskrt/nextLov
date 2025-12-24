@@ -10,7 +10,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <>
       <Header />
 
-      <main className="px-6 py-8"> <AdminGuard>{children}</AdminGuard></main>
+      <main className="px-6 py-8 pt-28"> <AdminGuard>{children}</AdminGuard></main>
     </>
   );
 }

@@ -46,10 +46,10 @@ const TransportOptions = () => {
               <div className="w-12 h-12 bg-gradient-to-br from-gold to-yellow-500 rounded-lg flex items-center justify-center">
                 <Car className="h-6 w-6 text-white" />
               </div>
-              <h4 className="text-2xl font-bold text-navy">Service Voiturier Premium</h4>
+              <h4 className="text-2xl font-bold text-navy">Service Voiturier</h4>
             </div>
             <p className="text-gray-600 mb-4 leading-relaxed">
-              Gagnez du temps avec notre <strong>service voiturier premium</strong>. Nous prenons en charge votre véhicule directement sur le parking de l&apos;aéroport de Bordeaux-Mérignac après un état des lieux minutieux. À votre retour, votre voiture vous attend sur place, prête à partir immédiatement.
+              Gagnez du temps avec notre <strong>service voiturier</strong>. Nous prenons en charge votre véhicule directement sur le parking de l&apos;aéroport de Bordeaux-Mérignac après un état des lieux minutieux. À votre retour, votre voiture vous attend sur place, prête à partir immédiatement.
             </p>
             <div className="flex items-center gap-4 text-sm text-gold">
               <span className="flex items-center gap-1">
