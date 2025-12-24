@@ -9,7 +9,7 @@ const publicPaths = [
   '/inscription',
   '/faq',
   '/mentions-legales',
-  '/CGU',
+  '/cgv',
   '/rules',
   '/contact',
   '/reset-password',
