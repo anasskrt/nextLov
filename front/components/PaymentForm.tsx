@@ -40,6 +40,7 @@ const PaymentForm = ({
 
   let transportPrice = 0;
   if (userInfo && userInfo.selectedTransport && userInfo.selectedTransport.prix) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     transportPrice = Number(userInfo.selectedTransport.prix);
   }
   const finalAmount = servicesTotal + totalAmount;
