@@ -4,8 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ExternalLink } from "lucide-react";
-import Link from "next/link";
+
 
 interface RulesValidationProps {
   onNext: () => void;
@@ -34,7 +33,7 @@ const RulesValidation = ({ onNext, onBack }: RulesValidationProps) => {
                 Avant de finaliser votre réservation, vous devez accepter nos règles du service.
               </p>
               
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <Link
                   href="/rules" 
                   target="_blank" 
@@ -44,7 +43,7 @@ const RulesValidation = ({ onNext, onBack }: RulesValidationProps) => {
                   Consulter les règles du service
                   <ExternalLink className="w-4 h-4" />
                 </Link>
-              </div>
+              </div> */}
               
               <div className="flex items-start space-x-3 p-4 rounded-lg border border-gold bg-white">
                 <div className="flex items-start space-x-3 p-4 rounded-lg border border-gold bg-white">
@@ -76,8 +75,7 @@ const RulesValidation = ({ onNext, onBack }: RulesValidationProps) => {
               <ul className="text-sm text-gray-700 space-y-1">
                 <li>• Si le véhicule est un utilitaire prevenez nous via le formulaire de contact ou le numéro affiché.</li>
                 <li>• Préparation du véhicule avant la prise en charge</li>
-                <li>• Venir en avance pour éviter les retards</li>
-                <li>• 5 personnes max et bagages limités</li>
+                <li>• Respect des horaires de prise en charge</li>
               </ul>
             </div>
           </div>
