@@ -27,19 +27,9 @@ const Hero = () => {
 
           <p className="text-lg sm:text-xl mb-8">
             Partez l&apos;esprit tranquille avec <strong>MSParking</strong>. 
-            Profitez de notre <strong>service voiturier 24h/7h</strong>. Votre véhicule est gardé dans 
+            Profitez de notre <strong>service voiturier 24h/7j</strong>. Votre véhicule est gardé dans 
             notre parking privé et surveillé pendant que vous voyagez.
           </p>
-
-          <div className="mt-2 text-sm text-yellow-200 bg-yellow-900/60 rounded px-3 py-2 max-w-md">
-            <strong>Notice :</strong> Pour la navette, prévoyez votre arrivée au
-            parking au moins <b>45 minutes avant la fin de l’enregistrement</b> à
-            l’aéroport.
-          </div>
-          <div className="mt-2 text-sm text-yellow-200 bg-yellow-900/60 rounded px-3 py-2 max-w-md">
-            <strong>Info :</strong> Des frais de nuit sont appliqués pour les
-            arrivées ou retours entre <b>22h et 6h</b>.
-          </div>
         </div>
 
         <BookingForm />

@@ -41,7 +41,6 @@ const ContactForm = () => {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    console.log("Form data:", data);
     try {
       const response = await fetch("/api/contact", {
         method: "POST",

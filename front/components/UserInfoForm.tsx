@@ -14,8 +14,8 @@ interface UserInfo {
   email: string;
   phone: string;
   carModel: string;
-  carYear: string;
-  carLicensePlate: string;
+  carColor: string;
+  carMarque: string;
   selectedTransport?: string;
 }
 
@@ -31,8 +31,8 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
     email: "",
     phone: "",
     carModel: "",
-    carYear: "",
-    carLicensePlate: "",
+    carColor: "",
+    carMarque: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [transports, setTransports] = useState<any[]>([]);
@@ -61,8 +61,8 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
     if (!formData.email.trim()) newErrors.email = "L'email est requis";
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email invalide";
     if (!formData.carModel.trim()) newErrors.carModel = "Le modèle de voiture est requis";
-    if (!formData.carYear.trim()) newErrors.carYear = "L'année du véhicule est requise";
-    if (!formData.carLicensePlate.trim()) newErrors.carLicensePlate = "La plaque d'immatriculation est requise";
+    if (!formData.carMarque.trim()) newErrors.carMarque = "La marque du véhicule est requise";
+    if (!formData.carColor.trim()) newErrors.carColor = "La couleur du véhicule est requise";
     if (!selectedTransport) newErrors.transport = "Le mode de transport est requis";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -81,7 +81,8 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
         const res = await fetch("/api/transports");
         if (!res.ok) throw new Error("Erreur de récupération des transports");
         const data = await res.json();
-        setTransports(data.filter((t: any) => t.actif === true));       
+        // Afficher tous les transports (actifs et inactifs)
+        setTransports(data);       
       } catch {
         setTransportError("Erreur lors du chargement des modes de transport");
       }
@@ -138,6 +139,7 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
               <Input
                 id="phone"
                 name="phone"
+                type="tel"
                 value={formData.phone}
                 onChange={handleInputChange}
                 className={cn(
@@ -182,77 +184,105 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
                   "bg-white",
                   errors.carModel && "border-red-500"
                 )}
-                placeholder="Ex: BMW Série 3, Mercedes Classe C..."
+                placeholder="Ex: Clio, 208, Golf..."
               />
               {errors.carModel && <p className="text-red-500 text-sm mt-1">{errors.carModel}</p>}
             </div>
 
             <div>
-              <Label htmlFor="carYear" className="text-navy">Année du véhicule*</Label>
+              <Label htmlFor="carMarque" className="text-navy">Marque du véhicule*</Label>
               <Input
-                id="carYear"
-                name="carYear"
-                value={formData.carYear}
+                id="carMarque"
+                name="carMarque"
+                value={formData.carMarque}
                 onChange={handleInputChange}
                 className={cn(
                   "bg-white",
-                  errors.carYear && "border-red-500"
+                  errors.carMarque && "border-red-500"
                 )}
-                placeholder="Ex: 2020"
+                placeholder="Ex: BMW, Mercedes, Audi..."
               />
-              {errors.carYear && <p className="text-red-500 text-sm mt-1">{errors.carYear}</p>}
+              {errors.carMarque && <p className="text-red-500 text-sm mt-1">{errors.carMarque}</p>}
             </div>
           </div>
 
           <div className="mt-4">
-            <Label htmlFor="carLicensePlate" className="text-navy">Plaque d&apos;immatriculation*</Label>
+            <Label htmlFor="carColor" className="text-navy">Couleur du véhicule*</Label>
             <Input
-              id="carLicensePlate"
-              name="carLicensePlate"
-              value={formData.carLicensePlate}
+              id="carColor"
+              name="carColor"
+              value={formData.carColor}
               onChange={handleInputChange}
               className={cn(
                 "bg-white",
-                errors.carLicensePlate && "border-red-500"
+                errors.carColor && "border-red-500"
               )}
-              placeholder="Ex: AB-123-CD"
+              placeholder="Ex: Rouge, Bleu, Noir..."
             />
-            {errors.carLicensePlate && <p className="text-red-500 text-sm mt-1">{errors.carLicensePlate}</p>}
+            {errors.carColor && <p className="text-red-500 text-sm mt-1">{errors.carColor}</p>}
           </div>
 
           <div>
             <h3 className="text-lg font-semibold text-navy mb-4">Mode de transport*</h3>
             {transportError && <div className="text-red-500 mb-2">{transportError}</div>}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {transports.map((transport) => (
-                <Card
-                  key={transport.id}
-                  className={cn(
-                    "cursor-pointer border-2 transition-all",
-                    selectedTransport && selectedTransport.id === transport.id
-                      ? "border-gold ring-2 ring-gold"
-                      : "border-gray-200 hover:border-gold",
-                    errors.transport && "border-red-500"
-                  )}
-                  onClick={() => {
-                    setSelectedTransport(transport);
-                    if (errors.transport) {
-                      setErrors((prev) => ({
-                        ...prev,
-                        transport: "",
-                      }));
-                    }
-                  }}
-                >
-                  <div className="p-4 flex flex-col h-full justify-between">
-                    <div>
-                      <CardTitle className="text-navy text-lg mb-2">{transport.type}</CardTitle>
-                      <CardDescription className="mb-2">{transport.consignes}</CardDescription>
+              {transports.map((transport) => {
+                const isInactive = !transport.actif;
+                return (
+                  <Card
+                    key={transport.id}
+                    className={cn(
+                      "border-2 transition-all relative",
+                      isInactive 
+                        ? "cursor-not-allowed opacity-60 bg-gray-100" 
+                        : "cursor-pointer",
+                      !isInactive && selectedTransport && selectedTransport.id === transport.id
+                        ? "border-gold ring-2 ring-gold"
+                        : "border-gray-200",
+                      !isInactive && "hover:border-gold",
+                      errors.transport && !isInactive && "border-red-500"
+                    )}
+                    onClick={() => {
+                      if (!isInactive) {
+                        setSelectedTransport(transport);
+                        if (errors.transport) {
+                          setErrors((prev) => ({
+                            ...prev,
+                            transport: "",
+                          }));
+                        }
+                      }
+                    }}
+                  >
+                    <div className="p-4 flex flex-col h-full justify-between">
+                      {isInactive && (
+                        <div className="absolute top-2 right-2 bg-gray-500 text-white text-xs font-semibold px-2 py-1 rounded">
+                          Indisponible
+                        </div>
+                      )}
+                      <div>
+                        <CardTitle className={cn(
+                          "text-lg mb-2",
+                          isInactive ? "text-gray-500" : "text-navy"
+                        )}>
+                          {transport.type}
+                        </CardTitle>
+                        <CardDescription className={cn(
+                          "mb-2",
+                          isInactive && "text-gray-400"
+                        )}>
+                          {isInactive ? "Disponible prochainement" : transport.consignes}
+                        </CardDescription>
+                      </div>
+                      <div className={cn(
+                        "text-right font-bold text-lg",
+                        isInactive ? "text-gray-400" : "text-gold"
+                      )}>
+                      </div>
                     </div>
-                    <div className="text-xl font-bold text-gold mt-2">{transport.prix}€</div>
-                  </div>
-                </Card>
-              ))}
+                  </Card>
+                );
+              })}
             </div>
             {errors.transport && <p className="text-red-500 text-sm mt-2">{errors.transport}</p>}
           </div>

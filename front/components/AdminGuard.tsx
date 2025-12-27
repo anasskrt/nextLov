@@ -13,7 +13,6 @@ export function AdminGuard({ children }: { children: React.ReactNode }) {
     
     // ✅ Vérifier qu'un token existe
     if (!token) {
-      console.log('[ADMIN GUARD] No token, redirecting to login')
       router.push('/connexion')
       return
     }
@@ -33,7 +32,6 @@ export function AdminGuard({ children }: { children: React.ReactNode }) {
       })
       .then(role => {
         if (parseInt(role, 10) !== 1) {
-          console.log('[ADMIN GUARD] User is not admin, redirecting to home')
           router.push('/')
         } else {
           setAllowed(true)

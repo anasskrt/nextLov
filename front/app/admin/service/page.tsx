@@ -46,7 +46,6 @@ const AdminServices = () => {
           },
         });
       const data = await res.json();
-      console.log("Fetch services data:", data); // Debugging line
       setServices(data);
     } catch {
       setServices([]);
@@ -145,7 +144,6 @@ const AdminServices = () => {
 
   const handleDelete = async (serviceId: number) => {
     try {
-      console.log(serviceId)
       const token = Cookies.get('token');
       await fetch(`/api/admin/service/${serviceId}`, {
         method: "DELETE",

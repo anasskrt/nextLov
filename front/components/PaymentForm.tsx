@@ -42,8 +42,7 @@ const PaymentForm = ({
   if (userInfo && userInfo.selectedTransport && userInfo.selectedTransport.prix) {
     transportPrice = Number(userInfo.selectedTransport.prix);
   }
-  const finalAmount = servicesTotal + transportPrice + totalAmount;
-  console.log(finalAmount, servicesTotal, transportPrice, totalAmount);
+  const finalAmount = servicesTotal + totalAmount;
   
   const handlePayment = async () => {
     setIsProcessing(true);
@@ -51,25 +50,16 @@ const PaymentForm = ({
     // Construire les line_items pour Stripe
     const lineItems = [];
     
-    // 1. Ligne principale : Parking
+    // 1. Ligne unique : Gardiennage automobile + Transport
+    const transportType = userInfo?.selectedTransport?.type || "Non spécifié";
     lineItems.push({
-      name: "Gardiennage automobile - Parking sécurisé",
+      name: `Gardiennage automobile + Transport (${transportType})`,
       description: `Du ${bookingDetails.fullDepartureDate ? new Date(bookingDetails.fullDepartureDate).toLocaleDateString("fr-FR") : "-"} au ${bookingDetails.fullReturnDate ? new Date(bookingDetails.fullReturnDate).toLocaleDateString("fr-FR") : "-"}`,
       amount: totalAmount,
       quantity: 1,
     });
 
-    // 2. Ligne transport
-    if (userInfo?.selectedTransport) {
-      lineItems.push({
-        name: `Transport : ${userInfo.selectedTransport.type}`,
-        description: userInfo.selectedTransport.consignes || "Service de transport",
-        amount: transportPrice,
-        quantity: 1,
-      });
-    }
-
-    // 3. Lignes services supplémentaires
+    // 2. Lignes services supplémentaires
     services.forEach((service) => {
       if (typeof service.price === "number") {
         lineItems.push({
@@ -99,8 +89,6 @@ const PaymentForm = ({
       },
     };
 
-    console.log("Payment payload:", payload);
-
     try {
       const res = await fetch("/api/stripe/init", {
         method: "POST",
@@ -121,7 +109,6 @@ const PaymentForm = ({
       }
 
       const data = await res.json();
-      console.log("Stripe response:", data);
       
       if (!data.client_secret) {
         console.error("Client secret manquant dans la réponse:", data);
@@ -188,7 +175,6 @@ const PaymentForm = ({
                 </h4>
                 <div className="flex justify-between items-center py-1">
                   <span>{userInfo.selectedTransport.type}</span>
-                  <span className="font-semibold">{userInfo.selectedTransport.prix}€</span>
                 </div>
               </div>
             </div>
@@ -264,10 +250,6 @@ const PaymentForm = ({
                       )
                     : "-"}
                 </p>
-                  <div className="flex justify-between items-center py-1">
-                    <span>prix du parking pour la durée </span>
-                    <span className="font-semibold">{totalAmount}€</span>
-                </div>
             </div>
 
             <div className="border-t pt-4">

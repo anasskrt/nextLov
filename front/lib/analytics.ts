@@ -29,13 +29,11 @@ export const trackConversion = (
   // Vérifier si la conversion a déjà été trackée (éviter les doublons)
   const conversionKey = `conversion_tracked_${transactionId}`;
   if (transactionId && sessionStorage.getItem(conversionKey)) {
-    console.log('[Analytics] Conversion already tracked for', transactionId);
     return;
   }
 
   // Vérifier que gtag est chargé
   if (!window.gtag_report_conversion) {
-    console.warn('[Analytics] Google Ads conversion tracking not loaded');
     return;
   }
 
@@ -58,7 +56,6 @@ export const trackConversion = (
       sessionStorage.setItem(conversionKey, 'true');
     }
 
-    console.log('[Analytics] Conversion tracked:', { amount, transactionId });
   } catch (error) {
     console.error('[Analytics] Error tracking conversion:', error);
   }
@@ -80,7 +77,6 @@ export const trackEvent = (
 
   try {
     window.gtag('event', eventName, parameters);
-    console.log('[Analytics] Event tracked:', eventName, parameters);
   } catch (error) {
     console.error('[Analytics] Error tracking event:', error);
   }

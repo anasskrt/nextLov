@@ -4,36 +4,30 @@ import { Badge } from "@/components/ui/badge";
 import TransportOptions from "./TransportOptions";
 
 const HowItWorks = () => {
-  const steps = [
+  const mainSteps = [
     {
       icon: Car,
-      title: "Arrivée au parking ou au dépose-minute",
-      subtitle: "Accueil professionnel & prise en charge sécurisée",
-      description: "À votre arrivée, notre équipe vous accueille 24h/24. Que vous choisissiez la navette ou le voiturier, un état du véhicule est réalisé systématiquement. Nous vous accompagnons ensuite dans les meilleures conditions.",
-      features: ["Parking privé sécurisé", "Accueil 24h/24", "Contrôle du véhicule à l’arrivée"]
-    },
-    {
-      icon: Users,
-      title: "Départ vers l’aéroport Bordeaux-Mérignac",
-      subtitle: "Transfert confortable et rapide",
-      description: "En moins de 7 minutes, vous êtes à l’aéroport. Nos voituriers ou notre navette climatisée vous déposent rapidement, avec ponctualité et courtoisie.",
-      features: ["Transfert express (7 min)", "Véhicule climatisé", "Ponctualité garantie"]
+      title: "1. Déposez votre véhicule au dépose-minute",
+      subtitle: "Prise en charge directe à l'aéroport",
+      description: "Rendez-vous directement au dépose-minute de l'aéroport de Bordeaux-Mérignac. Notre voiturier vous accueille 24h/24, réalise un état des lieux complet de votre véhicule et vous remet un reçu.",
+      features: ["Accueil 24h/24 et 7j/7", "État des lieux détaillé", "Prise en charge immédiate"]
     },
     {
       icon: Plane,
-      title: "Pendant votre voyage",
-      subtitle: "Votre véhicule entre de bonnes mains",
-      description: "Pendant toute la durée de votre absence, votre voiture est gardée dans un environnement sécurisé, sous surveillance vidéo continue.",
-      features: ["Surveillance caméra 24h/24", "Éclairage nocturne renforcé", "Patrouilles fréquentes"]
-    },
-    {
-      icon: ArrowRight,
-      title: "Retour simplifié et rapide",
-      subtitle: "Récupérez votre véhicule sans stress",
-      description: "À votre retour, vous nous contactez dès récupération de vos bagages. Votre voiture vous est restituée rapidement, soit à l’aéroport, soit au parking selon votre mode de transport.",
-      features: ["Localisation claire via carte interactive", "Communication facilitée", "Véhicule prêt et sécurisé"]
+      title: "2. Partez l'esprit tranquille",
+      subtitle: "Nous prenons soin de votre véhicule",
+      description: "Dès votre départ, nous transférons votre voiture vers notre parking privé sécurisé. Pendant toute la durée de votre voyage, votre véhicule est gardé sous surveillance vidéo continue.",
+      features: ["Parking sécurisé privé", "Surveillance 24h/24", "Vol retour enregistré"]
     }
   ];
+
+  const finalStep = {
+    icon: ArrowRight,
+    title: "3. Récupérez votre voiture au dépose-minute",
+    subtitle: "Restitution automatique et sécurisée",
+    description: "Grâce aux informations de votre vol retour, nous préparons votre véhicule en avance. À votre arrivée au dépose-minute, votre voiture vous attend. Vérification rapide de l'état, signature, et vous repartez immédiatement !",
+    features: ["Préparation anticipée", "Restitution au dépose-minute", "Contrôle final ensemble", "Départ immédiat"]
+  };
 
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden" id="how-it-works">
@@ -41,31 +35,32 @@ const HowItWorks = () => {
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6 leading-tight">
-            MSParking Bordeaux-Mérignac :
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"> Le parking idéal pour vos voyages</span>
+            Comment fonctionne notre 
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"> Service Voiturier ?</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            MSParking offre un <strong>service de gardiennage automobile et voiturier</strong> à l&apos;aéroport Bordeaux-Mérignac. Profitez d&apos;un stationnement sécurisé, d&apos;une navette et d&apos;une surveillance constante pour voyager sereinement.
+            Un service <strong>simple, rapide et sécurisé</strong> : nous récupérons votre véhicule directement au dépose-minute de l&apos;aéroport et vous le restituons au même endroit à votre retour. Aucun déplacement, aucun stress !
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <div className="flex items-center gap-2 text-sm text-gray-600">
-              <Clock className="h-4 w-4 text-primary" /> Service 24h/24, 7j/7
+              <Car className="h-4 w-4 text-primary" /> Service Voiturier Premium
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-600">
-              <MapPin className="h-4 w-4 text-primary" /> Bordeaux-Mérignac
+              <Clock className="h-4 w-4 text-primary" /> Disponible 24h/24, 7j/7
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <MapPin className="h-4 w-4 text-primary" /> Dépose-minute aéroport
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <Shield className="h-4 w-4 text-primary" /> Parking sécurisé
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <Star className="h-4 w-4 text-primary" /> Satisfaction garantie
             </div>
           </div>
         </div>
         <TransportOptions />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {steps.map((step, index) => (
+        {/* Les 2 premières étapes en grille 2 colonnes */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          {mainSteps.map((step, index) => (
             <Card key={index} className="group hover:shadow-xl transition duration-300 bg-white/80 backdrop-blur-sm hover:bg-white hover:-translate-y-2">
               <CardHeader className="pb-4">
                 <div className="flex items-start gap-4">
@@ -97,6 +92,40 @@ const HowItWorks = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Étape finale centrée */}
+        <div className="flex justify-center">
+          <Card className="group hover:shadow-xl transition duration-300 bg-white/80 backdrop-blur-sm hover:bg-white hover:-translate-y-2 max-w-2xl w-full">
+            <CardHeader className="pb-4">
+              <div className="flex items-start gap-4">
+                <div className="relative">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg">
+                    <finalStep.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-secondary rounded-full text-xs font-bold text-white flex items-center justify-center">
+                    3
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <CardTitle className="text-xl text-navy group-hover:text-primary transition-colors">
+                    {finalStep.title}
+                  </CardTitle>
+                  <p className="text-sm text-secondary font-medium">{finalStep.subtitle}</p>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <p className="text-gray-600 mb-4">{finalStep.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {finalStep.features.map((feature, idx) => (
+                  <Badge key={idx} variant="outline" className="text-xs bg-primary/5 text-primary border-primary/20">
+                    {feature}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

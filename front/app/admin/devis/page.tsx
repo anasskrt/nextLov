@@ -134,7 +134,6 @@ const AdminQuotes = () => {
       
       setQuotes(filteredDevis);
       setTotal(filteredDevis.length);
-      console.log("Fetched quotes:", filteredDevis); // Ligne de débogage
     } catch {
       setQuotes([]);
       setTotal(0);

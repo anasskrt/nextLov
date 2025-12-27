@@ -122,7 +122,7 @@ const GarageService = () => {
                         href="tel:+33609041879" 
                         className="text-xl font-bold text-gold hover:text-gold-light transition-colors"
                       >
-                        06 09 04 18 79
+                        05 57 26 99 87
                       </a>
                       <p className="text-sm text-white/70 mt-1">Lundi - Samedi : 8h - 19h</p>
                     </div>
@@ -141,7 +141,7 @@ const GarageService = () => {
                         href="mailto:contact@msparking.fr" 
                         className="text-lg font-bold text-gold hover:text-gold-light transition-colors break-all"
                       >
-                        contact@msparking.fr
+                        serviceauto21@hotmail.fr
                       </a>
                       <p className="text-sm text-white/70 mt-1">Réponse sous 24h</p>
                     </div>

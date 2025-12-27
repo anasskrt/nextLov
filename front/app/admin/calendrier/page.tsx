@@ -55,7 +55,6 @@ const AdminCalendar = () => {
       });
       if (!res.ok) throw new Error("Erreur lors du chargement des réservations");
       const data = await res.json();
-      console.log("Bookings data:", data); // Debugging line
       // On garde les dates en string pour éviter les problèmes de timezone
       setBookings(data);
     } catch {

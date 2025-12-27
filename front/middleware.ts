@@ -44,7 +44,6 @@ export function middleware(request: NextRequest) {
     const authHeader = request.headers.get('authorization')
     
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      console.log('[API SECURITY] No authorization header on admin API route')
       return NextResponse.json(
         { error: 'Unauthorized - Token required' },
         { status: 401 }
@@ -60,7 +59,6 @@ export function middleware(request: NextRequest) {
 
       // Token expiré
       if (expiration < now) {
-        console.log('[API SECURITY] Expired token on admin API route')
         return NextResponse.json(
           { error: 'Unauthorized - Token expired' },
           { status: 401 }
@@ -69,7 +67,6 @@ export function middleware(request: NextRequest) {
 
       // Vérifier que l'utilisateur est admin
       if (decoded.role !== 'ADMIN') {
-        console.log('[API SECURITY] Non-admin user attempted to access admin API route')
         return NextResponse.json(
           { error: 'Forbidden - Admin access required' },
           { status: 403 }
@@ -77,7 +74,6 @@ export function middleware(request: NextRequest) {
       }
 
       // Token valide et utilisateur admin, autoriser l'accès
-      console.log(`[API SECURITY] Admin API access granted for ${decoded.email}`)
       return NextResponse.next()
 
     } catch (error) {
@@ -117,7 +113,6 @@ export function middleware(request: NextRequest) {
     // - Vient de Stripe (referer contient stripe.com)
     // - OU a un session_id valide dans l'URL
     if (!hasSessionId && (!referer || !referer.includes('stripe.com'))) {
-      console.log('[SECURITY] Direct access to payment return page blocked')
       return NextResponse.redirect(new URL('/', request.url))
     }
     
@@ -128,7 +123,6 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get('token')
 
   if (!token) {
-    console.log('[AUTH] No token found, redirecting to login')
     return NextResponse.redirect(new URL('/connexion', request.url))
   }
 
@@ -140,7 +134,6 @@ export function middleware(request: NextRequest) {
 
     // Token expiré
     if (expiration < now) {
-      console.log('[AUTH] Token expired, redirecting to login')
       const response = NextResponse.redirect(new URL('/connexion', request.url))
       response.cookies.delete('token')
       return response
@@ -149,7 +142,6 @@ export function middleware(request: NextRequest) {
     // 7. Vérification spécifique pour les pages admin
     if (pathname.startsWith('/admin')) {
       if (decoded.role !== 'ADMIN') {
-        console.log('[AUTH] User is not admin, redirecting to home')
         return NextResponse.redirect(new URL('/', request.url))
       }
     }

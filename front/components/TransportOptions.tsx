@@ -13,35 +13,8 @@ const TransportOptions = () => {
             Optez pour la tranquillité avec nos solutions pratiques et confortables pour vos déplacements vers l&apos;aéroport de Bordeaux-Mérignac.
           </p>
           
-          {/* Navette */}
-          <div className="mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                <Users className="h-6 w-6 text-white" />
-              </div>
-              <h4 className="text-2xl font-bold text-navy">Service Navette</h4>
-            </div>
-            <p className="text-gray-600 mb-4 leading-relaxed">
-              Déposez votre véhicule directement sur notre parking sécurisé à seulement <strong>7 min de l&apos;aéroport</strong>. Après un état des lieux détaillé, notre navette vous conduit au terminal. À votre retour, contactez-nous après avoir récupéré vos bagages : nous vous récupérerons rapidement pour vous restituer votre voiture.
-            </p>
-            <div className="flex items-center gap-4 text-sm text-blue-600">
-              <span className="flex items-center gap-1">
-                <Clock className="h-4 w-4" />
-                7 min de trajet
-              </span>
-              <span className="flex items-center gap-1">
-                <Shield className="h-4 w-4" />
-                Véhicule sécurisé
-              </span>
-              <span className="flex items-center gap-1">
-                <CheckCircle className="h-4 w-4" />
-                Simple et économique
-              </span>
-            </div>
-          </div>
-
           {/* Voiturier */}
-          <div>
+          <div className="mb-8">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 bg-gradient-to-br from-gold to-yellow-500 rounded-lg flex items-center justify-center">
                 <Car className="h-6 w-6 text-white" />
@@ -64,6 +37,51 @@ const TransportOptions = () => {
                 <Clock className="h-4 w-4" />
                 Gain de temps
               </span>
+            </div>
+          </div>
+
+          {/* Navette - Indisponible temporairement */}
+          <div className="relative">
+            {/* Overlay avec badge "Disponible prochainement" */}
+            <div className="absolute -top-2 -right-2 z-10">
+              <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 rounded-lg shadow-lg font-semibold text-sm flex items-center gap-2 animate-pulse">
+                <Clock className="h-4 w-4" />
+                Disponible prochainement
+              </div>
+            </div>
+            
+            {/* Contenu grisé */}
+            <div className="opacity-60 grayscale pointer-events-none">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                  <Users className="h-6 w-6 text-white" />
+                </div>
+                <h4 className="text-2xl font-bold text-navy">Service Navette</h4>
+              </div>
+              <p className="text-gray-600 mb-4 leading-relaxed">
+                Déposez votre véhicule directement sur notre parking sécurisé à seulement <strong>7 min de l&apos;aéroport</strong>. Après un état des lieux détaillé, notre navette vous conduit au terminal. À votre retour, contactez-nous après avoir récupéré vos bagages : nous vous récupérerons rapidement pour vous restituer votre voiture.
+              </p>
+              <div className="flex items-center gap-4 text-sm text-blue-600">
+                <span className="flex items-center gap-1">
+                  <Clock className="h-4 w-4" />
+                  7 min de trajet
+                </span>
+                <span className="flex items-center gap-1">
+                  <Shield className="h-4 w-4" />
+                  Véhicule sécurisé
+                </span>
+                <span className="flex items-center gap-1">
+                  <CheckCircle className="h-4 w-4" />
+                  Simple et économique
+                </span>
+              </div>
+            </div>
+            
+            {/* Message d'information */}
+            <div className="mt-4 bg-orange-50 border-l-4 border-orange-500 p-3 rounded">
+              <p className="text-sm text-orange-800 font-medium">
+                ℹ️ Ce service sera bientôt disponible. En attendant, profitez de notre service voiturier !
+              </p>
             </div>
           </div>
 
