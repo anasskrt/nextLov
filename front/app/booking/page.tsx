@@ -43,15 +43,18 @@ const BookingProcessPage = () => {
   const handleServiceSelection = (services: any[]) => {
     setSelectedServices(services);
     setCurrentStep("userinfo");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleUserInfoSubmit = (user: any) => {
     setUserInfo(user);
     setCurrentStep("rules");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleRulesValidation = () => {
     setCurrentStep("payment");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const calculateTotalAmount = () => {
@@ -80,14 +83,20 @@ const BookingProcessPage = () => {
         return (
           <UserInfoForm
             onNext={handleUserInfoSubmit}
-            onBack={() => setCurrentStep("services")}
+            onBack={() => {
+              setCurrentStep("services");
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
           />
         );
       case "rules":
         return (
           <RulesValidation
             onNext={handleRulesValidation}
-            onBack={() => setCurrentStep("userinfo")}
+            onBack={() => {
+              setCurrentStep("userinfo");
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
           />
         );
       case "payment":
@@ -97,7 +106,10 @@ const BookingProcessPage = () => {
             services={selectedServices}
             userInfo={userInfo}
             bookingDetails={bookingDetails}
-            onBack={() => setCurrentStep("rules")}
+            onBack={() => {
+              setCurrentStep("rules");
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
           />
         );
       default:
