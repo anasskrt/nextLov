@@ -58,7 +58,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             "url": "https://msparking.fr/",
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "159 avenue de beutre",
+              "streetAddress": "157 avenue de beutre",
               "addressLocality": "Bordeaux",
               "postalCode": "33600",
               "addressCountry": "FR"

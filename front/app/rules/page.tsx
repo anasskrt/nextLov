@@ -193,12 +193,12 @@ export default function RulesPage() {
                 Ces règles garantissent la sécurité et la qualité de notre prestation.
               </p>
             </div>
-            <div className="mb-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
-              <div className="flex items-start gap-3">
-                <Info className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
+            <div className="mb-8 p-6 bg-primary-red-50 border border-primary-red-200 rounded-lg">
+              <div className="flex items-start gap-4">
+                <Info className="w-6 h-6 text-primary-red-600 flex-shrink-0 mt-1" />
                 <div>
-                  <h2 className="font-semibold text-blue-900 mb-2">Information importante</h2>
-                  <p className="text-blue-800">
+                  <h2 className="font-semibold text-primary-red-900 mb-2">Information importante</h2>
+                  <p className="text-primary-red-800">
                     L&apos;acceptation de ces règles est obligatoire pour utiliser notre service. 
                     En réservant, vous confirmez avoir lu et accepté l&apos;ensemble de ces conditions.
                   </p>
@@ -209,7 +209,7 @@ export default function RulesPage() {
               title="Règles concernant le service de navette"
               rules={navetteRules}
               icon={Car}
-              color="text-red-600"
+              color="text-primary-red-600"
               sectionLevel={2}
             />
             <RuleSection 
@@ -230,7 +230,7 @@ export default function RulesPage() {
               title="Responsabilité et limites"
               rules={liabilityRules}
               icon={AlertTriangle}
-              color="text-red-600"
+              color="text-primary-red-600"
               sectionLevel={2}
             />
             <div className="mt-12 p-6 bg-navy text-white rounded-lg text-center">

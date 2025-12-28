@@ -53,17 +53,17 @@ const GarageService = () => {
 
         {/* Alerte information */}
         <div className="max-w-4xl mx-auto mb-12">
-          <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg shadow-sm">
+          <div className="bg-primary-red-50 border-l-4 border-primary-red-500 p-6 rounded-lg shadow-sm">
             <div className="flex items-start gap-3">
-              <AlertCircle className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+              <AlertCircle className="h-6 w-6 text-primary-red-600 flex-shrink-0 mt-1" />
               <div>
-                <h3 className="font-semibold text-blue-900 mb-2">Comment ça fonctionne ?</h3>
-                <p className="text-blue-800 mb-3">
+                <h3 className="font-semibold text-primary-red-900 mb-2">Comment ça fonctionne ?</h3>
+                <p className="text-primary-red-800 mb-3">
                   Pendant que votre véhicule est garé chez MSParking, notre garage partenaire peut 
                   effectuer une révision, un entretien ou une petite réparation mécanique. 
                   Votre voiture sera prête et en parfait état à votre retour !
                 </p>
-                <p className="text-sm text-blue-700 italic">
+                <p className="text-sm text-primary-red-700 italic">
                   ⏱️ Délai minimum : 48h de stationnement recommandé pour les interventions
                 </p>
               </div>

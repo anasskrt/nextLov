@@ -68,9 +68,22 @@ export default {
     				dark: '#b38f1d'
     			},
     			navy: {
-    				DEFAULT: '#1e3a8a',
-    				light: '#2d4ba0',
-    				dark: '#152a65'
+    				DEFAULT: '#b71126',
+    				light: '#d4163a',
+    				dark: '#8f0d1e'
+    			},
+    			'primary-red': {
+    				DEFAULT: '#b71126',
+    				'50': '#fef2f3',
+    				'100': '#fde3e5',
+    				'200': '#fbccd0',
+    				'300': '#f7a8b0',
+    				'400': '#f17585',
+    				'500': '#e5475e',
+    				'600': '#d12b45',
+    				'700': '#b71126',
+    				'800': '#991125',
+    				'900': '#811324'
     			}
     		},
     		borderRadius: {

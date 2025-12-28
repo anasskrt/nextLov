@@ -4,9 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   // ✅ Vérification admin
   const authHeader = req.headers.get("authorization");
-  console.log("Auth Header:", authHeader);
   const user = verifyAdminToken(authHeader || '');
-  console.log("Verified User:", user);
   if (!user) {
     return NextResponse.json(
       { error: 'Unauthorized - Admin access required' },

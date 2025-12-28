@@ -86,7 +86,7 @@ function PaymentReturn() {
       <div className="flex flex-col items-center justify-center h-[70vh]">
         {status === "processing" ? (
           <>
-            <Clock className="w-12 h-12 text-blue-600 mb-4 animate-pulse" />
+            <Clock className="w-12 h-12 text-primary-red-600 mb-4 animate-pulse" />
             <p className="text-lg font-semibold mb-2">Traitement du paiement en cours...</p>
             <p className="text-sm text-gray-600">Veuillez patienter quelques instants ({retryCount}/10)</p>
           </>
@@ -145,14 +145,14 @@ function PaymentReturn() {
             </AlertDescription>
           </Alert>
 
-          <Card className="mb-6 border-blue-200 bg-blue-50">
+          <Card className="mb-6 border-primary-red-200 bg-primary-red-50">
             <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2 text-blue-900">
+              <CardTitle className="text-lg flex items-center gap-2 text-primary-red-900">
                 <AlertCircle className="h-5 w-5" />
                 Que faire maintenant ?
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-left space-y-3 text-blue-900">
+            <CardContent className="text-left space-y-3 text-primary-red-900">
               <div className="flex gap-3">
                 <span className="font-bold">1.</span>
                 <p>Vérifiez que votre carte bancaire est valide et dispose de fonds suffisants</p>
@@ -231,10 +231,10 @@ function PaymentReturn() {
       <p className="text-gray-600 mb-6 max-w-md">
         {errorMessage || "Une erreur est survenue lors de la vérification."}
       </p>
-      <Alert className="mb-6 max-w-md border-blue-200 bg-blue-50">
-        <AlertCircle className="h-5 w-5 text-blue-600" />
-        <AlertTitle className="text-blue-900">Besoin d&apos;assistance ?</AlertTitle>
-        <AlertDescription className="text-blue-800">
+      <Alert className="mb-6 max-w-md border-primary-red-200 bg-primary-red-50">
+        <AlertCircle className="h-5 w-5 text-primary-red-600" />
+        <AlertTitle className="text-primary-red-900">Besoin d&apos;assistance ?</AlertTitle>
+        <AlertDescription className="text-primary-red-800">
           Si le problème persiste, n&apos;hésitez pas à contacter notre support technique.
         </AlertDescription>
       </Alert>

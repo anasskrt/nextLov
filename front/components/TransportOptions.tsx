@@ -61,7 +61,7 @@ const TransportOptions = () => {
               <p className="text-gray-600 mb-4 leading-relaxed">
                 Déposez votre véhicule directement sur notre parking sécurisé à seulement <strong>7 min de l&apos;aéroport</strong>. Après un état des lieux détaillé, notre navette vous conduit au terminal. À votre retour, contactez-nous après avoir récupéré vos bagages : nous vous récupérerons rapidement pour vous restituer votre voiture.
               </p>
-              <div className="flex items-center gap-4 text-sm text-blue-600">
+              <div className="flex items-center gap-4 text-sm text-primary-red-600">
                 <span className="flex items-center gap-1">
                   <Clock className="h-4 w-4" />
                   7 min de trajet

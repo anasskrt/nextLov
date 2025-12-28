@@ -28,8 +28,8 @@ const RulesValidation = ({ onNext, onBack }: RulesValidationProps) => {
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
-            <div className="p-6 bg-blue-50 border border-blue-200 rounded-lg">
-              <p className="text-blue-800 mb-4">
+            <div className="p-6 bg-primary-red-50 border border-primary-red-200 rounded-lg">
+              <p className="text-primary-red-800 mb-4">
                 Avant de finaliser votre réservation, vous devez accepter nos règles du service.
               </p>
               

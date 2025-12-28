@@ -26,7 +26,7 @@ const getPasswordStrength = (password: string): PasswordStrength => {
   } else if (score < 60) {
     return { score, label: 'Moyen', color: 'bg-yellow-500' };
   } else if (score < 90) {
-    return { score, label: 'Bon', color: 'bg-blue-500' };
+    return { score, label: 'Bon', color: 'bg-primary-red-500' };
   } else {
     return { score, label: 'Excellent', color: 'bg-green-500' };
   }
@@ -44,7 +44,7 @@ const PasswordStrengthIndicator: React.FC<PasswordStrengthIndicatorProps> = ({ p
         <span className={`font-medium ${
           strength.score < 30 ? 'text-red-600' :
           strength.score < 60 ? 'text-yellow-600' :
-          strength.score < 90 ? 'text-blue-600' : 'text-green-600'
+          strength.score < 90 ? 'text-primary-red-600' : 'text-green-600'
         }`}>
           {strength.label}
         </span>

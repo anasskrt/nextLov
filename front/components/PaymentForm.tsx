@@ -272,11 +272,11 @@ const PaymentForm = ({
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-              <h4 className="font-semibold text-blue-800 mb-2">
+            <div className="bg-primary-red-50 p-4 rounded-lg border border-primary-red-200">
+              <h4 className="font-semibold text-primary-red-800 mb-2">
                 Informations de paiement
               </h4>
-              <p className="text-blue-700 text-sm">
+              <p className="text-primary-red-700 text-sm">
                 En cliquant sur &quot;Payer maintenant&quot;, vous serez redirigé
                 vers une page de paiement sécurisée pour finaliser votre
                 réservation.
