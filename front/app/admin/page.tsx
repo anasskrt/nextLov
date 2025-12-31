@@ -69,10 +69,10 @@ const AdminPage = () => {
     //   count: "---"
     // },
     {
-      title: "Liste des abandons",
+      title: "Liste des abandons ",
       description: "Gérer les plages horaires",
       icon: Clock,
-      path: "/admin/plages-horaires",
+      path: "/admin/abandons",
       count: "---"
     }
   ];
