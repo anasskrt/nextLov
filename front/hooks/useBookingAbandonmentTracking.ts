@@ -44,6 +44,7 @@ export const useBookingAbandonmentTracking = (
       if (hasTrackedRef.current) return;
             
       try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const dataToSend: Record<string, any> = {
           email: bookingData.email,
           phone: bookingData.phone,
@@ -62,11 +63,11 @@ export const useBookingAbandonmentTracking = (
           type: 'application/json',
         });
 
-        const sent = navigator.sendBeacon(`${process.env.BACKEND_URL}/booking/abandonments`, blob);
+        const sent = navigator.sendBeacon(`${process.env.BACKEND_URL}/api/booking/abandonments`, blob);
         
         // Backup: fetch avec keepalive
         if (!sent) {
-          fetch(`${process.env.BACKEND_URL}/booking/abandonments`, {
+          fetch(`${process.env.BACKEND_URL}/api/booking/abandonments`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dataToSend),

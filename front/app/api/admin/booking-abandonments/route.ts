@@ -2,7 +2,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminToken } from "@/lib/auth";
 
-const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3001";
 
 /**
  * GET /api/admin/booking-abandonments
@@ -34,7 +33,7 @@ export async function GET(req: NextRequest) {
     });
 
     const response = await fetch(
-      `${BACKEND_URL}/booking/abandonments?${params.toString()}`,
+      `${process.env.BACKEND_URL}/booking/abandonments?${params.toString()}`,
       {
         headers: authHeader ? { Authorization: authHeader } : {},
       }
@@ -108,7 +107,7 @@ export async function DELETE(req: NextRequest) {
     }
 
     const response = await fetch(
-      `${BACKEND_URL}/booking/abandonments/${id}`,
+      `${process.env.BACKEND_URL}/booking/abandonments/${id}`,
       {
         method: "DELETE",
         headers: authHeader ? { Authorization: authHeader } : {},

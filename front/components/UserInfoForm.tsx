@@ -79,7 +79,7 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
         };
 
 
-        await fetch(`${process.env.BACKEND_URL}/booking/abandonments`, {
+        await fetch('/api/booking/abandonments', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(dataToSend),
