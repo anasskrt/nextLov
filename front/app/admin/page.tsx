@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, FileText, BarChart3, Settings } from "lucide-react";
+import { Users, FileText, BarChart3, Settings, Clock } from "lucide-react";
 
 const AdminPage = () => {
   const pathname = usePathname();
@@ -52,6 +52,27 @@ const AdminPage = () => {
       description: "Gérer les options de transport",
       icon: Settings,
       path: "/admin/transports",
+      count: "---"
+    },
+    // {
+    //   title: "Liste des shifters",
+    //   description: "Gérer les shifters",
+    //   icon: Users,
+    //   path: "/admin/shifters",
+    //   count: "---"
+    // },
+    // {
+    //   title: "Liste des plages horaires",
+    //   description: "Gérer les plages horaires",
+    //   icon: Clock,
+    //   path: "/admin/plages-horaires",
+    //   count: "---"
+    // },
+    {
+      title: "Liste des abandons",
+      description: "Gérer les plages horaires",
+      icon: Clock,
+      path: "/admin/plages-horaires",
       count: "---"
     }
   ];

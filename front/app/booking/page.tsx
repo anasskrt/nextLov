@@ -59,7 +59,6 @@ const BookingProcessPage = () => {
 
   const calculateTotalAmount = () => {
     const montantFinal = bookingDetails?.estimation?.montantFinal ?? 0;
-
     return montantFinal;
   };
 

@@ -39,6 +39,65 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
   const [selectedTransport, setSelectedTransport] = useState<any>(null);
   const [transportError, setTransportError] = useState<string | null>(null);
 
+  // 🚀 Auto-save dès que email + phone + firstName sont remplis
+  useEffect(() => {
+    const saveAbandonment = async () => {
+      // Vérifier que les 3 champs essentiels sont remplis
+      if (!formData.email || !formData.phone || !formData.firstName) {
+        return;
+      }
+
+      // Vérifier que l'email est valide
+      if (!/\S+@\S+\.\S+/.test(formData.email)) {
+        return;
+      }
+
+      // Vérifier que le téléphone a au moins 10 chiffres
+      if (formData.phone.replace(/\D/g, '').length < 10) {
+        return;
+      }
+
+      try {
+        // Récupérer les bookingDetails depuis sessionStorage
+        const stored = sessionStorage.getItem('bookingDetails');
+        let bookingDetails = null;
+        if (stored) {
+          bookingDetails = JSON.parse(stored);
+        }
+
+        const dataToSend = {
+          email: formData.email,
+          phone: formData.phone,
+          firstName: formData.firstName,
+          lastName: formData.name || null,
+          estimatedPrice: bookingDetails?.estimation?.montantFinal || null,
+          departureDate: bookingDetails?.fullDepartureDate || null,
+          returnDate: bookingDetails?.fullReturnDate || null,
+          currentStep: 'userinfo',
+          selectedServices: [],
+          abandonedAt: new Date().toISOString(),
+        };
+
+
+        await fetch(`${process.env.BACKEND_URL}/booking/abandonments`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataToSend),
+        });
+      } catch (error) {
+        // Silent fail - on ne veut pas embêter l'utilisateur
+        console.error('Erreur auto-save:', error);
+      }
+    };
+
+    // Debounce de 2 secondes pour éviter trop de requêtes
+    const timer = setTimeout(() => {
+      saveAbandonment();
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [formData.email, formData.phone, formData.firstName, formData.name]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
