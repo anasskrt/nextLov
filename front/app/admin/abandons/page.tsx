@@ -318,7 +318,7 @@ const AdminAbandons = () => {
           <DialogHeader>
             <DialogTitle>Supprimer cet abandon ?</DialogTitle>
             <DialogDescription>
-              Cette action est irréversible. L'abandon sera définitivement supprimé de la base de
+              Cette action est irréversible. L&apos;abandon sera définitivement supprimé de la base de
               données.
             </DialogDescription>
           </DialogHeader>
