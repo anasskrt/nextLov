@@ -8,7 +8,7 @@ const PromoBanner = () => {
           <div className="flex items-center gap-2">
             <Sparkles className="w-6 h-6 text-gold animate-pulse" />
             <span className="text-white font-bold text-lg sm:text-xl">
-              🎉 Offre de Lancement !
+              Offre de Lancement !
             </span>
             <Sparkles className="w-6 h-6 text-gold animate-pulse" />
           </div>

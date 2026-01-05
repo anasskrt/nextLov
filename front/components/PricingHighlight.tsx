@@ -29,7 +29,7 @@ const PricingHighlight = () => {
             <div className="flex items-baseline justify-center gap-4 mb-6">
               <span className="text-3xl text-white/60">à partir de</span>
               <div className="relative">
-                <span className="text-8xl font-bold text-gold drop-shadow-lg">10€</span>
+                <span className="text-8xl font-bold text-gold drop-shadow-lg">7€</span>
                 <div className="absolute -top-2 -right-2 w-6 h-6 bg-gold rounded-full animate-pulse"></div>
               </div>
               <span className="text-3xl text-white/60">/jour</span>

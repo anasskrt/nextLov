@@ -7,10 +7,10 @@ const TransportOptions = () => {
         {/* Texte à gauche */}
         <div>
           <h3 className="text-3xl font-bold text-navy mb-6">
-            Deux Solutions de Transport Adaptées
+            Une Solution de Transport Adaptées
           </h3>
           <p className="text-lg text-gray-600 mb-8">
-            Optez pour la tranquillité avec nos solutions pratiques et confortables pour vos déplacements vers l&apos;aéroport de Bordeaux-Mérignac.
+            Optez pour la tranquillité avec notre solution pratique et confortable pour vos déplacements vers l&apos;aéroport de Bordeaux-Mérignac.
           </p>
           
           {/* Voiturier */}
