@@ -22,7 +22,7 @@ const MarketingSection = () => {
             </p>
 
             <p className="text-xl text-gray-600 leading-relaxed">
-              Choisissez entre notre navette rapide ou notre service voiturier selon vos besoins. Plus besoin de chercher une place ou de vous inquiéter pour votre voiture : avec MSParking, partez l&apos;esprit léger et revenez sereinement.
+              Plus besoin de chercher une place ou de vous inquiéter pour votre voiture : avec MSParking, partez l&apos;esprit léger et revenez sereinement.
             </p>
           </div>
 
@@ -32,7 +32,7 @@ const MarketingSection = () => {
                 Une expérience parking adaptée à vos besoins
               </h3>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Profitez d’un service complet : gardiennage sécurisé, navette rapide, voiturier personnalisé, disponibilité permanente et tarifs attractifs. MSParking transforme votre trajet vers l&apos;aéroport en une expérience agréable et sans stress.
+                Profitez d’un service complet : gardiennage sécurisé, voiturier rapide, disponibilité permanente et tarifs attractifs. MSParking transforme votre trajet vers l&apos;aéroport en une expérience agréable et sans stress.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

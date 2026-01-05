@@ -11,7 +11,7 @@ const Footer = () => {
               MS<span className="text-gold">Parking</span>
             </h3>
             <p className="mb-4">
-              Service gardiennage et voiturier parter en vacance l&apos;esprit léger. Parking aéroport de bordeaux, service de navette.
+              Service gardiennage et voiturier parter en vacance l&apos;esprit léger. Parking aéroport de bordeaux, service de voiturier.
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="text-white hover:text-gold-light" aria-label="Facebook">

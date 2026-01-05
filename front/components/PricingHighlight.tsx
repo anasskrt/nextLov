@@ -38,7 +38,7 @@ const PricingHighlight = () => {
             
             <p className="text-2xl mb-12 text-white/90 leading-relaxed max-w-3xl mx-auto">
               Profitez de notre service de gardiennage automobile 
-              avec navette gratuite vers l&apos;aéroport de Bordeaux. 
+              avec voiturier vers l&apos;aéroport de Bordeaux. 
               Votre véhicule en sécurité, votre voyage en toute sérénité.
             </p>
           </div>
@@ -58,7 +58,7 @@ const PricingHighlight = () => {
               <div className="bg-gold/20 p-4 rounded-xl w-fit mx-auto mb-4">
                 <Clock className="h-8 w-8 text-gold" />
               </div>
-              <h4 className="font-bold text-xl text-white mb-3">Navette</h4>
+              <h4 className="font-bold text-xl text-white mb-3">Voiturier</h4>
               <p className="text-white/70">Transfer inclus vers l&apos;aéroport de bordeaux</p>
               <CheckCircle className="h-6 w-6 text-green-400 mx-auto mt-4" />
             </div>

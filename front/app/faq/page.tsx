@@ -18,7 +18,7 @@ import Link from "next/link";
 export const metadata = {
   title: "FAQ - Gardiennage Automobile & Voiturier | MSParking Bordeaux",
   keywords:
-    "FAQ, questions fréquentes, gardiennage automobile, parking sécurisé, voiturier Bordeaux, réservation parking, navette aéroport, sécurité véhicule",
+    "FAQ, questions fréquentes, gardiennage automobile, parking sécurisé, voiturier Bordeaux, réservation parking, sécurité véhicule",
   description:
     "Réponses aux questions fréquentes sur notre service de gardiennage automobile, parking sécurisé et voiturier à Bordeaux-Mérignac avec MSParking. Trouvez toutes les réponses pour voyager sereinement.",
   alternates: {
@@ -55,16 +55,6 @@ const FAQ = () => {
       question: "Comment fonctionne le service de voiturier ?",
       answer:
         "Réservez en ligne, déposez votre véhicule à l'heure indiquée, nous vous déposons à l'aéroport de Bordeaux-Mérignac, gardons votre véhicule sécurisé, puis vous récupérons à votre retour pour la restitution de votre véhicule.",
-    },
-    {
-      question: "Quelle est la limite de bagages autorisés ?",
-      answer:
-        "Chaque passager peut apporter une valise et un sac à main pour garantir confort et sécurité dans la navette.",
-    },
-    {
-      question: "Combien de personnes peuvent prendre la navette ?",
-      answer:
-        "Notre navette accueille jusqu’à 5 personnes maximum, garantissant un trajet confortable et sécurisé.",
     },
     {
       question: "Où puis-je utiliser ce service ?",

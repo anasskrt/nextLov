@@ -6,7 +6,7 @@ const reviews = [
   {
     name: "Marie D.",
     rating: 5,
-    text: "Service irréprochable ! J'ai laissé ma voiture pendant 10 jours, elle était impeccable à mon retour. La navette était ponctuelle et le personnel très professionnel.",
+    text: "Service irréprochable ! J'ai laissé ma voiture pendant 10 jours, elle était impeccable à mon retour.",
     date: "Il y a 2 semaines"
   },
   {

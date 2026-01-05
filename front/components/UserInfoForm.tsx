@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 
 interface UserInfo {
   name: string;
@@ -35,9 +34,29 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
     carMarque: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [transports, setTransports] = useState<any[]>([]);
-  const [selectedTransport, setSelectedTransport] = useState<any>(null);
-  const [transportError, setTransportError] = useState<string | null>(null);
+  const [voiturierTransport, setVoiturierTransport] = useState<any>(null);
+
+  // 🔄 Récupérer automatiquement les infos du transport voiturier
+  useEffect(() => {
+    const fetchVoiturier = async () => {
+      try {
+        const res = await fetch("/api/transports");
+        if (!res.ok) return;
+        const transports = await res.json();
+        // Chercher le transport de type "voiturier"
+        const voiturier = transports.find((t: any) => 
+          t.type?.toLowerCase().includes("voiturier") || 
+          t.type?.toLowerCase().includes("valet")
+        );
+        if (voiturier) {
+          setVoiturierTransport(voiturier);
+        }
+      } catch (error) {
+        console.error('Erreur lors de la récupération du transport voiturier:', error);
+      }
+    };
+    fetchVoiturier();
+  }, []);
 
   // 🚀 Auto-save dès que email + phone + firstName sont remplis
   useEffect(() => {
@@ -122,7 +141,6 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
     if (!formData.carModel.trim()) newErrors.carModel = "Le modèle de voiture est requis";
     if (!formData.carMarque.trim()) newErrors.carMarque = "La marque du véhicule est requise";
     if (!formData.carColor.trim()) newErrors.carColor = "La couleur du véhicule est requise";
-    if (!selectedTransport) newErrors.transport = "Le mode de transport est requis";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -130,24 +148,15 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      onNext({ ...formData, selectedTransport: selectedTransport || "" });    
+      // Toujours envoyer le transport voiturier complet avec toutes ses informations
+      onNext({ 
+        ...formData, 
+        selectedTransport: voiturierTransport || "voiturier" 
+      });    
     }
   };
 
-    useEffect(() => {
-    const fetchTransports = async () => {
-      try {
-        const res = await fetch("/api/transports");
-        if (!res.ok) throw new Error("Erreur de récupération des transports");
-        const data = await res.json();
-        // Afficher tous les transports (actifs et inactifs)
-        setTransports(data);       
-      } catch {
-        setTransportError("Erreur lors du chargement des modes de transport");
-      }
-    };
-    fetchTransports();
-  }, []);
+
 
 
   return (
@@ -279,71 +288,6 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
               placeholder="Ex: Rouge, Bleu, Noir..."
             />
             {errors.carColor && <p className="text-red-500 text-sm mt-1">{errors.carColor}</p>}
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-navy mb-4">Mode de transport*</h3>
-            {transportError && <div className="text-red-500 mb-2">{transportError}</div>}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {transports.map((transport) => {
-                const isInactive = !transport.actif;
-                return (
-                  <Card
-                    key={transport.id}
-                    className={cn(
-                      "border-2 transition-all relative",
-                      isInactive 
-                        ? "cursor-not-allowed opacity-60 bg-gray-100" 
-                        : "cursor-pointer",
-                      !isInactive && selectedTransport && selectedTransport.id === transport.id
-                        ? "border-gold ring-2 ring-gold"
-                        : "border-gray-200",
-                      !isInactive && "hover:border-gold",
-                      errors.transport && !isInactive && "border-red-500"
-                    )}
-                    onClick={() => {
-                      if (!isInactive) {
-                        setSelectedTransport(transport);
-                        if (errors.transport) {
-                          setErrors((prev) => ({
-                            ...prev,
-                            transport: "",
-                          }));
-                        }
-                      }
-                    }}
-                  >
-                    <div className="p-4 flex flex-col h-full justify-between">
-                      {isInactive && (
-                        <div className="absolute top-2 right-2 bg-gray-500 text-white text-xs font-semibold px-2 py-1 rounded">
-                          Indisponible
-                        </div>
-                      )}
-                      <div>
-                        <CardTitle className={cn(
-                          "text-lg mb-2",
-                          isInactive ? "text-gray-500" : "text-navy"
-                        )}>
-                          {transport.type}
-                        </CardTitle>
-                        <CardDescription className={cn(
-                          "mb-2",
-                          isInactive && "text-gray-400"
-                        )}>
-                          {isInactive ? "Disponible prochainement" : transport.consignes}
-                        </CardDescription>
-                      </div>
-                      <div className={cn(
-                        "text-right font-bold text-lg",
-                        isInactive ? "text-gray-400" : "text-gold"
-                      )}>
-                      </div>
-                    </div>
-                  </Card>
-                );
-              })}
-            </div>
-            {errors.transport && <p className="text-red-500 text-sm mt-2">{errors.transport}</p>}
           </div>
         </div>
       

@@ -58,7 +58,7 @@ const RulesValidation = ({ onNext, onBack }: RulesValidationProps) => {
                     className="text-sm font-medium leading-relaxed cursor-pointer flex-1"
                   >
                     J&apos;ai lu et j&apos;accepte toutes les règles du service, y compris les conditions 
-                    concernant mon véhicule, ainsi que les conditions de la navette.
+                    concernant mon véhicule, ainsi que les conditions du voiturier.
                   </label>
                 </div>
               </div>

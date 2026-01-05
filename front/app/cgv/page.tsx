@@ -4,7 +4,7 @@ import { ScrollText } from "lucide-react";
 
 export const metadata = {
   title: "Conditions Générales de vente | msparking",
-  keywords: "cgv, conditions générales, voiturier, parking, msparking, bordeaux, navette, règlement",
+  keywords: "cgv, conditions générales, voiturier, parking, msparking, bordeaux, règlement",
   description: "Consultez les conditions générales de vente du service msparking : fonctionnement, réservation, paiement, annulation, responsabilité, données personnelles.",
   alternates: {
     canonical: "https://www.msparking.fr/cgv",

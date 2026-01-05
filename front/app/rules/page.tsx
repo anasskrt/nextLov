@@ -8,7 +8,7 @@ import React from "react";
 // ----- SEO -----
 export const metadata = {
   title: "Règles du Service Voiturier | MsParking",
-  keywords: "règles, service voiturier, sécurité, paiement, responsabilité, conditions générales, parking aéroport Bordeaux, navette, bagages, nombre de passagers, annulation, réservation, voiturier Bordeaux-Mérignac",
+  keywords: "règles, service voiturier, sécurité, paiement, responsabilité, conditions générales, parking aéroport Bordeaux, bagages, nombre de passagers, annulation, réservation, voiturier Bordeaux-Mérignac",
   description: "Découvrez toutes les règles à respecter pour utiliser notre service de voiturier. Sécurité, paiement, responsabilité : informez-vous avant de réserver. Gardian de parking à l'aéroport de Bordeaux-Mérignac.",
   alternates: {
     canonical: "https://www.msparking.fr/rules",
@@ -18,8 +18,8 @@ export const metadata = {
 // ----- Bloc Rules JSON-LD -----
 function RulesJsonLd() {
   const rulesList = [
-    ...navetteRules.map((r) => ({
-      category: "Service de navette",
+    ...voiturierRules.map((r) => ({
+      category: "Service de voiturier",
       ...r,
     })),
     ...serviceRules.map((r) => ({
@@ -56,24 +56,25 @@ function RulesJsonLd() {
   );
 }
 
-// --------- Tes règles -----------
-const navetteRules = [
+// --------- Règles du service voiturier -----------
+const voiturierRules = [
   {
     title: "Ponctualité",
-    description: "Merci d’arriver à l’heure convenue pour la prise en charge",
-    details: "En cas de retard, nous ne pourrons malheureusement pas garantir le remboursement si vous manquez votre vol. Nous vous remercions de votre compréhension.",
+    description: "Merci d’arriver à l’heure convenue au point de rendez-vous indiqué à l’aéroport.",
+    details: "En cas de retard important, le service ne pourra être garanti. Aucun remboursement ne pourra être exigé si le retard entraîne un désagrément de votre part.",
   },
   {
-    title: "Nombre de passagers",
-    description: "La navette peut accueillir jusqu’à 5 personnes maximum",
-    details: "Merci de respecter cette limite afin de garantir le confort et la sécurité de tous les passagers.",
+    title: "État des lieux du véhicule",
+    description: "Un état des lieux rapide du véhicule sera effectué en votre présence lors de la prise en charge.",
+    details: "Ce contrôle permet d’assurer la transparence et la sécurité du service pour le client comme pour le voiturier.",
   },
   {
-    title: "Bagages",
-    description: "Chaque passager peut apporter une seule valise et un sac à main",
-    details: "Si vous êtes plusieurs, veillez à ne pas dépasser ce nombre afin d’assurer une prise en charge pour tous.",
+    title: "Restitution du véhicule",
+    description: "Le véhicule vous sera restitué à l’heure convenu lors de la réservation.",
+    details: "Merci de fournir votre numéro de vol retour ou nous prévenir par mail en avance en cas de retard du vol ou autres soucis.",
   },
 ];
+
 
 const serviceRules = [
   {
@@ -206,8 +207,8 @@ export default function RulesPage() {
               </div>
             </div>
             <RuleSection 
-              title="Règles concernant le service de navette"
-              rules={navetteRules}
+              title="Règles concernant le service de voiturier"
+              rules={voiturierRules}
               icon={Car}
               color="text-primary-red-600"
               sectionLevel={2}

@@ -13,7 +13,7 @@ const Features = () => {
       icon: <Clock className="w-10 h-10 text-gold" />,
       title: "Service Ponctuel",
       description:
-        "Notre navette est toujours prête pile à l'heure pour vous accueillir.",
+        "Notre voiturier est toujours prêt pile à l'heure pour vous accueillir.",
     },
     {
       icon: <Car className="w-10 h-10 text-gold" />,
