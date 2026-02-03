@@ -45,22 +45,24 @@ const RulesValidation = ({ onNext, onBack }: RulesValidationProps) => {
                 </Link>
               </div> */}
               
-              <div className="flex items-start space-x-3 p-4 rounded-lg border border-gold bg-white">
-                <div className="flex items-start space-x-3 p-4 rounded-lg border border-gold bg-white">
-                  <Checkbox
-                    id="accept-rules"
-                    checked={rulesAccepted}
-                    onCheckedChange={handleRulesToggle}
-                    className="mt-1"
-                  />
-                  <label 
-                    htmlFor="accept-rules" 
-                    className="text-sm font-medium leading-relaxed cursor-pointer flex-1"
-                  >
-                    J&apos;ai lu et j&apos;accepte toutes les règles du service, y compris les conditions 
-                    concernant mon véhicule, ainsi que les conditions du voiturier.
-                  </label>
-                </div>
+              <div className="flex items-start space-x-3 p-4 rounded-lg border-2 border-primary-red-500 bg-white shadow-lg">
+                <Checkbox
+                  id="accept-rules"
+                  checked={rulesAccepted}
+                  onCheckedChange={handleRulesToggle}
+                  className={`mt-1 border-2 ${
+                    rulesAccepted 
+                      ? 'border-primary-red-500 bg-primary-red-500' 
+                      : 'border-primary-red-500 bg-white hover:bg-primary-red-50'
+                  }`}
+                />
+                <label 
+                  htmlFor="accept-rules" 
+                  className="text-sm font-semibold leading-relaxed cursor-pointer flex-1 text-gray-900"
+                >
+                  <span className="text-primary-red-600">* Obligatoire :</span> J&apos;ai lu et j&apos;accepte toutes les règles du service, y compris les conditions 
+                  concernant mon véhicule, ainsi que les conditions du voiturier.
+                </label>
               </div>
                 <div className="flex items-center mt-2 text-xs text-gray-600 bg-gray-100 px-3 py-2 rounded">
                   <span className="mr-2 font-semibold text-gold">ℹ️</span>
