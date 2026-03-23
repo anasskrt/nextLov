@@ -275,7 +275,7 @@ const BookingForm = () => {
             type="button"
             onClick={handleContinue}
             disabled={!isFormComplete || loading}
-            className="w-full bg-gold hover:bg-gold-dark text-navy font-bold py-3 px-8 text-lg"
+            className="w-full bg-navy hover:bg-navy-dark text-white font-bold py-3 px-8 text-lg"
           >
             Continuer ma réservation
           </Button>

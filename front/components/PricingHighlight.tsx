@@ -22,7 +22,7 @@ const PricingHighlight = () => {
             <h2 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
               Stationnement
               <br />
-              <span className="text-gold bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent">
+              <span className="text-cta-yellow bg-gradient-to-r from-cta-yellow to-cta-yellow-light bg-clip-text text-transparent">
                 journalier
               </span>
             </h2>
@@ -34,7 +34,7 @@ const PricingHighlight = () => {
               </div>
               <span className="text-3xl text-white/60">/jour</span>
             </div>
-            <div className="w-32 h-2 bg-gradient-to-r from-gold to-gold-light rounded-full mx-auto mb-8"></div>
+            <div className="w-32 h-2 bg-gradient-to-r from-cta-yellow to-cta-yellow-light rounded-full mx-auto mb-8"></div>
             
             <p className="text-2xl mb-12 text-white/90 leading-relaxed max-w-3xl mx-auto">
               Profitez de notre service de gardiennage automobile 

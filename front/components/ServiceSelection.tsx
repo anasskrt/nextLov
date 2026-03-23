@@ -85,8 +85,8 @@ const ServiceSelection = ({ onNext, onBack }: ServiceSelectionProps) => {
             key={service.id}
             className={`cursor-pointer transition-all hover:shadow-lg ${
               isServiceSelected(service.id)
-                ? 'ring-2 ring-gold border-gold'
-                : 'border-gray-200 hover:border-gold'
+                ? 'ring-2 ring-cta-yellow border-cta-yellow'
+                : 'border-gray-200 hover:border-cta-yellow'
             }`}
             onClick={() => handleServiceToggle(service.id, service.price)}
           >
@@ -102,7 +102,7 @@ const ServiceSelection = ({ onNext, onBack }: ServiceSelectionProps) => {
                       {typeof service.price === "number" ? `${service.price}€` : service.price}
                     </div>
                     {isServiceSelected(service.id) && (
-                      <div className="bg-gold rounded-full p-1">
+                      <div className="bg-cta-yellow rounded-full p-1">
                         <Check className="w-4 h-4 text-white" />
                       </div>
                     )}
@@ -138,7 +138,7 @@ const ServiceSelection = ({ onNext, onBack }: ServiceSelectionProps) => {
           )}
           <Button 
             onClick={handleNext}
-            className="bg-gold hover:bg-gold-dark text-navy font-bold px-8"
+            className="bg-cta-yellow hover:bg-cta-yellow-dark text-navy font-bold px-8"
           >
             {selectedServices.length === 0 ? "Continuer sans services" : "Continuer"}
           </Button>

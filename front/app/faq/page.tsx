@@ -221,7 +221,7 @@ const FAQ = () => {
                     </p>
                     <Link
                       href="/contact"
-                      className="inline-block bg-gold hover:bg-gold-dark text-navy font-semibold px-4 py-2 rounded-lg transition-colors"
+                      className="inline-block bg-navy-light hover:bg-navy text-white font-semibold px-4 py-2 rounded-lg transition-colors"
                     >
                       Nous contacter
                     </Link>

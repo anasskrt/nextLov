@@ -297,7 +297,7 @@ const UserInfoForm = ({ onNext, onBack }: UserInfoFormProps) => {
           </Button>
           <Button 
             type="submit"
-            className="bg-gold hover:bg-gold-dark text-navy font-bold px-8"
+            className="bg-cta-yellow hover:bg-cta-yellow-dark text-navy font-bold px-8"
           >
             Continuer vers les règles
           </Button>

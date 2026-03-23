@@ -130,7 +130,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <p className="text-white/90 mb-6">
               Réservez dès maintenant votre place de parking avec MSParking
             </p>
-            <Button asChild className="bg-gold hover:bg-gold-light text-navy font-bold">
+            <Button asChild className="bg-navy hover:bg-navy-light text-white font-bold">
               <Link href="/">
                 Réserver maintenant
               </Link>

@@ -160,7 +160,7 @@ const QuoteResult = ({ quote }: QuoteResultProps) => {
           </div>
 
           <Button
-            className="bg-gold hover:bg-gold-dark text-navy font-bold"
+            className="bg-cta-yellow hover:bg-cta-yellow-dark text-navy font-bold"
             onClick={handleQuoteValidation}
             disabled={isValidated}
           >

@@ -14,7 +14,7 @@ const PromoBanner = () => {
           </div>
           <div className="text-white text-base sm:text-lg">
             Profitez du gardiennage à seulement{" "}
-            <span className="text-gold font-extrabold text-xl sm:text-2xl">7€/jour</span>
+            <span className="text-white font-extrabold text-xl sm:text-2xl">7€/jour</span>
             {" "}pendant la période de lancement
           </div>
         </div>

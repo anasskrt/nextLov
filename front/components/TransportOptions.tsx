@@ -40,48 +40,6 @@ const TransportOptions = () => {
             </div>
           </div>
 
-          {/* Navette - Indisponible temporairement */}
-          {/* <div className="relative">
-            <div className="absolute -top-2 -right-2 z-10">
-              <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 rounded-lg shadow-lg font-semibold text-sm flex items-center gap-2 animate-pulse">
-                <Clock className="h-4 w-4" />
-                Disponible prochainement
-              </div>
-            </div>
-            
-            <div className="opacity-60 grayscale pointer-events-none">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                  <Users className="h-6 w-6 text-white" />
-                </div>
-                <h4 className="text-2xl font-bold text-navy">Service Navette</h4>
-              </div>
-              <p className="text-gray-600 mb-4 leading-relaxed">
-                Déposez votre véhicule directement sur notre parking sécurisé à seulement <strong>7 min de l&apos;aéroport</strong>. Après un état des lieux détaillé, notre navette vous conduit au terminal. À votre retour, contactez-nous après avoir récupéré vos bagages : nous vous récupérerons rapidement pour vous restituer votre voiture.
-              </p>
-              <div className="flex items-center gap-4 text-sm text-primary-red-600">
-                <span className="flex items-center gap-1">
-                  <Clock className="h-4 w-4" />
-                  7 min de trajet
-                </span>
-                <span className="flex items-center gap-1">
-                  <Shield className="h-4 w-4" />
-                  Véhicule sécurisé
-                </span>
-                <span className="flex items-center gap-1">
-                  <CheckCircle className="h-4 w-4" />
-                  Simple et économique
-                </span>
-              </div>
-            </div>
-            
-            <div className="mt-4 bg-orange-50 border-l-4 border-orange-500 p-3 rounded">
-              <p className="text-sm text-orange-800 font-medium">
-                ℹ️ Ce service sera bientôt disponible. En attendant, profitez de notre service voiturier !
-              </p>
-            </div>
-          </div> */}
-
           <p className="mt-8 text-gray-500 text-sm">
             Pour plus d&apos;informations sur les modalités de chaque service, consultez notre <a href="/faq" className="text-primary underline">FAQ détaillée</a>.
           </p>
@@ -90,7 +48,7 @@ const TransportOptions = () => {
         {/* Image à droite */}
         <div className="flex justify-center">
           <div className="relative">
-            <div className="w-64 h-64 bg-gradient-to-br from-primary via-secondary to-primary rounded-2xl flex items-center justify-center shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
+            <div className="w-64 h-64 bg-navy from-primary via-secondary to-primary rounded-2xl flex items-center justify-center shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
               <div className="text-center text-white">
                 <Plane className="h-20 w-20 mx-auto mb-4" />
                 <p className="text-xl font-bold mb-2">Bordeaux-Mérignac</p>

@@ -294,7 +294,7 @@ const PaymentForm = ({
               <Button
                 onClick={handlePayment}
                 disabled={isProcessing}
-                className="w-full bg-gold hover:bg-gold-dark text-navy font-bold py-3 text-lg"
+                className="w-full bg-cta-yellow hover:bg-cta-yellow-dark text-navy font-bold py-3 text-lg"
               >
                 {isProcessing ? "Traitement en cours..." : "Payer maintenant"}
               </Button>

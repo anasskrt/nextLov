@@ -41,7 +41,7 @@ const GarageService = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6 leading-tight">
             Service Garage Professionnel
             <br />
-            <span className="bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cta-yellow to-cta-yellow-light bg-clip-text text-transparent">
               Pendant votre voyage
             </span>
           </h2>
@@ -122,7 +122,7 @@ const GarageService = () => {
                         href="tel:+33609041879" 
                         className="text-xl font-bold text-gold hover:text-gold-light transition-colors"
                       >
-                        05 57 26 99 87
+                        06 09 04 18 79
                       </a>
                       <p className="text-sm text-white/70 mt-1">Lundi - Samedi : 8h - 19h</p>
                     </div>
@@ -141,7 +141,7 @@ const GarageService = () => {
                         href="mailto:contact@msparking.fr" 
                         className="text-lg font-bold text-gold hover:text-gold-light transition-colors break-all"
                       >
-                        serviceauto21@hotmail.fr
+                        contact@msparking.fr
                       </a>
                       <p className="text-sm text-white/70 mt-1">Réponse sous 24h</p>
                     </div>
@@ -179,7 +179,7 @@ const GarageService = () => {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button 
                   asChild
-                  className="bg-gold hover:bg-gold-light text-navy font-bold flex-1"
+                  className="bg-navy hover:bg-navy-light text-white font-bold flex-1"
                   size="lg"
                 >
                   <a href="tel:+33609041879">
@@ -190,7 +190,7 @@ const GarageService = () => {
                 <Button 
                   asChild
                   variant="outline" 
-                  className="border-white/30 text-white hover:bg-white/10 flex-1"
+                  className="border-white/30 text-navy hover:bg-white/10 flex-1"
                   size="lg"
                 >
                   <Link href="/contact">

@@ -89,7 +89,7 @@ const Signup = () => {
           <CardHeader>
             <CardTitle className="text-2xl text-center">Créer un compte</CardTitle>
             <CardDescription className="text-center">
-              Inscrivez-vous pour accéder à votre espace ValetPark
+              Inscrivez-vous pour accéder à votre espace MSparking
             </CardDescription>
           </CardHeader>
           <CardContent>

@@ -118,7 +118,7 @@ const QuoteValidationPage = () => {
                 <h4 className="font-medium mb-2 text-navy">Connexion rapide</h4>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button variant="outline" className="flex-1" onClick={handleLogin}>Se connecter</Button>
-                  <Button className="flex-1 bg-gold hover:bg-gold-dark text-navy" onClick={handleSignup}>Créer un compte</Button>
+                  <Button className="flex-1 bg-cta-yellow hover:bg-cta-yellow-dark text-navy" onClick={handleSignup}>Créer un compte</Button>
                 </div>
                 <div className="mt-3 text-center">
                   <span className="text-sm text-gray-500">ou continuez en tant qu&apos;invité</span>

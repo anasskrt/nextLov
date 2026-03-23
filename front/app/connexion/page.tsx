@@ -67,7 +67,7 @@ const Login = () => {
           <CardHeader>
             <CardTitle className="text-2xl text-center">Connexion</CardTitle>
             <CardDescription className="text-center">
-              Connectez-vous à votre compte ValetPark
+              Connectez-vous à votre compte MSparking
             </CardDescription>
           </CardHeader>
           <CardContent>
