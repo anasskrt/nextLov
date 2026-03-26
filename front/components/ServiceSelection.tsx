@@ -138,7 +138,7 @@ const ServiceSelection = ({ onNext, onBack }: ServiceSelectionProps) => {
           )}
           <Button 
             onClick={handleNext}
-            className="bg-cta-yellow hover:bg-cta-yellow-dark text-navy font-bold px-8"
+            className="bg-navy hover:bg-navy-dark text-white font-bold px-8"
           >
             {selectedServices.length === 0 ? "Continuer sans services" : "Continuer"}
           </Button>

@@ -92,7 +92,7 @@ const RulesValidation = ({ onNext, onBack }: RulesValidationProps) => {
         <Button 
           onClick={onNext}
           disabled={!rulesAccepted}
-          className="bg-cta-yellow hover:bg-cta-yellow-dark text-navy font-bold px-8"
+          className="bg-navy hover:bg-navy-dark text-white font-bold px-8"
         >
           {rulesAccepted ? "Continuer vers le paiement" : "Accepter les règles pour continuer"}
         </Button>
